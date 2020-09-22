@@ -7,6 +7,8 @@ public class Ejercicio4 {
 	* */
 		
 	System.out.println("\t#########################\n\t##     EJERCICIO 4     ##\n        ##       	       ##\n\t#########################");
+	
+	
 
 	}
 

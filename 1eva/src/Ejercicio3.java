@@ -11,7 +11,7 @@ public class Ejercicio3 {
 
 	int i, cont = 0;	
 	
-	int[] intArray = new int[] {1,2,3,4,5,6};
+	int[] intArray = new int[] {1,2,3,4,5,6,7};
 	
 	System.out.print("Array: ");
 	for ( i=0; i < intArray.length ; i++){

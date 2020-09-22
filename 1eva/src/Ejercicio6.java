@@ -1,5 +1,5 @@
 
-public class Ejercicio6 {
+public class Ejercicio6 extends Profesor{
 
 	public static void main(String[] args) {
 	/*
@@ -10,14 +10,8 @@ public class Ejercicio6 {
 		
 	System.out.println("\t#########################\n\t##     EJERCICIO 6     ##\n        ##       	       ##\n\t#########################");
 	
-	// Profesor
-	char DNI;
-	String Nombre = "Daniel";
-	String Apellidos = "Navarro Garcia";
-	double Salario = 999.54;
-	int N_asignaturas = 5;
-	Boolean Tutor = true;
 	
-	Datos Profe1 = new Profesor (DNI, Nombre, Apellidos, Salario, N_asignaturas, Tutor);
+	
+	Profesor Profesor = new Profesor (DNI, Nombre, Apellidos, Salario, N_asignaturas, Tutor);
 	}
 }
