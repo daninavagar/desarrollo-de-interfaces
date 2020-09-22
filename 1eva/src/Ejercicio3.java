@@ -10,13 +10,17 @@ public class Ejercicio3 {
 
 	int i, cont = 0;	
 	
-	int[] intArray = new int[] {1,2,3,4,5};
+	int[] intArray = new int[] {1,2,3,4,5,6};
 	
-	for ( i=0; i < intArray[i] ; i++){
-		cont++;
-		System.out.println(cont);
+	for ( i=0; i < intArray.length ; i++){
+		if (i%2==0) {
+				cont++;
+			}
+		System.out.print(intArray[i]+",");
 		}
-		
+	
+	
+	System.out.println("\nLa cantidad total de array es: "+cont);
 	}
 
 }
