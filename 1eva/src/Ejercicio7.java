@@ -5,7 +5,7 @@ public class Ejercicio7 {
 	/*
 	 * 	Modificar el programa anterior aplicando herencia.
 	 * */
-
+	System.out.println("\t#########################\n\t##     EJERCICIO 7     ##\n        ##       	       ##\n\t#########################");
 	}
 
 }

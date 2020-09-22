@@ -5,6 +5,8 @@ public class Ejercicio4 {
 	/* 
 	* Crear una matriz de enteros de n x n (tamaño lo decide el usuario), rellenar co números aleatorios, recorrerla y dar la suma de todos sus números.
 	* */
+		
+	System.out.println("\t#########################\n\t##     EJERCICIO 4     ##\n        ##       	       ##\n\t#########################");
 
 	}
 

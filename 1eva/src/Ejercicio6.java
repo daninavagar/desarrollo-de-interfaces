@@ -8,7 +8,7 @@ public class Ejercicio6 {
 	 * */
 	
 		
-	
+	System.out.println("\t#########################\n\t##     EJERCICIO 6     ##\n        ##       	       ##\n\t#########################");
 	
 	// Profesor
 	char DNI;
@@ -18,6 +18,6 @@ public class Ejercicio6 {
 	int N_asignaturas = 5;
 	Boolean Tutor = true;
 	
-	Datos Profe1 = new Profe (DNI, Nombre, Apellidos, Salario, N_asignaturas, Tutor);
+	Datos Profe1 = new Profesor (DNI, Nombre, Apellidos, Salario, N_asignaturas, Tutor);
 	}
 }

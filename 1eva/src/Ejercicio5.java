@@ -10,6 +10,7 @@ public class Ejercicio5 {
 	Scanner ReadKey = new Scanner (System.in);
 	int number;
 	
+	System.out.println("\t#########################\n\t##     EJERCICIO 5     ##\n        ##       	       ##\n\t#########################");
 	
 	do {
 		System.out.println("Dime un numero positivo y te digo el factorial: ");
