@@ -1,7 +1,8 @@
+package Practicas;
 
-public class Profesor extends Ejercicio6{
+public class Profesor{
 
-	private char DNI;
+	private String DNI;
 	private String Nombre;
 	private String Apellidos;
 	private double Salario;
@@ -10,7 +11,7 @@ public class Profesor extends Ejercicio6{
 	
 	
 	
-	public Profesor(char dNI, String nombre, String apellidos, double salario, int n_asignaturas, boolean tutor) {
+	public Profesor(String dNI, String nombre, String apellidos, double salario, int n_asignaturas, boolean tutor) {
 		super();
 		DNI = dNI;
 		Nombre = nombre;
@@ -22,13 +23,13 @@ public class Profesor extends Ejercicio6{
 
 
 
-	public char getDNI() {
+	public String getDNI() {
 		return DNI;
 	}
 
 
 
-	public void setDNI(char dNI) {
+	public void setDNI(String dNI) {
 		DNI = dNI;
 	}
 
@@ -96,8 +97,8 @@ public class Profesor extends Ejercicio6{
 
 	@Override
 	public String toString() {
-		return "Profesor [DNI=" + DNI + ", Nombre=" + Nombre + ", Apellidos=" + Apellidos + ", Salario=" + Salario
-				+ ", N_asignaturas=" + N_asignaturas + ", Tutor=" + Tutor + "]";
+		return "Profesor DNI-->" + DNI + ", Nombre--> " + Nombre + ", Apellidos--> " + Apellidos + ", Salario--> " + Salario
+				+ ", N_asignaturas--> " + N_asignaturas + ", Tutor--> " + Tutor;
 	}
 	
 	
