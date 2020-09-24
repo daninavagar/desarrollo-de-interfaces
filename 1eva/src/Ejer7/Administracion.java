@@ -1,27 +1,20 @@
 package Ejer7;
 
-public class Administracion extends Persona{
+public class Administracion extends Employer{
 	
 
-	private double Salario;
+	
 	private String Estudios;
 	private int Antigüedad;
 	
 	
 	public Administracion(String dNI, String Nombre, String Apellidos, double salario, String estudios, int antigüedad) {
-		super(dNI, Nombre, Apellidos);
-		Salario = salario;
+		super(dNI, Nombre, Apellidos, salario);
 		Estudios = estudios;
 		Antigüedad = antigüedad;
 	}
 	
 	
-	public double getSalario() {
-		return Salario;
-	}
-	public void setSalario(double salario) {
-		Salario = salario;
-	}
 	public String getEstudios() {
 		return Estudios;
 	}
@@ -36,8 +29,7 @@ public class Administracion extends Persona{
 	}
 	@Override
 	public String toString() {
-		return "Administrativo \n\t" + super.toString() + ", Salario-->" + Salario
-				+ ", Estudios--> " + Estudios + ", Antigüedad--> " + Antigüedad;
+		return "Administrativo \n\t" + super.toString() + ", Estudios--> " + Estudios + ", Antigüedad--> " + Antigüedad;
 	}
 	
 	

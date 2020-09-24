@@ -1,33 +1,21 @@
 package Ejer7;
 
-public class Directivo extends Persona{
+public class Directivo extends Employer{
 	
 	
-	private double Salario;
+	
 	private boolean Salesiano;
 	protected enum Turno{Mañana, Tarde} Turno Time;
 
 
 
-	public Directivo(String dNI, String Nombre, String Apellidos, double salario, boolean salesiano,
+	public Directivo(String dNI, String Nombre, String Apellidos, double Salario, boolean salesiano,
 			Directivo.Turno type) {
-		super(dNI, Nombre, Apellidos);
-		Salario = salario;
+		super(dNI, Nombre, Apellidos, Salario);
 		Salesiano = salesiano;
 		this.Time = type;
 	}
 
-
-
-	public double getSalario() {
-		return Salario;
-	}
-
-
-
-	public void setSalario(double salario) {
-		Salario = salario;
-	}
 
 
 
@@ -57,8 +45,7 @@ public class Directivo extends Persona{
 
 	@Override
 	public String toString() {
-		return "Directivo\n\t" + super.toString() + ", Salario--> " + Salario
-				+ ", Salesiano--> " + Salesiano + ", Turno--> " + Time;
+		return "Directivo\n\t" + super.toString() + ", Salesiano--> " + Salesiano + ", Turno--> " + Time;
 	}
 	
 	

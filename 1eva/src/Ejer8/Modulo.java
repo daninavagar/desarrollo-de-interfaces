@@ -69,7 +69,7 @@ public class Modulo {
 
 	@Override
 	public String toString() {
-		return "Modulo [Nombre=" + Nombre + ", N_Horas=" + N_Horas + ", Profesor=" + Profesor + ", Convalidable="
+		return "\tModulo Nombre=" + Nombre + ", N_Horas=" + N_Horas + ", Profesor=" + Profesor + ", Convalidable="
 				+ Convalidable + "]";
 	}
 	

@@ -1,29 +1,18 @@
 package Ejer7;
 
-public class Profesor extends Persona{
+public class Profesor extends Employer{
 
 	
-	private double Salario;
+	
 	private int N_asignaturas;
 	private boolean Tutor;
 	
 	
 	
-	public Profesor(String dNI, String Nombre, String Apellidos, double salario, int n_asignaturas, boolean tutor) {
-		super(dNI, Nombre, Apellidos);
-		Salario = salario;
+	public Profesor(String dNI, String Nombre, String Apellidos, double Salario, int n_asignaturas, boolean tutor) {
+		super(dNI, Nombre, Apellidos, Salario);
 		N_asignaturas = n_asignaturas;
 		Tutor = tutor;
-	}
-
-	public double getSalario() {
-		return Salario;
-	}
-
-
-
-	public void setSalario(double salario) {
-		Salario = salario;
 	}
 
 
@@ -54,8 +43,7 @@ public class Profesor extends Persona{
 
 	@Override
 	public String toString() {
-		return "Profesor = \n\t1" + super.toString() + ", Salario--> " + Salario
-				+ ", N_asignaturas--> " + N_asignaturas + ", Tutor--> " + Tutor;
+		return "Profesor = \n\t1" + super.toString() + ", N_asignaturas--> " + N_asignaturas + ", Tutor--> " + Tutor;
 	}
 	
 	
