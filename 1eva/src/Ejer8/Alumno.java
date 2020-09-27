@@ -1,8 +1,5 @@
 package Ejer8;
 
-// import java.text.DateFormat;
-// import java.text.SimpleDateFormat;
-// import java.util.Date;
 
 public class Alumno {
 	
@@ -12,24 +9,35 @@ public class Alumno {
 	private String Nacimiento;
 	protected enum Sex{Varon, Mujer, Otro} Sex Sexo;
 	private boolean Repetidor;
-	private int N_Modulos;
+	private Modulo N_Modulos[];
 	
-	// DateFormat format = new SimpleDateFormat("DD/MM/YYYY");
-	// Date fecha = format.parse(getNacimiento());
+	
 	
 	
 	
 	public Alumno(String dNI, String nombre, String apellidos, String nacimiento, Sex sexo, boolean repetidor,
-			int n_Modulos) {
+			 Modulo[] n_Modulos) {
 		super();
-		DNI = dNI;
-		Nombre = nombre;
-		Apellidos = apellidos;
-		Nacimiento = nacimiento;
-		Sexo = sexo;
-		Repetidor = repetidor;
-		N_Modulos = n_Modulos;
+		this.DNI = dNI;
+		this.Nombre = nombre;
+		this.Apellidos = apellidos;
+		this.Nacimiento = nacimiento;
+		this.Sexo = sexo;
+		this.Repetidor = repetidor;
+		this.N_Modulos = n_Modulos;
 	}
+
+
+	
+
+
+	public Alumno(Modulo[] n_Modulos) {
+		super();
+		
+	}
+
+
+
 
 
 	public String getDNI() {
@@ -91,15 +99,21 @@ public class Alumno {
 		Repetidor = repetidor;
 	}
 
-
-	public int getN_Modulos() {
+	
+	public Modulo[] getN_Modulos() {
 		return N_Modulos;
 	}
 
 
-	public void setN_Modulos(int n_Modulos) {
+
+
+
+	public void setN_Modulos(Modulo[] n_Modulos) {
 		N_Modulos = n_Modulos;
 	}
+
+
+
 
 
 	@Override
