@@ -1,4 +1,4 @@
-package Ejer7;
+package Ejer67;
 
 public class Directivo extends Employer{
 	

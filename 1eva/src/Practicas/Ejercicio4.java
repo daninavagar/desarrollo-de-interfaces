@@ -5,9 +5,6 @@ import java.util.Scanner;
 public class Ejercicio4 {
 
 	public static void main(String[] args) {
-	/* 
-	* Crear una matriz de enteros de n x n (tamaño lo decide el usuario), rellenar co números aleatorios, recorrerla y dar la suma de todos sus números.
-	* */
 	
 	int numero, suma = 0;
 	
@@ -32,7 +29,7 @@ public class Ejercicio4 {
 	for (int i=0; i<matriz.length;i++) 
 		for (int f = 0; f<matriz[i].length; f++) 
 			suma += matriz[i][f];
-	System.out.println("La suma es: "+suma);
+	System.out.println("\nLa suma es: "+suma);
 	
 	
 

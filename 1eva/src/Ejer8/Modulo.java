@@ -1,21 +1,24 @@
 package Ejer8;
 
-public class Modulo {
+public class Modulo{
 	
-	private String Nombre;
-	private int N_Horas;
-	private String Profesor;
-	private boolean Convalidable;
+	public String Nombre;
+	public int N_Horas;
+	public Profesor N_profe;
+	public boolean Convalidable;
 	
 	
 	
-	public Modulo(String nombre, int n_Horas, String profesor, boolean convalidable) {
+
+	public Modulo(String nombre, int n_Horas, Profesor n_profe, boolean convalidable) {
 		super();
 		Nombre = nombre;
 		N_Horas = n_Horas;
-		Profesor = profesor;
+		N_profe = n_profe;
 		Convalidable = convalidable;
 	}
+
+
 
 
 
@@ -25,9 +28,13 @@ public class Modulo {
 
 
 
+
+
 	public void setNombre(String nombre) {
 		Nombre = nombre;
 	}
+
+
 
 
 
@@ -37,21 +44,29 @@ public class Modulo {
 
 
 
+
+
 	public void setN_Horas(int n_Horas) {
 		N_Horas = n_Horas;
 	}
 
 
 
-	public String getProfesor() {
-		return Profesor;
+
+
+	public Profesor getN_profe() {
+		return N_profe;
 	}
 
 
 
-	public void setProfesor(String profesor) {
-		Profesor = profesor;
+
+
+	public void setN_profe(Profesor n_profe) {
+		N_profe = n_profe;
 	}
+
+
 
 
 
@@ -61,17 +76,24 @@ public class Modulo {
 
 
 
+
+
 	public void setConvalidable(boolean convalidable) {
 		Convalidable = convalidable;
 	}
 
 
+	
+
+
 
 	@Override
 	public String toString() {
-		return "\tModulo Nombre=" + Nombre + ", N_Horas=" + N_Horas + ", Profesor=" + Profesor + ", Convalidable="
-				+ Convalidable + "]";
+		return "\n\t Modulo: \n\t Nombre--> " + Nombre + ", N_Horas --> " + N_Horas + N_profe.toString() + ", Convalidable --> "
+				+ Convalidable;
 	}
+	
+	
 	
 	
 	

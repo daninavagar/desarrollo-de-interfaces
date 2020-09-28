@@ -1,83 +1,23 @@
 package Ejer8;
 
-
-public class Alumno {
+public class Alumno extends Persona{
 	
-	private String DNI;
-	private String Nombre;
-	private String Apellidos;
-	private String Nacimiento;
-	protected enum Sex{Varon, Mujer, Otro} Sex Sexo;
-	private boolean Repetidor;
-	private Modulo N_Modulos[];
+	
+	public enum Sex{Varon, Mujer, Otro} Sex Sexo;
+	public boolean Repetidor;
+	public Modulo N_Modulos[];
+	public String Datos = "";
 	
 	
 	
-	
-	
-	public Alumno(String dNI, String nombre, String apellidos, String nacimiento, Sex sexo, boolean repetidor,
-			 Modulo[] n_Modulos) {
-		super();
-		this.DNI = dNI;
-		this.Nombre = nombre;
-		this.Apellidos = apellidos;
-		this.Nacimiento = nacimiento;
-		this.Sexo = sexo;
-		this.Repetidor = repetidor;
-		this.N_Modulos = n_Modulos;
+	public Alumno(String dNI, String nombre, String apellidos, String f_nacimiento, double salario, Sex sexo, boolean repetidor,
+			Modulo[] n_Modulos) {
+		super(dNI, nombre, apellidos, f_nacimiento, salario);
+		Sexo = sexo;
+		Repetidor = repetidor;
+		N_Modulos = n_Modulos;
 	}
 
-
-	
-
-
-	public Alumno(Modulo[] n_Modulos) {
-		super();
-		
-	}
-
-
-
-
-
-	public String getDNI() {
-		return DNI;
-	}
-
-
-	public void setDNI(String dNI) {
-		DNI = dNI;
-	}
-
-
-	public String getNombre() {
-		return Nombre;
-	}
-
-
-	public void setNombre(String nombre) {
-		Nombre = nombre;
-	}
-
-
-	public String getApellidos() {
-		return Apellidos;
-	}
-
-
-	public void setApellidos(String apellidos) {
-		Apellidos = apellidos;
-	}
-
-
-	public String getNacimiento() {
-		return Nacimiento;
-	}
-
-
-	public void setNacimiento(String nacimiento) {
-		Nacimiento = nacimiento;
-	}
 
 
 	public Sex getSexo() {
@@ -85,9 +25,11 @@ public class Alumno {
 	}
 
 
+
 	public void setSexo(Sex sexo) {
 		Sexo = sexo;
 	}
+
 
 
 	public boolean isRepetidor() {
@@ -95,17 +37,16 @@ public class Alumno {
 	}
 
 
+
 	public void setRepetidor(boolean repetidor) {
 		Repetidor = repetidor;
 	}
 
-	
+
+
 	public Modulo[] getN_Modulos() {
 		return N_Modulos;
 	}
-
-
-
 
 
 	public void setN_Modulos(Modulo[] n_Modulos) {
@@ -114,14 +55,16 @@ public class Alumno {
 
 
 
-
-
 	@Override
 	public String toString() {
-		return "Alumno [DNI=" + DNI + ", Nombre=" + Nombre + ", Apellidos=" + Apellidos + ", Nacimiento=" + Nacimiento
-				+ ", Sexo=" + Sexo + ", Repetidor=" + Repetidor + ", N_Modulos=" + N_Modulos + "]";
+		Datos += "Alumno:  \n\t "+ super.toString()+ ", Sexo --> " + Sexo + ", Repetidor --> " + Repetidor;
+		for (int i=0; i<this.N_Modulos.length; i++) {
+			Datos += this.N_Modulos[i];
+		}
+		return Datos;
 	}
-
+	
+	
 	
 	
 	

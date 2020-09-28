@@ -5,9 +5,7 @@ import java.util.Scanner;
 public class Ejercicio5 {
 
 	public static void main(String[] args) {
-		/*
-		 * Calcular el factorial de un número entero positivo a través de la recursividad.
-		 * */
+
 	Scanner ReadKey = new Scanner (System.in);
 	int number;
 	
@@ -18,7 +16,7 @@ public class Ejercicio5 {
 		number = ReadKey.nextInt();
 	} while (number <= 0);
 	
-	System.out.println("El factorial de "+number+" es: "+Factorial(number));
+	System.out.println("El factorial de "+number+" es --> "+Factorial(number));
 	
 
 	

@@ -1,23 +1,20 @@
-package Practicas;
+package Ejer67;
 
-import Practicas.Directivo.Turno;
 import java.util.Scanner;
 
+import Ejer67.Directivo.Turno;
 
 
-public class Ejercicio6{
+
+public class Ejercicio7{
 
 	public static void main(String[] args) {
-	/*
-	 * 	El centro quiere informatizar a sus trabajadores en un software implementando en Java. A partir de los datos que se muestran a continuacion,
-	 * 	programa el sotfware y crear 6 objetos de prueba mostrando su informacion por pantalla.
-	 * */
 	
 	int opcion;
 	Scanner ReadKey = new Scanner(System.in);
-	System.out.println("\t#########################\n\t##     EJERCICIO 6     ##\n        ##       	       ##\n\t#########################");
+	System.out.println("\t#########################\n\t##     EJERCICIO 7     ##\n        ##       	       ##\n\t#########################");
 	
-	System.out.println("Dime una opcion: ");
+	System.out.println("Dime una opcion: \n\t 1. Datos Profesor \t 2. Datos Administrativo \t 3. Datos Directivo \t4. SALIR");
 	opcion = ReadKey.nextInt();
 	
 	
@@ -33,17 +30,15 @@ public class Ejercicio6{
 			System.out.println("\n\t"+Ad1+"\n\t"+Ad2);
 			break;
 		case 3:
-			Directivo Dir1 = new Directivo ("5464654", "Diego", "Martin", 55.2, false, Turno.Tarde);
+			Directivo Dir1 = new Directivo ("5464654", "Diego", "Martin", 55.2, false, Turno.Tarde) ;
 			Directivo Dir2 = new Directivo ("5464654", "Victor", "Guerra", 55.2, false, Turno.Mañana);
 			System.out.println("\n\t"+Dir1+"\n\t"+Dir2);
 			break;
+		case 4:
+			System.out.println("GRACIAS POR VENIR");
+			break;
 	}
-		
-	
-	
-		
-	
-	
+
 	ReadKey.close();
 	}
 }
