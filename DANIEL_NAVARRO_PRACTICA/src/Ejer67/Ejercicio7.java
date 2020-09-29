@@ -30,8 +30,8 @@ public class Ejercicio7{
 			System.out.println("\n\t"+Ad1+"\n\t"+Ad2);
 			break;
 		case 3:
-			Directivo Dir1 = new Directivo ("5464654", "Diego", "Martin", 55.2, false, Turno.Tarde) ;
-			Directivo Dir2 = new Directivo ("5464654", "Victor", "Guerra", 55.2, false, Turno.Mañana);
+			Directivo Dir1 = new Directivo ("5464654", "Diego", "Martin", 11021.3, false, Turno.Tarde) ;
+			Directivo Dir2 = new Directivo ("5464654", "Victor", "Guerra", 9854.2, false, Turno.Mañana);
 			System.out.println("\n\t"+Dir1+"\n\t"+Dir2);
 			break;
 		case 4:

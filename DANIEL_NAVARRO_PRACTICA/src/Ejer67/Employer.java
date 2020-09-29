@@ -9,9 +9,11 @@ public class Employer {
 	
 	
 	public Employer(String dNI, String nombre, String apellidos, double salario) {
+		super();
 		DNI = dNI;
 		Nombre = nombre;
 		Apellidos = apellidos;
+		Salario = salario;
 	}
 
 
@@ -57,7 +59,7 @@ public class Employer {
 
 	@Override
 	public String toString() {
-		return " DNI--> " + DNI + ", Nombre--> " + Nombre + ", Apellidos--> " + Apellidos + ", Salario --> " + Salario;
+		return " DNI--> " + DNI + ", Nombre--> " + Nombre + ", Apellidos--> " + Apellidos + ", Salario --> " + Salario+"€";
 	}
 	
 	
