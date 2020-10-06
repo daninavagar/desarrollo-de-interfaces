@@ -22,19 +22,14 @@ public class Ejercicio4 {
 		for (int f = 0; f<matriz[i].length; f++) {
 			matriz[i][f] = (int) Math.floor(Math.random()*10);
 			System.out.print("\t"+matriz[i][f]);
+			suma += matriz[i][f];
+			
 		}
 		System.out.println();
+		
+		
 	}
-	
-	for (int i=0; i<matriz.length;i++) 
-		for (int f = 0; f<matriz[i].length; f++) 
-			suma += matriz[i][f];
-	System.out.println("\nLa suma es: "+suma);
-	
-	
-
-	
-	
+	System.out.println("\n\nLa suma es: "+suma);
 	ReadKey.close();
 	}
 
