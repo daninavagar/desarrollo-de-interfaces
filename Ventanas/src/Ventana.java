@@ -70,11 +70,13 @@ public class Ventana {
 		frmPrimeraVentana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblNewLabel = new JLabel("BIENVENIDO A MI PRIMERA VENTANA");
+		lblNewLabel.setFont(new Font("Sitka Small", Font.BOLD | Font.ITALIC, 15));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(10, 11, 414, 14);
+		lblNewLabel.setBounds(10, 11, 414, 32);
+		
 		
 		JButton btnNewButton = new JButton("ENVIAR");
-		btnNewButton.setBounds(231, 163, 86, 34);
+		btnNewButton.setBounds(325, 191, 86, 34);
 		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.setForeground(Color.MAGENTA);
 		frmPrimeraVentana.getContentPane().setLayout(null);
@@ -82,39 +84,39 @@ public class Ventana {
 		frmPrimeraVentana.getContentPane().add(btnNewButton);
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("WINDOWS");
-		rdbtnNewRadioButton.setBounds(308, 30, 109, 23);
+		rdbtnNewRadioButton.setBounds(20, 122, 109, 23);
 		frmPrimeraVentana.getContentPane().add(rdbtnNewRadioButton);
 		
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("LINUX");
-		rdbtnNewRadioButton_1.setBounds(308, 66, 109, 23);
+		rdbtnNewRadioButton_1.setBounds(20, 148, 109, 23);
 		frmPrimeraVentana.getContentPane().add(rdbtnNewRadioButton_1);
 		
 		JComboBox<?> comboBox = new JComboBox();
 		comboBox.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
 		comboBox.setToolTipText("");
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"ESPA\u00D1ITA", "OTRO NO ME VALE"}));
-		comboBox.setBounds(20, 36, 106, 23);
+		comboBox.setBounds(23, 54, 106, 23);
 		frmPrimeraVentana.getContentPane().add(comboBox);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(108, 198, 109, 20);
+		passwordField.setBounds(315, 85, 109, 20);
 		frmPrimeraVentana.getContentPane().add(passwordField);
 		
 		JLabel lblNewLabel_1 = new JLabel("Contrase\u00F1a");
-		lblNewLabel_1.setBounds(20, 201, 78, 14);
+		lblNewLabel_1.setBounds(227, 88, 78, 14);
 		frmPrimeraVentana.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Usuario");
-		lblNewLabel_2.setBounds(20, 173, 46, 14);
+		lblNewLabel_2.setBounds(234, 57, 46, 14);
 		frmPrimeraVentana.getContentPane().add(lblNewLabel_2);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(108, 170, 86, 20);
+		textField_1.setBounds(315, 54, 109, 20);
 		frmPrimeraVentana.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
 		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("MAC");
-		rdbtnNewRadioButton_2.setBounds(308, 103, 109, 23);
+		rdbtnNewRadioButton_2.setBounds(20, 174, 109, 23);
 		frmPrimeraVentana.getContentPane().add(rdbtnNewRadioButton_2);
 	}
 }
