@@ -1,5 +1,5 @@
-import java.awt.EventQueue;
-
+import java.awt.EventQueue; 
+import java.util.Scanner;
 import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -36,6 +36,7 @@ public class Ventana {
 	/**
 	 * Launch the application.
 	 */
+	final Scanner Leer = new Scanner (System.in);
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -106,6 +107,7 @@ public class Ventana {
 		lblNewLabel_1.setBounds(227, 88, 78, 14);
 		frmPrimeraVentana.getContentPane().add(lblNewLabel_1);
 		
+		
 		JLabel lblNewLabel_2 = new JLabel("Usuario");
 		lblNewLabel_2.setBounds(234, 57, 46, 14);
 		frmPrimeraVentana.getContentPane().add(lblNewLabel_2);
@@ -118,5 +120,11 @@ public class Ventana {
 		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("MAC");
 		rdbtnNewRadioButton_2.setBounds(20, 174, 109, 23);
 		frmPrimeraVentana.getContentPane().add(rdbtnNewRadioButton_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("New label");
+		lblNewLabel_3.setBounds(227, 152, 46, 14);
+		frmPrimeraVentana.getContentPane().add(lblNewLabel_3);
+		
+		Leer.close();
 	}
 }
