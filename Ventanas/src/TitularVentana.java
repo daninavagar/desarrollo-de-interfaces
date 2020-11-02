@@ -1,4 +1,4 @@
-import java.awt.EventQueue;
+import java.awt.EventQueue; 
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -6,6 +6,7 @@ import javax.swing.SwingConstants;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.awt.Font;
@@ -89,9 +90,9 @@ public class TitularVentana {
 				Document document;
 				String webPage = "https://www.marca.com/futbol/primera-division/2020/10/22/5f91790bca4741e1748b4597.html";
 				document = Jsoup.connect(webPage).get();
-				Elements palabra = document.getElementById("titulo-5f91790bca4741e1748b4597").getElementsByClass("titles");
-				palabra.html();
-				textField_muestra.setText(palabra.html());
+				Element palabra = document.select("div#em-site-title > h1").first(); //.getElementsByClass("");
+				palabra.text();
+				textField_muestra.setText(palabra.text());
 			}
 		});
 		btnNewButton_boton.setToolTipText("Pulsa para mostrar titular pagina web");

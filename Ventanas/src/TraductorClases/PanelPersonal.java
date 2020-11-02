@@ -26,16 +26,7 @@ public class PanelPersonal extends JPanel{
 		palabraIn.setSize(palabraIn.getPreferredSize());
 		
 		add(palabraIn);
-		/*
-		tituloIn= new JLabel();
-		tituloIn.setBounds(190,31,273,76);
-		tituloIn.setText("TITULAR");
-		tituloIn.setFont(new Font("Tempus Sans ITC", Font.BOLD, 40));
-		tituloIn.setHorizontalAlignment(SwingConstants.CENTER);
-		tituloIn.setHorizontalTextPosition(SwingConstants.CENTER);
 		
-		add(tituloIn);
-		*/
 		
 		palabraOUT = new JLabel();
 		palabraOUT.setBounds(80, 140, 50, 50);
