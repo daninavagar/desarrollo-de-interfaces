@@ -1,5 +1,6 @@
 package Practica;
 
+// import java.awt.CardLayout; 
 import java.awt.EventQueue;
 
 import javax.imageio.ImageIO;
@@ -19,13 +20,15 @@ import javax.swing.JMenuItem;
 import javax.swing.JProgressBar;
 import javax.swing.Timer;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import java.awt.Window.Type;
+import javax.swing.JPanel;
 
 public class Ventana {
 
-	private JFrame frmNoticiasConUsuarios;
 
 	/**
 	 * Launch the application.
@@ -46,13 +49,16 @@ public class Ventana {
 	/**
 	 * Create the application.
 	 */
+	private JFrame frmNoticiasConUsuarios;
+	JPanel panel_carga = new JPanel();
+	JPanel panel_login = new JPanel();
 	private Timer tiempo = null;
 	private int cont = 0;
 	JProgressBar BarraProgreso = new JProgressBar();
 	public Ventana() throws IOException {
 		initialize();
 		
-		tiempo = new Timer(100, (ActionListener) new ActionListener() {
+		tiempo = new Timer(50, (ActionListener) new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -61,6 +67,13 @@ public class Ventana {
 				BarraProgreso.setValue(cont);
 				if (BarraProgreso.getValue() < 10) {
 					BarraProgreso.setValue(BarraProgreso.getValue() + 1);
+					
+				}
+				if (BarraProgreso.getValue() == 100) {
+					frmNoticiasConUsuarios.setEnabled(true);
+					frmNoticiasConUsuarios.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					// panel_carga.setVisible(false);
+					// panel_login.setVisible(true);			
 				}
 				
 			}
@@ -77,34 +90,40 @@ public class Ventana {
 	
 	private void initialize() throws IOException {
 		
-		BufferedImage img = ImageIO.read(new File ("./src/Image/fondo.png"));
+		BufferedImage img = ImageIO.read(new File ("./src/Image/fondo.jpg"));
 		frmNoticiasConUsuarios = new JFrame();
-		frmNoticiasConUsuarios.setType(Type.POPUP);
+		frmNoticiasConUsuarios.setEnabled(false);
+		frmNoticiasConUsuarios.setResizable(false);
 		frmNoticiasConUsuarios.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/Image/icon.png"));
 		frmNoticiasConUsuarios.setTitle("NOTICIAS CON USUARIOS");
-		frmNoticiasConUsuarios.setBounds(100, 100, 450, 300);
+		frmNoticiasConUsuarios.setBounds(100, 100, 451, 329);
 		frmNoticiasConUsuarios.setLocationRelativeTo(null);
-		frmNoticiasConUsuarios.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmNoticiasConUsuarios.getContentPane().setLayout(null);
+		frmNoticiasConUsuarios.getContentPane().setLayout(null);	
 		
+		JMenuBar menuBar = new JMenuBar();
+		frmNoticiasConUsuarios.setJMenuBar(menuBar);
 		
+		JMenuItem infoMenu = new JMenuItem("Acerca de");
+		menuBar.add(infoMenu);
 		
-		
-		
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Acerca de");
-		mntmNewMenuItem.addMouseListener(new MouseAdapter() {
+		infoMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null, "Hecho por Daniel Navarro");
+				JOptionPane.showMessageDialog(null, "Hecho por Daniel Navarro\n daninavagar@gmail.com");
 			}
 		});
-		mntmNewMenuItem.setBounds(331, 0, 103, 26);
-		frmNoticiasConUsuarios.getContentPane().add(mntmNewMenuItem);
+		infoMenu.setBounds(331, 0, 103, 26);
+		
+		JMenu Menu = new JMenu("?");
+		frmNoticiasConUsuarios.getContentPane().add(Menu);
+		
 		
 		BarraProgreso.setStringPainted(true);
 		BarraProgreso.setBounds(24, 236, 386, 14);
 		frmNoticiasConUsuarios.getContentPane().add(BarraProgreso);
+		
+		
+		
 		
 		JLabel lblNewLabelCarga = new JLabel("Espere . . .");
 		lblNewLabelCarga.setHorizontalAlignment(SwingConstants.CENTER);
@@ -114,7 +133,24 @@ public class Ventana {
 		
 		JLabel lblNewLabelFondo = new JLabel(new ImageIcon(img));
 		lblNewLabelFondo.setOpaque(true);
-		lblNewLabelFondo.setBounds(-12, 0, 456, 261);
+		lblNewLabelFondo.setBounds(-12, 0, 456, 270);
 		frmNoticiasConUsuarios.getContentPane().add(lblNewLabelFondo);
+		
+		//panel_carga.add(lblNewLabelCarga, );
+		// panel_login.add();
+		
+	
+		
+		/*
+		JPanel JPanelLogin = new JPanel();
+		frmNoticiasConUsuarios.setContentPane(JPanelLogin);
+		JPanelLogin.setBounds(133, 106, 58, 31);
+		frmNoticiasConUsuarios.invalidate();
+		frmNoticiasConUsuarios.validate();
+		frmNoticiasConUsuarios.getContentPane().add(JPanelLogin);
+		*/
+		
+		
+		
 	}
 }
