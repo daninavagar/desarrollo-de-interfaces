@@ -1,5 +1,7 @@
 package Practica;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 // import java.awt.CardLayout; 
 import java.awt.EventQueue;
 
@@ -73,7 +75,7 @@ public class Ventana {
 					frmNoticiasConUsuarios.setEnabled(true);
 					frmNoticiasConUsuarios.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					// panel_carga.setVisible(false);
-					// panel_login.setVisible(true);			
+					// panel_login.setVisible(true);
 				}
 				
 			}
@@ -100,10 +102,12 @@ public class Ventana {
 		frmNoticiasConUsuarios.setLocationRelativeTo(null);
 		frmNoticiasConUsuarios.getContentPane().setLayout(null);	
 		
+		/*
 		JMenuBar menuBar = new JMenuBar();
 		frmNoticiasConUsuarios.setJMenuBar(menuBar);
 		
 		JMenuItem infoMenu = new JMenuItem("Acerca de");
+		infoMenu.setHorizontalAlignment(SwingConstants.RIGHT);
 		menuBar.add(infoMenu);
 		
 		infoMenu.addMouseListener(new MouseAdapter() {
@@ -116,13 +120,12 @@ public class Ventana {
 		
 		JMenu Menu = new JMenu("?");
 		frmNoticiasConUsuarios.getContentPane().add(Menu);
+		*/
 		
 		
 		BarraProgreso.setStringPainted(true);
 		BarraProgreso.setBounds(24, 236, 386, 14);
 		frmNoticiasConUsuarios.getContentPane().add(BarraProgreso);
-		
-		
 		
 		
 		JLabel lblNewLabelCarga = new JLabel("Espere . . .");
@@ -136,19 +139,10 @@ public class Ventana {
 		lblNewLabelFondo.setBounds(-12, 0, 456, 270);
 		frmNoticiasConUsuarios.getContentPane().add(lblNewLabelFondo);
 		
-		//panel_carga.add(lblNewLabelCarga, );
-		// panel_login.add();
-		
-	
-		
-		/*
-		JPanel JPanelLogin = new JPanel();
-		frmNoticiasConUsuarios.setContentPane(JPanelLogin);
-		JPanelLogin.setBounds(133, 106, 58, 31);
-		frmNoticiasConUsuarios.invalidate();
-		frmNoticiasConUsuarios.validate();
-		frmNoticiasConUsuarios.getContentPane().add(JPanelLogin);
-		*/
+		panel_carga.setVisible(false);
+		panel_login.setVisible(true);
+		panel_login.setBackground(Color.YELLOW);
+		frmNoticiasConUsuarios.getContentPane().add(panel_login, BorderLayout.SOUTH);
 		
 		
 		
