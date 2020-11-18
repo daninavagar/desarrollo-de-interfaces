@@ -28,6 +28,7 @@ import javax.swing.JMenuBar;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class Ventana {
 
@@ -57,6 +58,7 @@ public class Ventana {
 	private Timer tiempo = null;
 	private int cont = 0;
 	JProgressBar BarraProgreso = new JProgressBar();
+	private JTextField txtEspere;
 	public Ventana() throws IOException {
 		initialize();
 		
@@ -70,12 +72,13 @@ public class Ventana {
 				if (BarraProgreso.getValue() < 10) {
 					BarraProgreso.setValue(BarraProgreso.getValue() + 1);
 					
+					
 				}
+				
 				if (BarraProgreso.getValue() == 100) {
 					frmNoticiasConUsuarios.setEnabled(true);
 					frmNoticiasConUsuarios.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					// panel_carga.setVisible(false);
-					// panel_login.setVisible(true);
+					
 				}
 				
 			}
@@ -100,49 +103,36 @@ public class Ventana {
 		frmNoticiasConUsuarios.setTitle("NOTICIAS CON USUARIOS");
 		frmNoticiasConUsuarios.setBounds(100, 100, 451, 329);
 		frmNoticiasConUsuarios.setLocationRelativeTo(null);
-		frmNoticiasConUsuarios.getContentPane().setLayout(null);	
 		
 		/*
-		JMenuBar menuBar = new JMenuBar();
-		frmNoticiasConUsuarios.setJMenuBar(menuBar);
 		
-		JMenuItem infoMenu = new JMenuItem("Acerca de");
-		infoMenu.setHorizontalAlignment(SwingConstants.RIGHT);
-		menuBar.add(infoMenu);
-		
-		infoMenu.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null, "Hecho por Daniel Navarro\n daninavagar@gmail.com");
-			}
-		});
-		infoMenu.setBounds(331, 0, 103, 26);
-		
-		JMenu Menu = new JMenu("?");
-		frmNoticiasConUsuarios.getContentPane().add(Menu);
 		*/
+		frmNoticiasConUsuarios.getContentPane().setLayout(null);
+		BarraProgreso.setValue(100);
+		BarraProgreso.setBounds(-10003, -10026, 386, 14);
+		
 		
 		
 		BarraProgreso.setStringPainted(true);
-		BarraProgreso.setBounds(24, 236, 386, 14);
-		frmNoticiasConUsuarios.getContentPane().add(BarraProgreso);
+		frmNoticiasConUsuarios.getContentPane().add( BarraProgreso);
 		
-		
-		JLabel lblNewLabelCarga = new JLabel("Espere . . .");
-		lblNewLabelCarga.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabelCarga.setFont(new Font("Segoe UI Symbol", Font.BOLD, 16));
-		lblNewLabelCarga.setBounds(123, 179, 189, 46);
-		frmNoticiasConUsuarios.getContentPane().add(lblNewLabelCarga);
 		
 		JLabel lblNewLabelFondo = new JLabel(new ImageIcon(img));
+		lblNewLabelFondo.setBounds(-10003, -10026, 456, 270);
 		lblNewLabelFondo.setOpaque(true);
-		lblNewLabelFondo.setBounds(-12, 0, 456, 270);
 		frmNoticiasConUsuarios.getContentPane().add(lblNewLabelFondo);
 		
-		panel_carga.setVisible(false);
-		panel_login.setVisible(true);
-		panel_login.setBackground(Color.YELLOW);
-		frmNoticiasConUsuarios.getContentPane().add(panel_login, BorderLayout.SOUTH);
+		txtEspere = new JTextField();
+		txtEspere.setBounds(-10003, -10026, 140, 46);
+		txtEspere.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
+		txtEspere.setText("ESPERE ...");
+		frmNoticiasConUsuarios.getContentPane().add(txtEspere);
+		txtEspere.setColumns(10);
+		
+		// panel_carga.add(lblNewLabelCarga);
+		
+		
+		
 		
 		
 		
