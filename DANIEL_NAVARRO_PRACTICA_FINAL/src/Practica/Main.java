@@ -1,6 +1,7 @@
 package Practica;
 
 import java.awt.EventQueue; 
+
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -31,6 +32,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.UIManager;
 import java.awt.Color;
 
+
+import Practica.Files;
 public class Main {
 
 	private JFrame frame;
@@ -93,6 +96,15 @@ public class Main {
 					if (BarraProgreso.getValue() < 10) {
 						BarraProgreso.setValue(BarraProgreso.getValue() + 1);
 					}	
+					if (BarraProgreso.getValue() == 50) {
+						Files file_class = new Files();
+						if (!file_class.fileChecks()) {
+							JOptionPane.showMessageDialog(null, "! Vaya ¡ Algo ha pasado, seguramente han fallado los archivos");
+							// tiempo.stop;
+							frame.dispose();
+						}
+					}
+					
 					if (BarraProgreso.getValue() == 100) {
 						frame.setEnabled(true);
 						panel_carga.setVisible(false);
@@ -116,6 +128,8 @@ public class Main {
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/Image/icon.png"));
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
 		frame.setLocationRelativeTo(null);
+		
+		
 		
 		
 		// CARGA
@@ -155,6 +169,8 @@ public class Main {
 		panel_carga.add(BarraProgreso);
 		
 		panel_carga.setVisible(true);
+		
+		
 		
 		// LOGIN
 		panel_login = new JPanel();
@@ -221,6 +237,8 @@ public class Main {
 		panel_login.add(Boton_Login);
 		
 		
+		
+		
 		// OPCIONES
 		panel_opciones = new JPanel();
 		frame.getContentPane().add(panel_opciones, "name_436732982280100");
@@ -275,6 +293,9 @@ public class Main {
 		Boton_exit.setBounds(550, 448, 89, 23);
 		panel_opciones.add(Boton_exit);
 		
+		
+		
+		
 		// NOTICIAS ACTUALES
 		panel_Noti_Actual = new JPanel();
 		frame.getContentPane().add(panel_Noti_Actual, "name_436736576524500");
@@ -315,6 +336,8 @@ public class Main {
 		panel_Noti_Actual.add(btn_SALIR_Act);
 		
 		
+		
+		
 		// CONFIGURACIÓN
 		panel_config = new JPanel();
 		frame.getContentPane().add(panel_config, "name_466237784580100");
@@ -335,6 +358,9 @@ public class Main {
 		});
 		btnVolver_Config.setBounds(512, 440, 94, 31);
 		panel_config.add(btnVolver_Config);
+		
+		
+		
 		
 		// NOTICIA ANTIGUA
 		panel_Noti_Antigua = new JPanel();
