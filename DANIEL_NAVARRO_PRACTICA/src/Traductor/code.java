@@ -1,13 +1,14 @@
 package Traductor;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.*;
 
 public class code {
 
-	public static void main(String[] args) throws Execption{
+	public static void main(String[] args) throws Exception{
 		
 		URL a = new URL ("https://www.spanishdict.com/traductor/casa");
 		String b = obtenerH (a);

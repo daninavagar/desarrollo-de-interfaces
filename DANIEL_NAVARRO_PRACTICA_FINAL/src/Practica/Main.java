@@ -1,6 +1,6 @@
 package Practica;
 
-import java.awt.EventQueue;   
+import java.awt.EventQueue;    
 
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -8,7 +8,6 @@ import javax.swing.JFrame;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -16,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.JProgressBar;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,10 +29,14 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.swing.UIManager;
 
-
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.awt.Color;
 
@@ -40,6 +44,9 @@ import java.awt.Color;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 public class Main {
 
 	private JFrame frame;
@@ -120,7 +127,6 @@ public class Main {
 	private JButton btnGuardar_Config_1;
 	
 	
-	
 	public String[] opc = new String[17];
 	public String[] config = new String[16];
 	ArrayList<Config> user_configtabla = new ArrayList<Config>();
@@ -130,6 +136,25 @@ public class Main {
 	String user_unique;
 	Files file_class = new Files();
 	Config config_class;
+	private JLabel lblNewLabel_3_Economia;
+	private JLabel lblNewLabel_3_Nacional;
+	private JLabel lblNewLabel_3_Internacional;
+	private JTextField textField_deporte1;
+	private JTextField textField_deporte2;
+	private JTextField textField_deporte3;
+	private JTextField textField_deporte4;
+	private JTextField textField_economia1;
+	private JTextField textField_economia2;
+	private JTextField textField_economia3;
+	private JTextField textField_economia4;
+	private JTextField textField_nacional1;
+	private JTextField textField_nacional2;
+	private JTextField textField_nacional3;
+	private JTextField textField_nacional4;
+	private JTextField textField_internacional4;
+	private JTextField textField_internacional3;
+	private JTextField textField_internacional2;
+	private JTextField textField_internacional1;
 	/**
 	 * Launch the application.
 	 */
@@ -310,6 +335,12 @@ public class Main {
 	
 	private void initialize() throws IOException {
 		frame = new JFrame();
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				cerrar();
+			}
+		});
 		frame.setEnabled(true);
 		frame.setResizable(false);
 		frame.setTitle("NOTICIAS CON USUARIOS");
@@ -328,6 +359,7 @@ public class Main {
 		panel_carga.setLayout(null);
 		
 		Lbl_Espere = new JLabel();
+		Lbl_Espere.setForeground(Color.WHITE);
 		Lbl_Espere.setBounds(265, 379, 118, 55);
 		Lbl_Espere.setHorizontalAlignment(SwingConstants.CENTER);
 		Lbl_Espere.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
@@ -342,7 +374,7 @@ public class Main {
 		panel_carga.add(BarraProgreso);
 		
 		
-		BufferedImage img = ImageIO.read(new File(("./src/Image/fondo.jpg")));
+		BufferedImage img = ImageIO.read(new File(("./src/Image/Noticias.jpg")));
 		lblFondo = new JLabel(new ImageIcon(img));
 		lblFondo.setBounds(0, 0, 649, 482);
 		lblFondo.setOpaque(true);
@@ -351,11 +383,9 @@ public class Main {
 		
 		
 		
-		
 		panel_carga.setVisible(true);
 		if (BarraProgreso.getValue() == 50) {
 			Files file_class = new Files();
-			// readConfigFile();
 			if (file_class.fileChecks()) {
 				JOptionPane.showMessageDialog(null, "! Vaya ¡ Algo ha pasado, seguramente han fallado los archivos");
 				tiempo.stop();
@@ -407,15 +437,11 @@ public class Main {
 		infoMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null, "Hecho por Daniel Navarro\n daninavagar@gmail.com");
+				menu();
 			}
 		});
 		infoMenu.setBounds(0, 0, 103, 26);
-		
-		JMenu Menu = new JMenu("?");
-		panel_login.add(Menu);
-		
-		
+
 		
 		JButton Boton_Login = new JButton("INICIAR SESI\u00D3N");
 		Boton_Login.addActionListener(new ActionListener() {
@@ -428,13 +454,8 @@ public class Main {
 					JOptionPane.showInternalMessageDialog(null, "Login/Contraseña Incorrecta");
 				}  else {
 					readConfigFile();
-					if (config_class.getUser_conf().equals(pwd)) {
-						panel_login.setVisible(false);
-						panel_opciones.setVisible(true);
-					} else {
-						panel_login.setVisible(false);
-						panel_config.setVisible(true);
-					}
+					panel_login.setVisible(false);
+					panel_config.setVisible(true);
 					
 				}
 				
@@ -452,6 +473,23 @@ public class Main {
 		frame.getContentPane().add(panel_opciones, "name_436732982280100");
 		panel_opciones.setLayout(null);
 		
+		JMenuBar menuBar_2 = new JMenuBar();
+		panel_opciones.add(menuBar_2);
+		
+		
+		JMenuItem infoMenu_2 = new JMenuItem("Acerca de");
+		infoMenu_2.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel_opciones.add(infoMenu_2);
+		
+		infoMenu_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				menu();
+			}
+		});
+		infoMenu_2.setBounds(0, 0, 103, 26);
+		
+		
 		lblNewLabel_titulo_opciones = new JLabel("OPCIONES");
 		lblNewLabel_titulo_opciones.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_titulo_opciones.setBounds(236, 11, 176, 28);
@@ -462,6 +500,26 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {
 				panel_opciones.setVisible(false);
 				panel_Noti_Actual.setVisible(true);
+				// DEPORTES
+				as();
+				marca();
+				sport();
+				mundoDeportivo();
+				// ECONOMIA
+				cincoDias();
+				expansion();
+				bolsaMania();
+				elEconomista();
+				// NACIONAL
+				abc();
+				laRazon();
+				veinteMinutos();
+				elPais();
+				// INTERNACIONAL
+				theTimes();
+				libertyTimes();
+				europaPapress();
+				theGuardian();
 			}
 		});
 		btnNewButton.setToolTipText("Muestra las Noticias Actuales");
@@ -485,6 +543,7 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {
 				panel_opciones.setVisible(false);
 				panel_Noti_Antigua.setVisible(true);
+				
 			}
 		});
 		btnNoticiasAntiguas.setToolTipText("Muestra las Noticias Antiguas");
@@ -494,11 +553,11 @@ public class Main {
 		Boton_exit = new JButton("SALIR");
 		Boton_exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (JOptionPane.showConfirmDialog(null, "Seguro que quieres salir", "SALIR", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-					System.exit(0);
+				cerrar();
 			}
 		});
 		Boton_exit.setBounds(550, 448, 89, 23);
+		
 		panel_opciones.add(Boton_exit);
 		
 		
@@ -509,12 +568,34 @@ public class Main {
 		frame.getContentPane().add(panel_Noti_Actual, "name_436736576524500");
 		panel_Noti_Actual.setLayout(null);
 		
+		
+		JMenuBar menuBar_3 = new JMenuBar();
+		panel_Noti_Actual.add(menuBar_3);
+		
+		
+		JMenuItem infoMenu_3 = new JMenuItem("Acerca de");
+		infoMenu_3.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel_Noti_Actual.add(infoMenu_3);
+		
+		infoMenu_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				menu();
+			}
+		});
+		infoMenu_3.setBounds(0, 0, 103, 26);
+		
+		
 		JLabel lblNewLabel = new JLabel("NOTICIAS ACTUALES");
 		lblNewLabel.setFont(new Font("Yu Gothic Medium", Font.BOLD | Font.ITALIC, 22));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(187, 11, 274, 43);
+		lblNewLabel.setBounds(185, 0, 274, 43);
 		panel_Noti_Actual.add(lblNewLabel);
-		
+
+
+
+
+
 		Btn_Volver_Noti_Actuales = new JButton("VOLVER");
 		Btn_Volver_Noti_Actuales.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -527,8 +608,8 @@ public class Main {
 		
 		btn_Guardar_Actual = new JButton("GUARDAR");
 		btn_Guardar_Actual.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// readConfigFile();
+			public void actionPerformed(ActionEvent e) {	
+				escribir();
 			}
 		});
 		btn_Guardar_Actual.setBounds(277, 448, 95, 23);
@@ -537,13 +618,111 @@ public class Main {
 		btn_SALIR_Act = new JButton("SALIR");
 		btn_SALIR_Act.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Estas seguro que quieres salir", "SALIR", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-					System.exit(0);
+				cerrar();
 			}
 		});
 		btn_SALIR_Act.setBounds(379, 448, 95, 23);
 		panel_Noti_Actual.add(btn_SALIR_Act);
 		
+		JLabel lblNewLabel_3_Deportes = new JLabel("DEPORTES");
+		lblNewLabel_3_Deportes.setBounds(27, 37, 65, 14);
+		panel_Noti_Actual.add(lblNewLabel_3_Deportes);
+		
+		lblNewLabel_3_Economia = new JLabel("ECONOMIA");
+		lblNewLabel_3_Economia.setBounds(27, 139, 65, 14);
+		panel_Noti_Actual.add(lblNewLabel_3_Economia);
+		
+		lblNewLabel_3_Nacional = new JLabel("NACIONAL");
+		lblNewLabel_3_Nacional.setBounds(27, 251, 65, 14);
+		panel_Noti_Actual.add(lblNewLabel_3_Nacional);
+		
+		lblNewLabel_3_Internacional = new JLabel("INTERNACIONAL");
+		lblNewLabel_3_Internacional.setBounds(27, 357, 109, 14);
+		panel_Noti_Actual.add(lblNewLabel_3_Internacional);
+		
+		textField_deporte1 = new JTextField("");
+		textField_deporte1.setEditable(false);
+		textField_deporte1.setBounds(113, 21, 437, 26);
+		panel_Noti_Actual.add(textField_deporte1);
+		
+		textField_deporte2 = new JTextField("");
+		textField_deporte2.setEditable(false);
+		textField_deporte2.setBounds(113, 46, 437, 26);
+		panel_Noti_Actual.add(textField_deporte2);
+		
+		textField_deporte3 = new JTextField("");
+		textField_deporte3.setEditable(false);
+		textField_deporte3.setBounds(113, 71, 437, 26);
+		panel_Noti_Actual.add(textField_deporte3);
+		
+		textField_deporte4 = new JTextField("");
+		textField_deporte4.setEditable(false);
+		textField_deporte4.setBounds(113, 96, 437, 26);
+		panel_Noti_Actual.add(textField_deporte4);
+		
+		textField_economia1 = new JTextField("");
+		textField_economia1.setEditable(false);
+		textField_economia1.setBounds(113, 128, 437, 26);
+		panel_Noti_Actual.add(textField_economia1);
+		
+		textField_economia2 = new JTextField("");
+		textField_economia2.setEditable(false);
+		textField_economia2.setBounds(113, 155, 437, 26);
+		panel_Noti_Actual.add(textField_economia2);
+		
+		textField_economia3 = new JTextField("");
+		textField_economia3.setEditable(false);
+		textField_economia3.setBounds(113, 182, 437, 26);
+		panel_Noti_Actual.add(textField_economia3);
+		
+		textField_economia4 = new JTextField("");
+		textField_economia4.setEditable(false);
+		textField_economia4.setBounds(113, 207, 437, 26);
+		panel_Noti_Actual.add(textField_economia4);
+		
+		textField_nacional1 = new JTextField("");
+		textField_nacional1.setEditable(false);
+		textField_nacional1.setBounds(113, 234, 437, 26);
+		panel_Noti_Actual.add(textField_nacional1);
+		
+		textField_nacional2 = new JTextField("");
+		textField_nacional2.setEditable(false);
+		textField_nacional2.setBounds(113, 259, 437, 26);
+		panel_Noti_Actual.add(textField_nacional2);
+		
+		textField_nacional3 = new JTextField("");
+		textField_nacional3.setEditable(false);
+		textField_nacional3.setBounds(113, 284, 437, 26);
+		panel_Noti_Actual.add(textField_nacional3);
+		
+		textField_nacional4 = new JTextField("");
+		textField_nacional4.setEditable(false);
+		textField_nacional4.setBounds(113, 309, 437, 26);
+		panel_Noti_Actual.add(textField_nacional4);
+		
+		textField_internacional4 = new JTextField("");
+		textField_internacional4.setEditable(false);
+		textField_internacional4.setBounds(113, 418, 437, 26);
+		panel_Noti_Actual.add(textField_internacional4);
+		
+		textField_internacional3 = new JTextField("");
+		textField_internacional3.setEditable(false);
+		textField_internacional3.setBounds(113, 393, 437, 26);
+		panel_Noti_Actual.add(textField_internacional3);
+		
+		textField_internacional2 = new JTextField("");
+		textField_internacional2.setEditable(false);
+		textField_internacional2.setBounds(113, 368, 437, 26);
+		panel_Noti_Actual.add(textField_internacional2);
+		
+		textField_internacional1 = new JTextField("");
+		textField_internacional1.setEditable(false);
+		textField_internacional1.setBounds(113, 343, 437, 26);
+		panel_Noti_Actual.add(textField_internacional1);
+		
+		
+		
+	
 		
 		
 		
@@ -551,6 +730,23 @@ public class Main {
 		panel_config = new JPanel();
 		frame.getContentPane().add(panel_config, "name_466237784580100");
 		panel_config.setLayout(null);
+		
+		
+		JMenuBar menuBar_4 = new JMenuBar();
+		panel_config.add(menuBar_4);
+		
+		
+		JMenuItem infoMenu_4 = new JMenuItem("Acerca de");
+		infoMenu_4.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel_config.add(infoMenu_4);
+		
+		infoMenu_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				menu();
+			}
+		});
+		infoMenu_4.setBounds(0, 0, 103, 26);
 		
 		lblNewLabel_1 = new JLabel("CONFIGURACION");
 		lblNewLabel_1.setBounds(0, 0, 649, 71);
@@ -687,7 +883,7 @@ public class Main {
 		check2_internacional.setBounds(527, 288, 116, 23);
 		panel_config.add(check2_internacional);
 		
-		check3_internacional = new JCheckBox("THE DAILY MAIL");
+		check3_internacional = new JCheckBox("EUROPAPA PRESS");
 		check3_internacional.setEnabled(false);
 		check3_internacional.setBounds(392, 351, 112, 23);
 		panel_config.add(check3_internacional);
@@ -742,13 +938,11 @@ public class Main {
 					file_class.config_bw.write(pwd);
 					file_class.config_bw.write("#####");
 					for (int i=0; i<checkTabla.length; i++) {
-							
 						file_class.config_bw.write(config[i].toString());
-						
 					}	
 					file_class.config_bw.close();
 				} catch (IOException f) {
-					f.printStackTrace();
+					trazas();
 				}
 				
 				save_config = false;
@@ -773,6 +967,23 @@ public class Main {
 		frame.getContentPane().add(panel_Noti_Antigua, "name_466307685362600");
 		panel_Noti_Antigua.setLayout(null);
 		
+		
+		JMenuBar menuBar_5 = new JMenuBar();
+		panel_Noti_Antigua.add(menuBar_5);
+		
+		
+		JMenuItem infoMenu_5 = new JMenuItem("Acerca de");
+		infoMenu_5.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel_Noti_Antigua.add(infoMenu_5);
+		
+		infoMenu_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				menu();	
+			}
+		});
+		infoMenu_5.setBounds(0, 0, 103, 26);
+		
 		JLabel lblNewLabel_2 = new JLabel("NOTICIAS ANTIGUAS");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -792,8 +1003,7 @@ public class Main {
 		btnSalir = new JButton("SALIR");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Estas seguro que quieres salir", "SALIR", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-					System.exit(0);
+				cerrar();
 			}
 		});
 		btnSalir.setBounds(381, 448, 89, 23);
@@ -834,47 +1044,336 @@ public class Main {
 				
 			}
 			
-			System.out.println(config_class.toString());
 			
 			file_class.config_br.close();
 			
 		} catch (IOException e) {
-			e.printStackTrace();
+			trazas();
 		}
-		
-		
-	
 	}
 	
-	/*
-	public void readConfig() {
-		
-		FileInputStream inputS;
+	// DEPORTE
+	public void as() {
+		Document document;
+		String web = "https://as.com";
+
+		Date fecha = new Date();
 		try {
-			inputS = new FileInputStream(file_class.user_config.getPath());
-			file_class.config_r = new FileReader(file_class.user_config);
-			file_class.config_br = new BufferedReader(file_class.config_r);
+			document = Jsoup.connect(web).get();
+			Element word = document.select("h2.title>a").first(); 
 			
-			String cadena = "", temp;
+			if(check1_deportes.isSelected()) {
+				textField_deporte1.setText(word.text() + " " + fecha);
+			}
+		} catch (IOException f) {
+			trazas();
+		}
+	}
+	public void marca() {
+		Document document;
+		String web = "https://www.marca.com";
+
+		Date fecha = new Date();
+		try {
+			document = Jsoup.connect(web).get();
+			Element word = document.select("h2>a").first(); 
 			
-			while ((cadena = file_class.config_br.readLine()) != null) {
-				ArrayList<String> list = new ArrayList<String>(Arrays.asList(cadena.split("#####")));
-				tablita = new ArrayList<Config>();
-				config_class = new Config(temp, list.get(1));
+			if(check2_deportes.isSelected()) {
+				textField_deporte2.setText(word.text() + " " + fecha);
+			}
+		} catch (IOException f) {
+			trazas();
+		}
+	}
+	public void sport() {
+		Document document;
+		String web = "https://www.sport.es/es/";
+
+		Date fecha = new Date();
+		try {
+			document = Jsoup.connect(web).get();
+			Element word = document.select("h2>a").first(); 
+			
+			
+			if(check3_deportes.isSelected()) {
+				textField_deporte3.setText(word.text() + " " + fecha);
+			}
+		} catch (IOException f) {
+			trazas();
+		}
+	}
+	public void mundoDeportivo() {
+		Document document;
+		String web = "https://www.mundodeportivo.com";
+
+		Date fecha = new Date();
+		try {
+			document = Jsoup.connect(web).get();
+			Element word = document.select("h3>a").first(); 
+			
+			if(check4_deportes.isSelected()) {
+				textField_deporte4.setText(word.text() + " " + fecha);
+			} 
+		} catch (IOException f) {
+			trazas();
+		}
+	}
+	// ECONOMIA
+	public void cincoDias() {
+		Document document;
+		String web = "https://cincodias.elpais.com";
+
+		Date fecha = new Date();
+		try {
+			document = Jsoup.connect(web).get();
+			Element word = document.select("h2>a").first(); 
+			if (check1_economia.isSelected()) {
+				textField_economia1.setText(word.text() + " " + fecha);
+			}
+		} catch (IOException f) {
+			trazas();
+		}
+	}
+	public void expansion() {
+		Document document;
+		String web = "https://www.expansion.com";
+
+		Date fecha = new Date();
+		try {
+			document = Jsoup.connect(web).get();
+			Element word = document.select("h2>a").first(); 
+			if (check2_economia.isSelected()) {
+				textField_economia2.setText(word.text() + " " + fecha);
+			}
+		} catch (IOException f) {
+			trazas();
+		}
+	}
+	public void bolsaMania() {
+		Document document;
+		String web = "https://www.bolsamania.com/";
+
+		Date fecha = new Date();
+		try {
+			document = Jsoup.connect(web).get();
+			Element word = document.select("h1>a").first(); 
+			if (check3_economia.isSelected()) {
+				textField_economia3.setText(word.text() + " " + fecha);
+			}
+		} catch (IOException f) {
+			trazas();
+		}
+	}
+	public void elEconomista() {
+		Document document;
+		String web = "https://www.eleconomista.es";
+
+		Date fecha = new Date();
+		try {
+			document = Jsoup.connect(web).get();
+			Element word = document.select("h2>a").first(); 
+			if (check4_economia.isSelected()) {
+				textField_economia4.setText(word.text() + " " + fecha);
+			}
+		} catch (IOException f) {
+			trazas();
+		}
+	}
+	
+	
+	// NACIONAL
+	public void abc() {
+		Document document;
+		String web = "https://www.abc.es";
+
+		Date fecha = new Date();
+		try {
+			document = Jsoup.connect(web).get();
+			Elements word = document.getElementsByClass("titular xxxxl");
+			if (check1_nacional.isSelected()) {
+				textField_nacional1.setText(word.text() + " " + fecha);
 			}
 			
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException f) {
+			trazas();
 		}
 	}
-	public String[] getConfig() {
-		return config;
-	}
+	public void laRazon() {
+		Document document;
+		String web = "https://www.larazon.es";
 
-	public void setConfig(String[] config) {
-		this.config = config;
+		Date fecha = new Date();
+		try {
+			document = Jsoup.connect(web).get();
+			Element word = document.select("h3>a").first(); 
+			if (check2_nacional.isSelected()) {
+				textField_nacional2.setText(word.text() + " " + fecha);
+			}
+			
+		} catch (IOException f) {
+			trazas();
+		}
 	}
-*/
 	
+	public void veinteMinutos() {
+		Document document;
+		String web = "https://www.20minutos.es";
+
+		Date fecha = new Date();
+		try {
+			document = Jsoup.connect(web).get();
+			Element word = document.select("h1>a").first(); 
+			if (check3_nacional.isSelected()) {	
+				textField_nacional3.setText(word.text() + " " + fecha);
+			}
+			
+		} catch (IOException f) {
+			trazas();
+		}
+	}
 	
-}
+	public void elPais() {
+		Document document;
+		String web = "https://elpais.com";
+
+		Date fecha = new Date();
+		try {
+			document = Jsoup.connect(web).get();
+			Element word = document.select("h2>a").first(); 
+			if (check4_nacional.isSelected()) {
+				textField_nacional4.setText(word.text() + " " + fecha);
+			}
+			
+		} catch (IOException f) {
+			trazas();
+		}
+	}
+	// INTERNACIONAL
+	public void theTimes() {
+		Document document;
+		String web = "https://www.thetimes.co.uk";
+
+		Date fecha = new Date();
+		try {
+			document = Jsoup.connect(web).get();
+			Element word = document.select("h3.Item-headline.Headline--xl>a").first(); 
+	
+			if (check1_internacional.isSelected()) {
+
+			textField_internacional1.setText(word.text() + " " + fecha);
+			}
+		} catch (IOException f) {
+			trazas();
+		}
+	}
+	public void libertyTimes() {
+		Document document;
+		String web = "https://www.nytimes.com/es/";
+
+		Date fecha = new Date();
+		try {
+			document = Jsoup.connect(web).get();
+			Element word = document.select("h2>a").first();
+	
+			if (check2_internacional.isSelected()) {
+				textField_internacional2.setText(word.text() + " " + fecha);
+			}
+		} catch (IOException f) {
+			trazas();
+		}
+	}
+	
+	public void europaPapress() {
+		Document document;
+		String web = "https://www.europapress.es/internacional/";
+
+		Date fecha = new Date();
+		try {
+			document = Jsoup.connect(web).get();
+			Element word = document.select("h2>a").first();
+	
+			if (check3_internacional.isSelected()) {
+				textField_internacional3.setText(word.text() + " " + fecha);
+			}
+		} catch (IOException f) {
+			trazas();
+		}
+	}
+	
+	public void theGuardian() {
+		Document document;
+		String web = "https://www.europapress.es/internacional/";
+
+		Date fecha = new Date();
+		try {
+			document = Jsoup.connect(web).get();
+			Element word = document.select("h2>a").first();
+	
+			if (check4_internacional.isSelected()) {
+				textField_internacional4.setText(word.text() + " " + fecha);
+			}
+		} catch (IOException f) {
+			trazas();
+		}
+	}
+	
+	public void escribir() {
+		
+		try {
+			file_class.news_w = new FileWriter(file_class.news_log);
+			file_class.news_bw = new BufferedWriter(file_class.news_w);
+			
+			
+			String user = textField_Login.getText();
+			@SuppressWarnings("deprecation")
+			String pwd = String.valueOf(passwordField.getText());
+			file_class.news_bw.write(user);
+			file_class.news_bw.write("-.....-");
+			file_class.news_bw.write(pwd);
+			file_class.news_bw.write("#####");
+			file_class.news_bw.write(textField_deporte1.getText());
+			
+			file_class.news_bw.close();
+		} catch (IOException e) {
+			trazas();
+		}	
+	}
+	
+	News noti;
+	public void leer() {
+		
+		try {
+			file_class.news_r = new FileReader(file_class.news_log);
+			file_class.news_br = new BufferedReader(file_class.news_r);
+			
+			String cadena = "";
+			
+			ArrayList<String> list = new ArrayList<String>();
+			ArrayList<News> tablita = new ArrayList<News>(); 
+			while( (cadena = file_class.news_br.readLine()) != null) {
+				noti = new News(list.get(0), list.get(1), list.get(2), list.get(3)); 
+				tablita.add(noti);
+			}
+			
+			file_class.news_br.close();
+		} catch (IOException e) {
+			trazas();
+		}
+		
+	}
+	
+	public void trazas() {
+		JOptionPane.showMessageDialog(null, "! Vaya ¡ Algo ha pasado, El Programa se va a cerrar, adios");
+		tiempo.stop();
+		frame.dispose();
+	}
+	
+	public void menu() {
+		JOptionPane.showMessageDialog(null, "Hecho por Daniel Navarro\n 2ºDAM \n daninavagar@gmail.com");
+	}
+	
+	public void cerrar() {
+		if(JOptionPane.showConfirmDialog(null, "Estas seguro que quieres salir", "SALIR", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+			System.exit(0);
+	}
+ }

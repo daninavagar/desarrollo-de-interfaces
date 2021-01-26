@@ -1,54 +1,84 @@
 package Practica;
 
-import java.time.LocalDateTime;
-
 public class News {
 
-	private String title;
-	private LocalDateTime date;
-	private Source source;
+	private String nombre;
+	private String pwd;
+	private String noticia;
+	private String fecha;
 	
 	
-	public News(String title, LocalDateTime date, Source source) {
-		this.title = title;
-		this.date = date;
-		this.source = source;
+	
+	public News(String nombre, String pwd, String noticia, String fecha) {
+		this.nombre = nombre;
+		this.pwd = pwd;
+		this.noticia = noticia;
+		this.fecha = fecha;
 	}
 
 
-	public String getTitle() {
-		return title;
+
+	
+
+
+
+	public News(Object object, Object object2, Object object3, Object object4) {
+		// TODO Auto-generated constructor stub
 	}
 
 
-	public void setTitle(String title) {
-		this.title = title;
+
+	public String getNombre() {
+		return nombre;
 	}
 
 
-	public LocalDateTime getDate() {
-		return date;
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 
-	public void setDate(LocalDateTime date) {
-		this.date = date;
+
+	public String getPwd() {
+		return pwd;
 	}
 
 
-	public Source getSource() {
-		return source;
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 
 
-	public void setSource(Source source) {
-		this.source = source;
+
+	public String getNoticia() {
+		return noticia;
 	}
+
+
+
+	public void setNoticia(String noticia) {
+		this.noticia = noticia;
+	}
+
+
+
+	public String getFecha() {
+		return fecha;
+	}
+
+
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
 
 
 	@Override
 	public String toString() {
-		return "News [title=" + title + ", date=" + date + ", source=" + source + "]";
+		return nombre + pwd + noticia + fecha;
 	}
 	
 	

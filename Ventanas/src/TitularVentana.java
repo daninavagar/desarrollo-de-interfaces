@@ -87,12 +87,20 @@ public class TitularVentana {
 
 			private void noticia(JTextField textField_muestra) throws IOException {
 				// TODO Auto-generated method stub
+				
+				
 				Document document;
-				String webPage = "https://www.marca.com/futbol/primera-division/2020/10/22/5f91790bca4741e1748b4597.html";
-				document = Jsoup.connect(webPage).get();
-				Element palabra = document.select("div#em-site-title > h1").first(); //.getElementsByClass("");
-				palabra.text();
-				textField_muestra.setText(palabra.text());
+				String web = "https://as.com";
+				
+				try {
+					document = Jsoup.connect(web).get();
+					Elements word = document.getElementsByClass("title");
+					// word.text();
+					textField_muestra.setText(word.text());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		btnNewButton_boton.setToolTipText("Pulsa para mostrar titular pagina web");

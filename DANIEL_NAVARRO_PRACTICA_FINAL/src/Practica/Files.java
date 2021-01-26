@@ -17,12 +17,11 @@ public class Files {
 	protected FileReader config_r;
 	protected BufferedReader config_br;
 	
-	
-	
-	
-	private File news_log;
-	private FileWriter news_w;
-	private BufferedWriter news_bw;
+	protected File news_log;
+	protected FileWriter news_w;
+	protected BufferedWriter news_bw;
+	protected FileReader news_r;
+	protected BufferedReader news_br;
 
 	People person;
 	Config conf;
@@ -63,10 +62,6 @@ public class Files {
 	public void setConfig_bw(BufferedWriter config_bw) {
 		this.config_bw = config_bw;
 	}
-
-	
-	
-	
 	
 	public FileReader getConfig_r() {
 		return config_r;
@@ -83,6 +78,31 @@ public class Files {
 	public void setConfig_br(BufferedReader config_br) {
 		this.config_br = config_br;
 	}
+	
+
+	public File getNews_log() {
+		return news_log;
+	}
+
+	public void setNews_log(File news_log) {
+		this.news_log = news_log;
+	}
+
+	public FileWriter getNews_w() {
+		return news_w;
+	}
+
+	public void setNews_w(FileWriter news_w) {
+		this.news_w = news_w;
+	}
+
+	public BufferedWriter getNews_bw() {
+		return news_bw;
+	}
+
+	public void setNews_bw(BufferedWriter news_bw) {
+		this.news_bw = news_bw;
+	}
 
 	public boolean fileChecks() {
 		
@@ -98,10 +118,7 @@ public class Files {
 				} else {
 					check = true;
 				}
-		
-		
-		
-		
+
 		return check;
 	}
 	
@@ -132,7 +149,7 @@ public class Files {
 				
 			
 		} catch (IOException e) {
-			e.printStackTrace();
+			main.trazas();
 		}
 		return file;
 	}
