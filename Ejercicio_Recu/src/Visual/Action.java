@@ -1,32 +1,24 @@
 package Visual;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+public class Action implements ActionListener{
 
-
-public class Action {
-	Load load;
-	Managment hola;
-	/*
-	Load load;
-	Managment hola;
+	/*public Window ventana;
 	
-	public Action(Load load, Managment hola) {
-		this.load = load;
-		this.hola = hola;
+	public Action() {
+		this.ventana = new Window();
 	}
-
-	public void ActionPerformed(ActionEvent e) {
-		load.setVisible(false);
-		hola.setVisible(true);
-	}
-	
-	*/
+	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		load.setVisible(false);
-		hola.setVisible(true);
-	}
+		// TODO Auto-generated method stub
+		ventana.LoadPanel.setVisible(false);
+		ventana.ManagmentPanel.setVisible(true);
+	}*/
+	
+	
+	
 
 	
 }

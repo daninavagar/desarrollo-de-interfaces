@@ -12,7 +12,8 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Load extends JPanel{
 	
-	public JButton mostrar;
+	public JButton mostrar = new JButton();
+	public Action hola = new Action();
 	
 	
 	Load() {
@@ -21,6 +22,7 @@ public class Load extends JPanel{
 		mostrar = new JButton("SIGUIENTE");
 		mostrar.setBounds(170, 200, 120, 30);
 		mostrar.setText("Mostrar");
+		//mostrar.addActionListener(hola.hola());
 		add(mostrar);
 		
 		

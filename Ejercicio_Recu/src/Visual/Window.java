@@ -11,9 +11,11 @@ import javax.swing.JFrame;
 public class Window extends JFrame{
 	
 	
-	public Load LoadPanel;
-	public Managment ManagmentPanel;
-	public Action event = new Action();
+	public Load LoadPanel = new Load();
+	public Managment ManagmentPanel = new Managment();
+	// public Action event = new Action();
+	
+	
 	
 	public Window() {
 		
@@ -22,10 +24,12 @@ public class Window extends JFrame{
 		setLocationRelativeTo(null);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("./src/Images/icon.png"));
 		getContentPane().setLayout(new CardLayout(0, 0));
-		LoadPanel = new Load();
 		add(LoadPanel);
-		ManagmentPanel = new Managment();
 		add(ManagmentPanel);
+		// LoadPanel.mostrar.addActionListener(null);
+		// LoadPanel.mostrar.addActionListener(event.hola());
+		
+		
 		LoadPanel.mostrar.addActionListener(new ActionListener() {
 
 			@Override
