@@ -1,24 +1,27 @@
 package Visual;
 
-import java.awt.CardLayout; 
+import java.awt.CardLayout;  
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 @SuppressWarnings("serial")
-public class Window extends JFrame{
+public class Window  extends JFrame {
 	
 	
 	public Load LoadPanel = new Load();
 	public Managment ManagmentPanel = new Managment();
-	// public Action event = new Action();
+	private Timer time;
+	private int cont;
+
 	
-	
-	
-	public Window() {
-		
+	public Window() throws IOException {
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("GESTION TUTORÍAS Y EXCURSIONES");
 		setBounds(100, 100, 700, 600);
 		setLocationRelativeTo(null);
@@ -26,21 +29,25 @@ public class Window extends JFrame{
 		getContentPane().setLayout(new CardLayout(0, 0));
 		add(LoadPanel);
 		add(ManagmentPanel);
-		// LoadPanel.mostrar.addActionListener(null);
-		// LoadPanel.mostrar.addActionListener(event.hola());
 		
-		
-		LoadPanel.mostrar.addActionListener(new ActionListener() {
-
+		time = new Timer(30, (ActionListener) new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				LoadPanel.setVisible(false);
-				ManagmentPanel.setVisible(true);
+				cont++;
+				LoadPanel.progressBar.setValue(cont);
+				if (LoadPanel.progressBar.getValue() < 10) {
+					LoadPanel.progressBar.setValue(LoadPanel.progressBar.getValue() + 1);
+				}
+				if (LoadPanel.progressBar.getValue() == 100) {
+					LoadPanel.setVisible(false);
+					ManagmentPanel.setVisible(true);
+				}
 			}
 			
 		});
-
+		time.start();
+		
 	}
 
 }
