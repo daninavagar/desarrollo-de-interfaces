@@ -7,12 +7,16 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import Config.Archivo;
+
 public class Login extends JPanel{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	Archivo fichero = new Archivo();
 	JPanel managment_login;
 	JLabel lbl_User;
 	JLabel lbl_Password;
@@ -26,7 +30,6 @@ public class Login extends JPanel{
 
 	public Login() {
 		
-	
 		
 		setLayout(null);
 		
@@ -68,5 +71,70 @@ public class Login extends JPanel{
 		btn_login = new JButton("LOGIN");
 		btn_login.setBounds(230, 228, 89, 23);
 		add(btn_login);
+		
+		
+	}
+	
+	public JTextField getTextFieldUser() {
+		return textFieldUser;
+	}
+	public void setTextFieldUser(JTextField textFieldUser) {
+		this.textFieldUser = textFieldUser;
+	}
+	public JPasswordField getPasswordField_user() {
+		return passwordField_user;
+	}
+	public void setPasswordField_user(JPasswordField passwordField_user) {
+		this.passwordField_user = passwordField_user;
+	}
+	String name, pwd;
+	
+	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
+	public boolean compruebaLogin() {
+		
+		fichero.leerFichero();
+		name = textFieldUser.getText();
+		pwd = "";
+		char list[] = passwordField_user.getPassword();
+		for (int i=0; i< list.length; i++)
+			pwd += list[i];
+		
+		
+		boolean login = false;
+		for (int i=0; i<fichero.getTablaPersona().size();i++) {
+			if (fichero.getTablaPersona().get(i).getNombre().equals(name) && fichero.getTablaPersona().get(i).getConstraseña().equals(pwd)) {
+				if (name.equals("Tutor")) {
+					radiobtn_excursiones.setEnabled(true);
+					radiobtn_excursiones.setSelected(true);
+					radiobtn_tutorias.setEnabled(true);
+				}
+				return true;
+			} else {
+				login = false;
+			}
+		}
+		return login;
+	}
+	
+	public void tutor() {
+		
+		
 	}
 }

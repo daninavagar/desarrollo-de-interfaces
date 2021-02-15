@@ -23,6 +23,7 @@ public class Resumen extends JPanel{
 	public Resumen() {
 		
 		setLayout(null);
+		setVisible(false);
 		lbl_tutoria = new JLabel("RESUMEN TUTORÍA");
 		lbl_tutoria.setFont(new Font("Comic Sans", Font.BOLD, 13));
 		lbl_tutoria.setHorizontalAlignment(SwingConstants.CENTER);

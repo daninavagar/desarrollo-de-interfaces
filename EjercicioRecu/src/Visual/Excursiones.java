@@ -29,7 +29,7 @@ public class Excursiones extends JPanel{
 	public Excursiones() {
 		
 		setLayout(null);
-		
+		setVisible(false);
 		lbl_origen = new JLabel("ORIGEN");
 		lbl_origen.setBounds(64, 76, 66, 14);
 		add(lbl_origen);

@@ -1,55 +1,74 @@
 package Config;
 
-import java.io.*;
+import java.io.*;  
 import java.util.ArrayList;
+import java.util.regex.Pattern;
+
+
 
 public class Archivo {
 
 	String ubica = "./src/Files/usuarios.txt";
-	private File user;
-	private FileReader user_R;
-	private BufferedReader user_BR;
+	private File fichero;
+	private FileReader fichero_R;
+	private BufferedReader fichero_BR;
 	
 	Persona persona;
 	private ArrayList<Persona> tablaPersona = new ArrayList<Persona>();
 	
 
-	
-	public Archivo() {
-		
+	public Archivo() {	
 	}
 
 
-
-	public File getUser() {
-		return user;
+	public String getUbica() {
+		return ubica;
 	}
 
 
-	public void setUser(File user) {
-		this.user = user;
+	public void setUbica(String ubica) {
+		this.ubica = ubica;
+	}
+
+
+	public File getFichero() {
+		return fichero;
+	}
+
+
+	public void setFichero(File fichero) {
+		this.fichero = fichero;
 	}
 
 
 	public FileReader getUser_R() {
-		return user_R;
+		return fichero_R;
 	}
 
 
-	public void setUser_R(FileReader user_R) {
-		this.user_R = user_R;
-	}
-
-	public BufferedReader getUser_BR() {
-		return user_BR;
+	public void setFichero_R(FileReader fichero_R) {
+		this.fichero_R = fichero_R;
 	}
 
 
-	public void setUser_BR(BufferedReader user_BR) {
-		this.user_BR = user_BR;
+	public BufferedReader getFichero_BR() {
+		return fichero_BR;
 	}
-	
 
+
+	public void setFichero_BR(BufferedReader fichero_BR) {
+		this.fichero_BR = fichero_BR;
+	}
+
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
 
 
 	public ArrayList<Persona> getTablaPersona() {
@@ -57,52 +76,43 @@ public class Archivo {
 	}
 
 
-
 	public void setTablaPersona(ArrayList<Persona> tablaPersona) {
 		this.tablaPersona = tablaPersona;
 	}
 
-
-
-	public boolean leerUser() {
+	public void leerFichero() {
 		
+		fichero = new File(ubica);
+		String separador = Pattern.quote("%%");
+		
+		String linea = "";
 		try {
-		
-			user = new File(ubica);
-			user_R = new FileReader(user);
-			user_BR = new BufferedReader(user_R);
 			
-			String cadena = "";
+			fichero_R = new FileReader(fichero);
+			fichero_BR = new BufferedReader(fichero_R);
 			
-			while ((cadena = user_BR.readLine()) != null) {
-				ArrayList<String> list = new ArrayList<String>();
-				persona = new Persona(list.get(0), list.get(1));
-				tablaPersona.add(persona);
+			while ((linea = fichero_BR.readLine()) != null) {
+				String[] aux = linea.split(separador);
 				
+				// substring 2, no lee los 2 primeros caracteres
+				persona = new Persona(aux[0].substring(2), aux[1]);
+				tablaPersona.add(persona);
 			}
-			user_BR.close();
 			
-			
+			fichero_BR.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return true;
+		
 	}
+
+
+
 	
-	public boolean compruebaContraseña() {
-		
-		
-		boolean comprueba = true;
-		for (int i=0; i<tablaPersona.size(); i++) {
-			for (int f=i+1; i<tablaPersona.size(); f++) {
-				if (getTablaPersona().get(i).getConstraseña().equals(getTablaPersona().get(f))) {
-					return true;
-				} else 
-					comprueba = false;
-			}
-		}
-		return comprueba;
-	}
 	
 }

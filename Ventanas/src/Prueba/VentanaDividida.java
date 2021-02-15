@@ -1,10 +1,13 @@
-package Visual;
+package Prueba;
+
+import java.io.*;
 
 import java.awt.EventQueue;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import java.awt.GridLayout;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Color;
 import java.awt.Component;
@@ -18,7 +21,9 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.awt.image.ImageProducer;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.awt.event.ActionEvent;
@@ -42,8 +47,8 @@ public class VentanaDividida {
 	JPanel panel_1 = new JPanel();
 	JPanel panel_2 = new JPanel();
 	JPanel panel_3 = new JPanel();
-	private JTextField textField;
-	private JPasswordField passwordField;
+	JTextField textField;
+	JPasswordField passwordField;
 	/**
 	 * Launch the application.
 	 */
@@ -113,7 +118,6 @@ public class VentanaDividida {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//panel_1
-				panel_1.setVisible(true);
 			}
 		});
 		btnNewButton.setBounds(152, 232, 210, 28);
@@ -160,12 +164,20 @@ public class VentanaDividida {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (loging()) {
-					
-					JOptionPane.showMessageDialog(null, "�Correcto!", "LOGIN", 1);
-					panel_3.setVisible(true);
-				}else {
-					JOptionPane.showMessageDialog(null, "�ERROR EN LOS DATOS!", "LOGIN", JOptionPane.ERROR_MESSAGE);
+				try {
+					if (loging()) {
+						
+						JOptionPane.showMessageDialog(null, "�Correcto!", "LOGIN", 1);
+						panel_3.setVisible(true);
+					}else {
+						JOptionPane.showMessageDialog(null, "�ERROR EN LOS DATOS!", "LOGIN", JOptionPane.ERROR_MESSAGE);
+					}
+				} catch (HeadlessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});
@@ -287,8 +299,25 @@ public class VentanaDividida {
 										
 	}
 
-	protected boolean loging() {
-		Leer archivo= new Leer();
-		return archivo.comprobarUser("src/Ejemplos/usuarios.txt", textField.getText(),passwordField.getText());
+	protected boolean loging() throws IOException {
+		String ubica = "hola.txt";
+		File file = new File(ubica);
+		boolean econtrado = true;
+		String user, pwd, cadena, texto = "";
+		
+		FileReader file_R = new FileReader(file);
+		BufferedReader file_BR = new BufferedReader(file_R);
+		
+		while ((cadena = file_BR.readLine()) != null && econtrado == false) {
+			if (cadena.indexOf("%%") != -1){
+				user = cadena.substring(0, cadena.indexOf("%%"));
+				pwd = cadena.substring(cadena.indexOf("%%")+1, cadena.length());
+				if (user.equals(textField) && pwd.equals(passwordField)) {
+					econtrado = true;
+				}
+			}
+		}
+		
+		return econtrado;
 	}
 }

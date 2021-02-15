@@ -7,7 +7,10 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
+
+import Config.Archivo;
 
 @SuppressWarnings("serial")
 public class Window  extends JFrame {
@@ -15,11 +18,13 @@ public class Window  extends JFrame {
 	
 	public Load LoadPanel = new Load();
 	public Managment ManagmentPanel = new Managment();
+	public Archivo fichero = new Archivo();
 	private Timer time;
 	private int cont;
 
 	
 	public Window() throws IOException {
+		setResizable(false);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("GESTION TUTORÍAS Y EXCURSIONES");
@@ -27,8 +32,9 @@ public class Window  extends JFrame {
 		setLocationRelativeTo(null);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("./src/Images/icon.png"));
 		getContentPane().setLayout(new CardLayout(0, 0));
-		add(LoadPanel);
-		add(ManagmentPanel);
+		getContentPane().add(LoadPanel);
+		getContentPane().add(ManagmentPanel);
+		
 		
 		time = new Timer(30, (ActionListener) new ActionListener() {
 			@Override
@@ -47,6 +53,32 @@ public class Window  extends JFrame {
 			
 		});
 		time.start();
+		
+		ManagmentPanel.login.btn_login.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				// fichero.leerFichero();
+				// ManagmentPanel.login.LeerCosas();
+				if (!ManagmentPanel.login.compruebaLogin()) {
+					JOptionPane.showMessageDialog(null, "Nombre/Contrseña", "Error en el acceso", 0, null);
+				} else {
+					ManagmentPanel.excursion.setVisible(true);
+					ManagmentPanel.login.tutor();
+				}
+			}
+		});
+		
+		ManagmentPanel.login.btn_salir.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (JOptionPane.showConfirmDialog(null, "Estas seguro que quieres salir", "SALIR", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+					System.exit(0);
+			}
+			
+		});
 		
 	}
 

@@ -28,6 +28,7 @@ public class Tutorias extends JPanel{
 	public Tutorias() {
 		
 		setLayout(null);
+		setVisible(false);
 		lbl_asunto = new JLabel("ASUNTO:");
 		lbl_asunto.setBounds(40, 25, 90, 20);
 		add(lbl_asunto);
