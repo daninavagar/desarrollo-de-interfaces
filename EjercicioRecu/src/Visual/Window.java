@@ -59,13 +59,13 @@ public class Window  extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				// fichero.leerFichero();
-				// ManagmentPanel.login.LeerCosas();
 				if (!ManagmentPanel.login.compruebaLogin()) {
 					JOptionPane.showMessageDialog(null, "Nombre/Contrseña", "Error en el acceso", 0, null);
 				} else {
-					ManagmentPanel.excursion.setVisible(true);
-					ManagmentPanel.login.tutor();
+					ManagmentPanel.login.muestraPaneles();
+					if (ManagmentPanel.login.radiobtn_excursiones.isSelected()) {
+						ManagmentPanel.excursion.setVisible(true);
+					}
 				}
 			}
 		});

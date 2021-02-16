@@ -1,5 +1,8 @@
 package Visual;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,6 +20,9 @@ public class Login extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
 	Archivo fichero = new Archivo();
+	public Tutorias tutoria = new Tutorias();
+	public Resumen resumen = new Resumen();
+	public Excursiones excursion = new Excursiones();
 	JPanel managment_login;
 	JLabel lbl_User;
 	JLabel lbl_Password;
@@ -51,7 +57,7 @@ public class Login extends JPanel{
 		add(passwordField_user);
 		
 		radiobtn_excursiones = new JRadioButton("Excursiones");
-		radiobtn_excursiones.setBounds(34, 179, 89, 23);
+		radiobtn_excursiones.setBounds(34, 179, 96, 23);
 		radiobtn_excursiones.setEnabled(false);
 		add(radiobtn_excursiones);
 		
@@ -120,11 +126,6 @@ public class Login extends JPanel{
 		boolean login = false;
 		for (int i=0; i<fichero.getTablaPersona().size();i++) {
 			if (fichero.getTablaPersona().get(i).getNombre().equals(name) && fichero.getTablaPersona().get(i).getConstraseña().equals(pwd)) {
-				if (name.equals("Tutor")) {
-					radiobtn_excursiones.setEnabled(true);
-					radiobtn_excursiones.setSelected(true);
-					radiobtn_tutorias.setEnabled(true);
-				}
 				return true;
 			} else {
 				login = false;
@@ -133,8 +134,17 @@ public class Login extends JPanel{
 		return login;
 	}
 	
-	public void tutor() {
+	public void muestraPaneles() {
 		
-		
+		for (int i=0; i<fichero.getTablaPersona().size();i++) {
+			if (fichero.getTablaPersona().get(i).getNombre().equals(name) && fichero.getTablaPersona().get(i).getConstraseña().equals(pwd)) {
+				radiobtn_excursiones.setEnabled(true);
+				radiobtn_tutorias.setEnabled(true);
+				if (name.equals("Tutor")) {
+					radiobtn_excursiones.setSelected(true);			
+				}		 
+			}
+	}
+	
 	}
 }
