@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 
 
-public class Archivo {
+public class Usuarios {
 
 	String ubica = "./src/Files/usuarios.txt";
 	private File fichero;
@@ -17,7 +17,7 @@ public class Archivo {
 	private ArrayList<Persona> tablaPersona = new ArrayList<Persona>();
 	
 
-	public Archivo() {	
+	public Usuarios() {	
 	}
 
 

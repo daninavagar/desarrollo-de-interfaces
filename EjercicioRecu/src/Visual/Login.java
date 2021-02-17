@@ -1,7 +1,5 @@
 package Visual;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -10,7 +8,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import Config.Archivo;
+import Config.Usuarios;
 
 public class Login extends JPanel{
 	
@@ -19,7 +17,7 @@ public class Login extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	Archivo fichero = new Archivo();
+	Usuarios fichero = new Usuarios();
 	public Tutorias tutoria = new Tutorias();
 	public Resumen resumen = new Resumen();
 	public Excursiones excursion = new Excursiones();

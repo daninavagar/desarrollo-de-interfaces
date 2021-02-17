@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
-import Config.Archivo;
+import Config.Usuarios;
 
 @SuppressWarnings("serial")
 public class Window  extends JFrame {
@@ -18,7 +18,7 @@ public class Window  extends JFrame {
 	
 	public Load LoadPanel = new Load();
 	public Managment ManagmentPanel = new Managment();
-	public Archivo fichero = new Archivo();
+	public Usuarios fichero = new Usuarios();
 	private Timer time;
 	private int cont;
 
@@ -59,6 +59,11 @@ public class Window  extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				ManagmentPanel.login.radiobtn_excursiones.setSelected(false);
+				ManagmentPanel.login.radiobtn_tutorias.setSelected(false);
+				ManagmentPanel.excursion.setVisible(false);
+				ManagmentPanel.resumen.setVisible(false);
+				ManagmentPanel.tutoria.setVisible(false);
 				if (!ManagmentPanel.login.compruebaLogin()) {
 					JOptionPane.showMessageDialog(null, "Nombre/Contrseña", "Error en el acceso", 0, null);
 				} else {
@@ -76,6 +81,22 @@ public class Window  extends JFrame {
 				// TODO Auto-generated method stub
 				if (JOptionPane.showConfirmDialog(null, "Estas seguro que quieres salir", "SALIR", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 					System.exit(0);
+			}
+			
+		});
+		
+		ManagmentPanel.login.btn_logout.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ManagmentPanel.login.radiobtn_excursiones.setSelected(false);
+				ManagmentPanel.login.radiobtn_tutorias.setSelected(false);
+				ManagmentPanel.excursion.setVisible(false);
+				ManagmentPanel.resumen.setVisible(false);
+				ManagmentPanel.tutoria.setVisible(false);
+				ManagmentPanel.login.textFieldUser.setText(null);
+				ManagmentPanel.login.passwordField_user.setText(null);
 			}
 			
 		});

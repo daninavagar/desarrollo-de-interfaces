@@ -1,10 +1,13 @@
 package Visual;
 
+import java.awt.event.ActionEvent; 
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import java.awt.TextField;
 
 public class Tutorias extends JPanel{
 
@@ -16,7 +19,7 @@ public class Tutorias extends JPanel{
 	
 	JLabel lbl_asunto;
 	JLabel lbl_asistente;
-	JTextField textField_asunto;
+	TextField textFieldAsunto;
 	JButton btn_reset;
 	JButton btn_resumen;
 	JCheckBox checkBox_tutor;
@@ -37,9 +40,9 @@ public class Tutorias extends JPanel{
 		lbl_asistente.setBounds(40, 130, 90, 20);
 		add(lbl_asistente);
 		
-		textField_asunto = new JTextField();
-		textField_asunto.setBounds(150, 25, 175, 80);
-		add(textField_asunto);
+		textFieldAsunto = new TextField();
+		textFieldAsunto.setBounds(150, 25, 175, 80);
+		add(textFieldAsunto);
 		
 		checkBox_tutor = new JCheckBox("TUTOR");
 		checkBox_tutor.setBounds(150, 130, 65, 20);
@@ -65,6 +68,22 @@ public class Tutorias extends JPanel{
 		btn_resumen = new JButton("RESUMEN");
 		btn_resumen.setBounds(190, 200, 90, 20);
 		add(btn_resumen);
-	}
+		
+		
+		
+		
+		btn_reset.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				textFieldAsunto.setText(null);
+				checkBox_tutor.setSelected(false);
+				checkBox_padre.setSelected(false);
+				checkBox_alumno.setSelected(false);
+				checkBox_director.setSelected(false);
+			}
+			
+		});
+	}
 }

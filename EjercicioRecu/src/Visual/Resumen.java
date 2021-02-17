@@ -1,12 +1,21 @@
 package Visual;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+
+
+import javax.swing.JTextArea;
 
 public class Resumen extends JPanel{
 
@@ -17,7 +26,7 @@ public class Resumen extends JPanel{
 
 	
 	JLabel lbl_tutoria;
-	JTextField textField_resumen;
+	public JTextArea txtArea_resumen;
 	JButton btn_guardar;
 	
 	public Resumen() {
@@ -30,13 +39,50 @@ public class Resumen extends JPanel{
 		lbl_tutoria.setBounds(90, 11, 160, 31);
 		add(lbl_tutoria);
 		
-		textField_resumen = new JTextField();
-		textField_resumen.setBounds(34, 53, 273, 127);
-		add(textField_resumen);
-		textField_resumen.setColumns(10);
+		txtArea_resumen = new JTextArea();
+		txtArea_resumen.setBounds(34, 53, 273, 127);
+		txtArea_resumen.setEditable(false);
+		add(txtArea_resumen);
+		txtArea_resumen.setColumns(10);
 		
 		btn_guardar = new JButton("GUARDAR");
 		btn_guardar.setBounds(126, 215, 95, 23);
 		add(btn_guardar);
+		/*
+		btn_guardar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				
+			
+			
+		};*/
+		btn_guardar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				String ubica = "src/Files/Resumen.txt";
+				
+				
+				String concepto = txtArea_resumen.getText();
+				File resumen = new File(ubica);
+				FileWriter resumen_w;
+				try {
+					resumen_w = new FileWriter(resumen);
+					BufferedWriter resumen_wr = new BufferedWriter(resumen_w);
+					resumen_wr.write(concepto);
+					resumen_wr.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}});
+		
+		
 	}
 }
