@@ -4,7 +4,11 @@ package Visual;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
@@ -87,9 +91,10 @@ public class Managment extends JPanel{
 						asistentes.add(asis.get(i).getText());
 					}
 				}
-				
-				resumen.txtArea_resumen.setText("ASUNTO: " + aux
-												+ "\n\nASISTENTES: \n" + asistentes);
+				Date fecha = new Date();
+				DateFormat fechaFormato = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+				resumen.txtArea_resumen.setText("Fecha y hora " + fechaFormato.format(fecha) + "\nASUNTO: " + aux
+												+ "\n\nASISTENTES: \n" + asistentes + "\n\n\n");
 				
 			}
 			

@@ -97,6 +97,14 @@ public class Window  extends JFrame {
 				ManagmentPanel.tutoria.setVisible(false);
 				ManagmentPanel.login.textFieldUser.setText(null);
 				ManagmentPanel.login.passwordField_user.setText(null);
+				
+				ManagmentPanel.tutoria.textFieldAsunto.setText(null);
+				ManagmentPanel.tutoria.checkBox_alumno.setSelected(false);
+				ManagmentPanel.tutoria.checkBox_padre.setSelected(false);
+				ManagmentPanel.tutoria.checkBox_tutor.setSelected(false);
+				ManagmentPanel.tutoria.checkBox_director.setSelected(false);
+				
+				ManagmentPanel.resumen.txtArea_resumen.setText(null);
 			}
 			
 		});

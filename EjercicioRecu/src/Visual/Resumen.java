@@ -72,7 +72,7 @@ public class Resumen extends JPanel{
 				File resumen = new File(ubica);
 				FileWriter resumen_w;
 				try {
-					resumen_w = new FileWriter(resumen);
+					resumen_w = new FileWriter(resumen, true);
 					BufferedWriter resumen_wr = new BufferedWriter(resumen_w);
 					resumen_wr.write(concepto);
 					resumen_wr.close();
