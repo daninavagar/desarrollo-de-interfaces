@@ -48,17 +48,7 @@ public class Resumen extends JPanel{
 		btn_guardar = new JButton("GUARDAR");
 		btn_guardar.setBounds(126, 215, 95, 23);
 		add(btn_guardar);
-		/*
-		btn_guardar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-				
-			
-			
-		};*/
+		
 		btn_guardar.addActionListener(new ActionListener() {
 
 			@Override

@@ -59,17 +59,20 @@ public class Window  extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				ManagmentPanel.login.radiobtn_excursiones.setSelected(false);
-				ManagmentPanel.login.radiobtn_tutorias.setSelected(false);
-				ManagmentPanel.excursion.setVisible(false);
-				ManagmentPanel.resumen.setVisible(false);
-				ManagmentPanel.tutoria.setVisible(false);
+				
 				if (!ManagmentPanel.login.compruebaLogin()) {
 					JOptionPane.showMessageDialog(null, "Nombre/Contrseña", "Error en el acceso", 0, null);
-				} else {
-					ManagmentPanel.login.muestraPaneles();
+				} else if (ManagmentPanel.login.muestraPaneles()){
+					
 					if (ManagmentPanel.login.radiobtn_excursiones.isSelected()) {
 						ManagmentPanel.excursion.setVisible(true);
+						ManagmentPanel.excursion.configExcursion.setVisible(true);
+					} else {
+						ManagmentPanel.excursion.setVisible(true);
+						ManagmentPanel.tutoria.setVisible(true);
+						ManagmentPanel.excursion.destinoExcur.setVisible(true);
+						ManagmentPanel.excursion.configExcursion.setVisible(false);
+						ManagmentPanel.tutoria.precio.setVisible(true);
 					}
 				}
 			}
@@ -90,19 +93,23 @@ public class Window  extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				
+				
 				ManagmentPanel.login.radiobtn_excursiones.setSelected(false);
 				ManagmentPanel.login.radiobtn_tutorias.setSelected(false);
+				ManagmentPanel.login.radiobtn_excursiones.setEnabled(false);
+				ManagmentPanel.login.radiobtn_tutorias.setEnabled(false);
 				ManagmentPanel.excursion.setVisible(false);
 				ManagmentPanel.resumen.setVisible(false);
 				ManagmentPanel.tutoria.setVisible(false);
 				ManagmentPanel.login.textFieldUser.setText(null);
 				ManagmentPanel.login.passwordField_user.setText(null);
 				
-				ManagmentPanel.tutoria.textFieldAsunto.setText(null);
-				ManagmentPanel.tutoria.checkBox_alumno.setSelected(false);
-				ManagmentPanel.tutoria.checkBox_padre.setSelected(false);
-				ManagmentPanel.tutoria.checkBox_tutor.setSelected(false);
-				ManagmentPanel.tutoria.checkBox_director.setSelected(false);
+				ManagmentPanel.tutoria.configTuto.textFieldAsunto.setText(null);
+				ManagmentPanel.tutoria.configTuto.checkBox_alumno.setSelected(false);
+				ManagmentPanel.tutoria.configTuto.checkBox_padre.setSelected(false);
+				ManagmentPanel.tutoria.configTuto.checkBox_tutor.setSelected(false);
+				ManagmentPanel.tutoria.configTuto.checkBox_director.setSelected(false);
 				
 				ManagmentPanel.resumen.txtArea_resumen.setText(null);
 			}

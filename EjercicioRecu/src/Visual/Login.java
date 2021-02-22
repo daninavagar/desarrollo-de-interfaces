@@ -36,6 +36,7 @@ public class Login extends JPanel{
 		
 		
 		setLayout(null);
+		setVisible(true);
 		
 		lbl_User = new JLabel("USUARIO");
 		lbl_User.setBounds(64, 76, 66, 14);
@@ -132,17 +133,21 @@ public class Login extends JPanel{
 		return login;
 	}
 	
-	public void muestraPaneles() {
+	public boolean muestraPaneles() {
+		
+		boolean director = true;
 		
 		for (int i=0; i<fichero.getTablaPersona().size();i++) {
 			if (fichero.getTablaPersona().get(i).getNombre().equals(name) && fichero.getTablaPersona().get(i).getConstraseña().equals(pwd)) {
 				radiobtn_excursiones.setEnabled(true);
 				radiobtn_tutorias.setEnabled(true);
 				if (name.equals("Tutor")) {
-					radiobtn_excursiones.setSelected(true);			
-				}		 
+					radiobtn_excursiones.setSelected(true);		
+					return director;
+				} 	 
 			}
-	}
+		}
+	return director;
 	
 	}
 }

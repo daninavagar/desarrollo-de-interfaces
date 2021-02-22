@@ -42,15 +42,27 @@ public class Managment extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
-				if (login.radiobtn_excursiones.isSelected()) {
-					excursion.setVisible(true);
-					login.radiobtn_tutorias.setSelected(false);
-					tutoria.setVisible(false);
-					resumen.setVisible(false);
+				if (login.muestraPaneles()) {
+					if (login.radiobtn_excursiones.isSelected()) {
+						excursion.setVisible(true);
+						excursion.configExcursion.setVisible(true);
+						excursion.destinoExcur.setVisible(false);
+						login.radiobtn_tutorias.setSelected(false);
+						tutoria.setVisible(false);
+						resumen.setVisible(false);
+					} else {
+						excursion.configExcursion.setVisible(false);
+					}
 				} else {
-					excursion.setVisible(false);
+					excursion.setVisible(true);
+					tutoria.setVisible(true);
+					tutoria.precio.setVisible(true);
+					tutoria.configTuto.setVisible(false);
+					excursion.configExcursion.setVisible(false);
+					excursion.destinoExcur.setVisible(true);
+					login.radiobtn_tutorias.setSelected(false);
 				}
+				 
 			}
 			
 		});
@@ -60,31 +72,37 @@ public class Managment extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if (login.radiobtn_tutorias.isSelected()) {
-					tutoria.setVisible(true);
-					resumen.setVisible(true);
-					login.radiobtn_excursiones.setSelected(false);
-					excursion.setVisible(false);
-				} else {
-					tutoria.setVisible(false);
-					resumen.setVisible(false);
+				if (login.muestraPaneles()) {
+					
+					if (login.radiobtn_tutorias.isSelected()) {
+						tutoria.setVisible(true);
+						tutoria.configTuto.setVisible(true);
+						tutoria.precio.setVisible(false);
+						resumen.setVisible(true);
+						login.radiobtn_excursiones.setSelected(false);
+						excursion.setVisible(false);
+					} else {
+						tutoria.setVisible(false);
+						resumen.setVisible(false);
+					}
 				}
+				
 			}
 			
 		});
 		
-		tutoria.btn_resumen.addActionListener(new ActionListener() {
+		tutoria.configTuto.btn_resumen.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String aux = tutoria.textFieldAsunto.getText();
+				String aux = tutoria.configTuto.textFieldAsunto.getText();
 				ArrayList<String> asistentes = new ArrayList<String>();
 				ArrayList<JCheckBox> asis = new ArrayList<JCheckBox>();
-				asis.add(tutoria.checkBox_tutor);
-				asis.add(tutoria.checkBox_padre);
-				asis.add(tutoria.checkBox_director);
-				asis.add(tutoria.checkBox_alumno);
+				asis.add(tutoria.configTuto.checkBox_tutor);
+				asis.add(tutoria.configTuto.checkBox_padre);
+				asis.add(tutoria.configTuto.checkBox_director);
+				asis.add(tutoria.configTuto.checkBox_alumno);
 				
 				for (int i=0; i<asis.size(); i++) {
 					if (asis.get(i).isSelected()) {
