@@ -132,17 +132,23 @@ public class Login extends JPanel{
 		return login;
 	}
 	
-	public void muestraPaneles() {
+	public boolean muestraPaneles() {
+		
+		boolean director = false;
 		
 		for (int i=0; i<fichero.getTablaPersona().size();i++) {
 			if (fichero.getTablaPersona().get(i).getNombre().equals(name) && fichero.getTablaPersona().get(i).getConstraseña().equals(pwd)) {
-				radiobtn_excursiones.setEnabled(true);
-				radiobtn_tutorias.setEnabled(true);
 				if (name.equals("Tutor")) {
-					radiobtn_excursiones.setSelected(true);			
-				}		 
+					radiobtn_excursiones.setEnabled(true);
+					radiobtn_tutorias.setEnabled(true);
+					radiobtn_excursiones.setSelected(true);		
+					return true;
+				} else {
+					director = false;
+				} 	 
 			}
-	}
+		}
+	return director;
 	
 	}
 }
