@@ -4,6 +4,8 @@ import java.awt.CardLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
 import javax.swing.JFrame;
@@ -86,6 +88,52 @@ public class Window  extends JFrame {
 				}
 			}
 		});
+		
+		ManagmentPanel.login.passwordField_user.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				ManagmentPanel.excursion.setVisible(false);
+				ManagmentPanel.excursion.configExcursion.setVisible(false);
+				ManagmentPanel.excursion.destinoExcur.setVisible(false);
+				ManagmentPanel.resumen.setVisible(false);
+				ManagmentPanel.resumen.resumenLimpia.setVisible(false);
+				ManagmentPanel.resumen.resumenTuto.setVisible(false);
+				ManagmentPanel.tutoria.setVisible(false);
+				ManagmentPanel.tutoria.configTuto.setVisible(false);
+				ManagmentPanel.tutoria.precio.setVisible(false);
+				int key = e.getKeyCode();
+				if (key == KeyEvent.VK_ENTER) {
+					if (!ManagmentPanel.login.compruebaLogin()) {
+						JOptionPane.showMessageDialog(null, "Algunos de los datos introducidos no son correctos", "Error en el acceso", 0, null);
+					} else if (!ManagmentPanel.login.muestraPaneles()) {
+						ManagmentPanel.excursion.setVisible(true);
+						ManagmentPanel.excursion.destinoExcur.setVisible(true);
+						ManagmentPanel.tutoria.setVisible(true);
+						ManagmentPanel.tutoria.precio.setVisible(true);
+						ManagmentPanel.resumen.setVisible(true);
+						ManagmentPanel.resumen.resumenLimpia.setVisible(true);
+						
+					} else {
+						ManagmentPanel.excursion.setVisible(true);
+						ManagmentPanel.excursion.configExcursion.setVisible(true);
+						ManagmentPanel.destinos();
+					}
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}});
 		
 		ManagmentPanel.login.btn_salir.addActionListener(new ActionListener() {
 			@Override

@@ -1,15 +1,20 @@
 package Visual;
 
-import javax.swing.DefaultComboBoxModel;
+ 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 
 public class ConfigExcursion extends JPanel{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JLabel lbl_origen;
 	JLabel lbl_destino;
 	JRadioButton radiobtn_ida;
@@ -53,16 +58,19 @@ public class ConfigExcursion extends JPanel{
 		lbl_alumnos.setBounds(64, 185, 120, 50);
 		add(lbl_alumnos);
 		
-		lbl_coste = new JLabel("Coste total de la excursión");
+		lbl_coste = new JLabel("Coste total de la excursión *");
+		lbl_coste.setToolTipText("Pulsa en la caja para ver el precio de la excursion");
 		lbl_coste.setBounds(64, 215, 165, 50);
 		add(lbl_coste);
 		
 		spinner_alumnos = new JSpinner();
+		spinner_alumnos.setModel(new SpinnerNumberModel(1, 1, 50, 1));
 		spinner_alumnos.setBounds(250, 200, 49, 20);
 		add(spinner_alumnos);
 		
 		textField_coste = new JTextField();
 		textField_coste.setBounds(250, 230, 49, 20);
+		textField_coste.setEditable(false);
 		add(textField_coste);
 	}
 }

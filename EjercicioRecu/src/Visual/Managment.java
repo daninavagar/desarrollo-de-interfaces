@@ -4,6 +4,8 @@ package Visual;
 import java.awt.GridLayout; 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -73,6 +75,24 @@ public class Managment extends JPanel{
 			
 		});
 		
+		excursion.configExcursion.radiobtn_ida.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (excursion.configExcursion.radiobtn_ida.isSelected()) 
+					excursion.configExcursion.radiobtn_vuelta.setSelected(false);
+			}});
+		
+		excursion.configExcursion.radiobtn_vuelta.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (excursion.configExcursion.radiobtn_vuelta.isSelected()) 
+					excursion.configExcursion.radiobtn_ida.setSelected(false);
+			}});
+		
 		tutoria.configTuto.btn_resumen.addActionListener(new ActionListener() {
 
 			@Override
@@ -119,7 +139,91 @@ public class Managment extends JPanel{
 				tutoria.precio.spinner_2.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
 			}});
 		
-
+		
+		excursion.configExcursion.textField_coste.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				double precio;
+				Integer nAlumnos = (Integer)excursion.configExcursion.spinner_alumnos.getValue();
+				Integer pocos = 0;
+				Integer medios = 0;
+				Integer muchos = 0;
+				
+				
+				
+				if (excursion.configExcursion.radiobtn_vuelta.isSelected()) {
+					if (nAlumnos < 15) {
+						pocos = (Integer)tutoria.precio.spinner.getValue();
+						precio = nAlumnos * pocos * 1.5;
+						String precio_final = String.valueOf(precio);
+						excursion.configExcursion.textField_coste.setText(precio_final);
+						
+						
+					} else if (nAlumnos > 15 && nAlumnos < 25) {
+						medios = (Integer)tutoria.precio.spinner_1.getValue();
+						precio = nAlumnos * medios * 1.5;
+						String precio_final = String.valueOf(precio);
+						excursion.configExcursion.textField_coste.setText(precio_final);
+					} else if (nAlumnos > 25) {
+						muchos = (Integer)tutoria.precio.spinner_2.getValue();
+						precio = nAlumnos * muchos * 1.5;
+						String precio_final = String.valueOf(precio);
+						excursion.configExcursion.textField_coste.setText(precio_final);
+					}
+					
+				} else {
+					if (nAlumnos < 15) {
+						pocos = (Integer)tutoria.precio.spinner.getValue();
+						precio = nAlumnos * pocos;
+						String precio_final = String.valueOf(precio);
+						excursion.configExcursion.textField_coste.setText(precio_final);
+						
+						
+					} else if (nAlumnos > 15 && nAlumnos < 25) {
+						medios = (Integer)tutoria.precio.spinner_1.getValue();
+						precio = nAlumnos * medios;
+						String precio_final = String.valueOf(precio);
+						excursion.configExcursion.textField_coste.setText(precio_final);
+					} else if (nAlumnos > 25) {
+						muchos = (Integer)tutoria.precio.spinner_2.getValue();
+						precio = nAlumnos * muchos;
+						String precio_final = String.valueOf(precio);
+						excursion.configExcursion.textField_coste.setText(precio_final);
+					}
+					
+				}
+				
+				
+					
+			}
+		});
+		
 	}
 	
 	public void destinos() {
@@ -137,20 +241,20 @@ public class Managment extends JPanel{
 		destino.add(excursion.destinoExcur.checkBox_museo);
 		destino.add(excursion.destinoExcur.checkBox_parque);
 		
-		String aux;
+		String mdr, bar, sev, cas, mus, par;
 		if (excursion.destinoExcur.checkBox_madrid.isSelected())
-			excursion.configExcursion.comboBox_origen.addItem(aux = excursion.destinoExcur.checkBox_madrid.getText());
+			excursion.configExcursion.comboBox_origen.addItem(mdr = excursion.destinoExcur.checkBox_madrid.getText());
 		if (excursion.destinoExcur.checkBox_barcelona.isSelected())
-			excursion.configExcursion.comboBox_origen.addItem(aux = excursion.destinoExcur.checkBox_barcelona.getText());
+			excursion.configExcursion.comboBox_origen.addItem(bar = excursion.destinoExcur.checkBox_barcelona.getText());
 		if (excursion.destinoExcur.checkBox_sevilla.isSelected())
-			excursion.configExcursion.comboBox_origen.addItem(aux = excursion.destinoExcur.checkBox_sevilla.getText());
+			excursion.configExcursion.comboBox_origen.addItem(sev = excursion.destinoExcur.checkBox_sevilla.getText());
 		
 		if (excursion.destinoExcur.checkBox_castillo.isSelected())
-			excursion.configExcursion.comboBox_destino.addItem(aux = excursion.destinoExcur.checkBox_castillo.getText());
+			excursion.configExcursion.comboBox_destino.addItem(cas = excursion.destinoExcur.checkBox_castillo.getText());
 		if (excursion.destinoExcur.checkBox_museo.isSelected())
-			excursion.configExcursion.comboBox_destino.addItem(aux = excursion.destinoExcur.checkBox_museo.getText());
+			excursion.configExcursion.comboBox_destino.addItem(mus = excursion.destinoExcur.checkBox_museo.getText());
 		if (excursion.destinoExcur.checkBox_parque.isSelected())
-			excursion.configExcursion.comboBox_destino.addItem(aux = excursion.destinoExcur.checkBox_parque.getText());
+			excursion.configExcursion.comboBox_destino.addItem(par = excursion.destinoExcur.checkBox_parque.getText());
 		/*
 		if (listaOrigen.size() == 0) {
 			JOptionPane.showMessageDialog(null, "NO HAS SELECCIONADO EL ORIGEN");
@@ -182,13 +286,10 @@ public class Managment extends JPanel{
 				excursion.configExcursion.comboBox_destino.addItem(listaDestino.get(i));
 			}
 		}*/
-		
-		
-
-		
-		
-		
+			
 	}
+	
+	
 
 
 }
