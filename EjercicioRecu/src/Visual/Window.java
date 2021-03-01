@@ -93,19 +93,24 @@ public class Window extends JFrame {
 				if (!ManagmentPanel.login.compruebaLogin()) {
 					JOptionPane.showMessageDialog(null, "Algunos de los datos introducidos no son correctos", "Error en el acceso", JOptionPane.ERROR_MESSAGE);
 				} else if (!ManagmentPanel.login.muestraPaneles()) {
+					ManagmentPanel.login.textFieldUser.setEnabled(false);
+					ManagmentPanel.login.passwordField_user.setEnabled(false);
 					ManagmentPanel.excursion.setVisible(true);
 					ManagmentPanel.excursion.destinoExcur.setVisible(true);
 					ManagmentPanel.tutoria.setVisible(true);
 					ManagmentPanel.tutoria.precio.setVisible(true);
 					ManagmentPanel.resumen.setVisible(true);
 					ManagmentPanel.resumen.resumenLimpia.setVisible(true);
+					ManagmentPanel.login.btn_login.setEnabled(false);
 					
 				} else {
 					ManagmentPanel.excursion.setVisible(true);
 					ManagmentPanel.excursion.configExcursion.setVisible(true);
+					ManagmentPanel.login.textFieldUser.setEnabled(false);
+					ManagmentPanel.login.passwordField_user.setEnabled(false);
 					ManagmentPanel.destinos();
 				}
-				ManagmentPanel.login.btn_login.setEnabled(false);
+				
 				
 			}
 		});
@@ -135,19 +140,29 @@ public class Window extends JFrame {
 					if (!ManagmentPanel.login.compruebaLogin()) {
 						JOptionPane.showMessageDialog(null, "Algunos de los datos introducidos no son correctos", "Error en el acceso", JOptionPane.ERROR_MESSAGE);
 					} else if (!ManagmentPanel.login.muestraPaneles()) {
+						ManagmentPanel.login.textFieldUser.setEnabled(false);
+						ManagmentPanel.login.passwordField_user.setEnabled(false);
 						ManagmentPanel.excursion.setVisible(true);
 						ManagmentPanel.excursion.destinoExcur.setVisible(true);
 						ManagmentPanel.tutoria.setVisible(true);
 						ManagmentPanel.tutoria.precio.setVisible(true);
 						ManagmentPanel.resumen.setVisible(true);
 						ManagmentPanel.resumen.resumenLimpia.setVisible(true);
+						ManagmentPanel.login.btn_login.setEnabled(false);
 						
 					} else {
-						ManagmentPanel.excursion.setVisible(true);
-						ManagmentPanel.excursion.configExcursion.setVisible(true);
-						ManagmentPanel.destinos();
+							
+						
+							ManagmentPanel.login.btn_login.setEnabled(false);
+							ManagmentPanel.excursion.setVisible(true);
+							ManagmentPanel.excursion.configExcursion.setVisible(true);
+							ManagmentPanel.login.textFieldUser.setEnabled(false);
+							ManagmentPanel.login.passwordField_user.setEnabled(false);
+							ManagmentPanel.destinos();
+						
+						
 					}
-					ManagmentPanel.login.btn_login.setEnabled(false);
+			
 				}
 			}
 
@@ -174,6 +189,8 @@ public class Window extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				ManagmentPanel.login.btn_login.setEnabled(true);
+				ManagmentPanel.login.textFieldUser.setEnabled(true);
+				ManagmentPanel.login.passwordField_user.setEnabled(true);
 				ManagmentPanel.login.radiobtn_excursiones.setSelected(false);
 				ManagmentPanel.login.radiobtn_tutorias.setSelected(false);
 				ManagmentPanel.login.radiobtn_excursiones.setEnabled(false);

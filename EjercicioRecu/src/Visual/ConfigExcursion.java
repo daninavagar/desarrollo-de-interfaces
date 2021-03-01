@@ -1,10 +1,6 @@
 package Visual;
 
  
-import java.util.Objects;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox; 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,8 +17,7 @@ public class ConfigExcursion extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	JCheckBox[] prueba = new JCheckBox[2];
-	Objects[] thing = new Objects[2];
+
 	JLabel lbl_origen;
 	JLabel lbl_destino;
 	JRadioButton radiobtn_ida;
@@ -48,13 +43,13 @@ public class ConfigExcursion extends JPanel{
 		
 		comboBox_origen = new JComboBox<String>();
 		comboBox_origen.setBorder(UIManager.getBorder("Tree.editorBorder"));
-		comboBox_origen.setBounds(166, 73, 86, 22);
+		comboBox_origen.setBounds(166, 73, 133, 22);
 		
 		add(comboBox_origen);
 		
 		comboBox_destino = new JComboBox<String>();
 		comboBox_destino.setBorder(UIManager.getBorder("Tree.editorBorder"));
-		comboBox_destino.setBounds(166, 115, 86, 22);
+		comboBox_destino.setBounds(166, 115, 133, 22);
 		add(comboBox_destino);
 		
 		radiobtn_ida = new JRadioButton("IDA");
@@ -84,5 +79,21 @@ public class ConfigExcursion extends JPanel{
 		textField_coste.setBounds(250, 230, 49, 20);
 		textField_coste.setEditable(false);
 		add(textField_coste);
+	}
+	
+	public boolean compruebaOrigen() {
+		
+		boolean exit = false;
+		
+		
+		if (comboBox_origen.getItemCount() <= 0 || comboBox_destino.getItemCount() <= 0) {
+			return exit;
+		} else {
+			exit = true;
+		}
+
+		
+		
+		return exit;
 	}
 }
