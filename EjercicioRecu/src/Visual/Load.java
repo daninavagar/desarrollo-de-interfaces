@@ -34,7 +34,7 @@ public class Load extends JPanel {
 		BufferedImage img = ImageIO.read(new File("./src/Images/fondo.jpg"));
 		add(progressBar);
 		lbl_Fondo = new JLabel(new ImageIcon(img));
-		lbl_Fondo.setBounds(10, 10, 800, 600);
+		lbl_Fondo.setBounds(0, -86, 691, 692);
 		lbl_Fondo.setOpaque(true);
 		add(lbl_Fondo);
 		

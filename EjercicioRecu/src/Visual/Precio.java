@@ -5,9 +5,14 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class Precio extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JLabel labeltitulo;
 	JLabel label_2;
 	JLabel label_pocos;
@@ -45,14 +50,20 @@ public class Precio extends JPanel{
 		
 		spinner = new JSpinner();
 		spinner.setBounds(183, 96, 43, 28);
+		spinner.setModel(new SpinnerNumberModel(1, 1, null, 1));
+		spinner.setEditor(new JSpinner.DefaultEditor(spinner));
 		add(spinner);
 		
 		spinner_1 = new JSpinner();
 		spinner_1.setBounds(183, 146, 43, 28);
+		spinner_1.setModel(new SpinnerNumberModel(1, 1, null, 1));
+		spinner_1.setEditor(new JSpinner.DefaultEditor(spinner_1));
 		add(spinner_1);
 		
 		spinner_2 = new JSpinner();
 		spinner_2.setBounds(183, 202, 43, 28);
+		spinner_2.setModel(new SpinnerNumberModel(1, 1, null, 1));
+		spinner_2.setEditor(new JSpinner.DefaultEditor(spinner_2));
 		add(spinner_2);
 		
 		

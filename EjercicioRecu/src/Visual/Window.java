@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
 import java.io.IOException;
 
 import javax.swing.JFrame;
@@ -15,7 +16,7 @@ import javax.swing.Timer;
 import Config.Usuarios;
 
 @SuppressWarnings("serial")
-public class Window  extends JFrame {
+public class Window extends JFrame {
 	
 	
 	public Load LoadPanel = new Load();
@@ -28,7 +29,7 @@ public class Window  extends JFrame {
 	public Window() throws IOException {
 		setResizable(false);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setTitle("GESTION TUTORÍAS Y EXCURSIONES");
 		setBounds(100, 100, 700, 600);
 		setLocationRelativeTo(null);
@@ -47,14 +48,32 @@ public class Window  extends JFrame {
 				if (LoadPanel.progressBar.getValue() < 10) {
 					LoadPanel.progressBar.setValue(LoadPanel.progressBar.getValue() + 1);
 				}
+				if (LoadPanel.progressBar.getValue() == 30) {
+					if (fichero.compruebaficheros()) {
+						JOptionPane.showMessageDialog(null, "Faltan archivos", "Error en el acceso", 0, null);
+						System.exit(0);
+					}
+				}
 				if (LoadPanel.progressBar.getValue() == 100) {
 					LoadPanel.setVisible(false);
 					ManagmentPanel.setVisible(true);
+					
 				}
 			}
 			
 		});
 		time.start();
+		
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(java.awt.event.WindowEvent evt) {
+				String opciones[] = {"SI", "NO"};
+				
+				if (JOptionPane.showOptionDialog(null, "¿Estás seguro que quieres salir?", "SALIR", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[1]) == JOptionPane.YES_OPTION)
+					System.exit(0);
+            }
+			
+		
+		});
 		
 		ManagmentPanel.login.btn_login.addActionListener(new ActionListener() {
 
@@ -72,7 +91,7 @@ public class Window  extends JFrame {
 				ManagmentPanel.tutoria.precio.setVisible(false);
 				
 				if (!ManagmentPanel.login.compruebaLogin()) {
-					JOptionPane.showMessageDialog(null, "Algunos de los datos introducidos no son correctos", "Error en el acceso", 0, null);
+					JOptionPane.showMessageDialog(null, "Algunos de los datos introducidos no son correctos", "Error en el acceso", JOptionPane.ERROR_MESSAGE);
 				} else if (!ManagmentPanel.login.muestraPaneles()) {
 					ManagmentPanel.excursion.setVisible(true);
 					ManagmentPanel.excursion.destinoExcur.setVisible(true);
@@ -86,6 +105,8 @@ public class Window  extends JFrame {
 					ManagmentPanel.excursion.configExcursion.setVisible(true);
 					ManagmentPanel.destinos();
 				}
+				ManagmentPanel.login.btn_login.setEnabled(false);
+				
 			}
 		});
 		
@@ -112,7 +133,7 @@ public class Window  extends JFrame {
 				int key = e.getKeyCode();
 				if (key == KeyEvent.VK_ENTER) {
 					if (!ManagmentPanel.login.compruebaLogin()) {
-						JOptionPane.showMessageDialog(null, "Algunos de los datos introducidos no son correctos", "Error en el acceso", 0, null);
+						JOptionPane.showMessageDialog(null, "Algunos de los datos introducidos no son correctos", "Error en el acceso", JOptionPane.ERROR_MESSAGE);
 					} else if (!ManagmentPanel.login.muestraPaneles()) {
 						ManagmentPanel.excursion.setVisible(true);
 						ManagmentPanel.excursion.destinoExcur.setVisible(true);
@@ -126,6 +147,7 @@ public class Window  extends JFrame {
 						ManagmentPanel.excursion.configExcursion.setVisible(true);
 						ManagmentPanel.destinos();
 					}
+					ManagmentPanel.login.btn_login.setEnabled(false);
 				}
 			}
 
@@ -139,7 +161,8 @@ public class Window  extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if (JOptionPane.showConfirmDialog(null, "Estas seguro que quieres salir", "SALIR", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+				String opciones[] = {"SI", "NO"};
+				if (JOptionPane.showOptionDialog(null, "¿Estás seguro que quieres salir?", "SALIR", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[1]) == JOptionPane.YES_OPTION)
 					System.exit(0);
 			}
 			
@@ -150,6 +173,7 @@ public class Window  extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				ManagmentPanel.login.btn_login.setEnabled(true);
 				ManagmentPanel.login.radiobtn_excursiones.setSelected(false);
 				ManagmentPanel.login.radiobtn_tutorias.setSelected(false);
 				ManagmentPanel.login.radiobtn_excursiones.setEnabled(false);

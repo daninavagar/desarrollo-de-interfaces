@@ -1,13 +1,19 @@
 package Visual;
 
  
-import javax.swing.JComboBox;
+import java.util.Objects;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox; 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.UIManager;
+
 
 public class ConfigExcursion extends JPanel{
 
@@ -15,6 +21,8 @@ public class ConfigExcursion extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	JCheckBox[] prueba = new JCheckBox[2];
+	Objects[] thing = new Objects[2];
 	JLabel lbl_origen;
 	JLabel lbl_destino;
 	JRadioButton radiobtn_ida;
@@ -39,10 +47,13 @@ public class ConfigExcursion extends JPanel{
 		add(lbl_destino);
 		
 		comboBox_origen = new JComboBox<String>();
+		comboBox_origen.setBorder(UIManager.getBorder("Tree.editorBorder"));
 		comboBox_origen.setBounds(166, 73, 86, 22);
+		
 		add(comboBox_origen);
 		
 		comboBox_destino = new JComboBox<String>();
+		comboBox_destino.setBorder(UIManager.getBorder("Tree.editorBorder"));
 		comboBox_destino.setBounds(166, 115, 86, 22);
 		add(comboBox_destino);
 		
@@ -66,6 +77,7 @@ public class ConfigExcursion extends JPanel{
 		spinner_alumnos = new JSpinner();
 		spinner_alumnos.setModel(new SpinnerNumberModel(1, 1, 50, 1));
 		spinner_alumnos.setBounds(250, 200, 49, 20);
+		spinner_alumnos.setEditor(new JSpinner.DefaultEditor(spinner_alumnos));
 		add(spinner_alumnos);
 		
 		textField_coste = new JTextField();

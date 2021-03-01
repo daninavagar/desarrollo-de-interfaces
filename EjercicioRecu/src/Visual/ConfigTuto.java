@@ -67,19 +67,6 @@ public class ConfigTuto extends JPanel{
 		btn_resumen.setBounds(190, 200, 90, 20);
 		add(btn_resumen);
 		
-		btn_reset.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				textFieldAsunto.setText(null);
-				checkBox_tutor.setSelected(false);
-				checkBox_padre.setSelected(false);
-				checkBox_alumno.setSelected(false);
-				checkBox_director.setSelected(false);
-			}
-			
-		});
 	}
 	
 	

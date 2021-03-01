@@ -8,8 +8,10 @@ import java.util.regex.Pattern;
 
 public class Usuarios {
 
-	String ubica = "./src/Files/usuarios.txt";
+	String user = "./src/Files/usuarios.txt";
+	String resumen = "./src/Files/Resumen.txt";
 	private File fichero;
+	private File fichero2;
 	private FileReader fichero_R;
 	private BufferedReader fichero_BR;
 	
@@ -20,15 +22,6 @@ public class Usuarios {
 	public Usuarios() {	
 	}
 
-
-	public String getUbica() {
-		return ubica;
-	}
-
-
-	public void setUbica(String ubica) {
-		this.ubica = ubica;
-	}
 
 
 	public File getFichero() {
@@ -82,7 +75,8 @@ public class Usuarios {
 
 	public void leerFichero() {
 		
-		fichero = new File(ubica);
+		fichero = new File(user);
+		
 		String separador = Pattern.quote("%%");
 		
 		String linea = "";
@@ -109,6 +103,22 @@ public class Usuarios {
 		}
 		
 		
+		
+	}
+	
+	public boolean compruebaficheros() {
+	
+		boolean existen = false;
+		
+		fichero = new File(user);
+		fichero2 = new File(resumen);
+		if (fichero.exists() && fichero2.exists()) {
+			return existen;
+		} else {
+			existen = true;
+		}
+		
+		return existen;
 	}
 
 
