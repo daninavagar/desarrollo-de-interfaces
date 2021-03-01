@@ -1,7 +1,6 @@
 package Visual;
 
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
+import javax.swing.JPanel; 
 import javax.swing.JButton;
 import java.awt.Font;
 

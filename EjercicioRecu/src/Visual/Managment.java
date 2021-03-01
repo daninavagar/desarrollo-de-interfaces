@@ -273,11 +273,6 @@ public class Managment extends JPanel{
 				excursion.configExcursion.comboBox_destino.addItem(destino.get(i).getText());	
 		}
 		
-
-			
 	}
-	
-	
-
 
 }
