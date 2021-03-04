@@ -1,6 +1,5 @@
 package Visual;
 
-<<<<<<< HEAD:ExamenPractica_Recu_DNavarro/src/Visual/ConfigExcursion.java
  
 import javax.swing.JComboBox; 
 import javax.swing.JLabel;
@@ -10,12 +9,6 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.UIManager;
-=======
-
-import javax.swing.JPanel;
-
-import java.awt.CardLayout;
->>>>>>> 212dc2d473577471c05b68da2a11e8d0ec79f29c:EjercicioRecu/src/Visual/Excursiones.java
 
 
 public class ConfigExcursion extends JPanel{
@@ -24,7 +17,6 @@ public class ConfigExcursion extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-<<<<<<< HEAD:ExamenPractica_Recu_DNavarro/src/Visual/ConfigExcursion.java
 
 	JLabel lbl_origen;
 	JLabel lbl_destino;
@@ -36,17 +28,11 @@ public class ConfigExcursion extends JPanel{
 	JLabel lbl_coste;
 	JTextField textField_coste;
 	JSpinner spinner_alumnos;
-=======
-	
-	ConfigExcursion configExcursion = new ConfigExcursion();
-	DestinoExcur destinoExcur = new DestinoExcur();
->>>>>>> 212dc2d473577471c05b68da2a11e8d0ec79f29c:EjercicioRecu/src/Visual/Excursiones.java
 	
 	public ConfigExcursion() {
 		
-		setLayout(new CardLayout(0, 0));
+		setLayout(null);
 		setVisible(false);
-<<<<<<< HEAD:ExamenPractica_Recu_DNavarro/src/Visual/ConfigExcursion.java
 		lbl_origen = new JLabel("ORIGEN");
 		lbl_origen.setBounds(64, 76, 66, 14);
 		add(lbl_origen);
@@ -93,15 +79,6 @@ public class ConfigExcursion extends JPanel{
 		textField_coste.setBounds(250, 230, 49, 20);
 		textField_coste.setEditable(false);
 		add(textField_coste);
-=======
-		
-		add(configExcursion);
-		add(destinoExcur);
-		
-		configExcursion.setVisible(false);
-		destinoExcur.setVisible(false);
-		
->>>>>>> 212dc2d473577471c05b68da2a11e8d0ec79f29c:EjercicioRecu/src/Visual/Excursiones.java
 	}
 	
 	public boolean compruebaOrigen() {

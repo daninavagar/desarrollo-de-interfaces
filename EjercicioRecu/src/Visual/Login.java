@@ -36,7 +36,6 @@ public class Login extends JPanel{
 		
 		
 		setLayout(null);
-		setVisible(true);
 		
 		lbl_User = new JLabel("USUARIO");
 		lbl_User.setBounds(64, 76, 66, 14);
@@ -135,26 +134,17 @@ public class Login extends JPanel{
 	
 	public boolean muestraPaneles() {
 		
-<<<<<<< HEAD:ExamenPractica_Recu_DNavarro/src/Visual/Login.java
 		boolean director = false;
-=======
-		boolean director = true;
->>>>>>> 212dc2d473577471c05b68da2a11e8d0ec79f29c:EjercicioRecu/src/Visual/Login.java
 		
 		for (int i=0; i<fichero.getTablaPersona().size();i++) {
 			if (fichero.getTablaPersona().get(i).getNombre().equals(name) && fichero.getTablaPersona().get(i).getConstraseña().equals(pwd)) {
 				if (name.equals("Tutor")) {
-<<<<<<< HEAD:ExamenPractica_Recu_DNavarro/src/Visual/Login.java
 					radiobtn_excursiones.setEnabled(true);
 					radiobtn_tutorias.setEnabled(true);
 					radiobtn_excursiones.setSelected(true);		
 					return true;
 				} else {
 					director = false;
-=======
-					radiobtn_excursiones.setSelected(true);		
-					return director;
->>>>>>> 212dc2d473577471c05b68da2a11e8d0ec79f29c:EjercicioRecu/src/Visual/Login.java
 				} 	 
 			}
 		}
