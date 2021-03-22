@@ -1,19 +1,26 @@
 package Visual;
 
-import javax.swing.JComboBox; 
+
+import javax.swing.JFileChooser; 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.Timer;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.io.*;
-import java.util.ArrayList;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 
 
@@ -31,18 +38,32 @@ public class Window extends JFrame{
 	Timer tiempo;
 	int cont;
 	
+	
+	
 	public Window() {
 		
 		setResizable(false);
-		setLocationRelativeTo(null);
 		setBounds(100, 100, 700, 600);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new CardLayout(0, 0));
 		setVisible(true);
 		setTitle("PRACTICA 1");
 		
 		getContentPane().add(carga);
 		getContentPane().add(seleccion);
+		getContentPane().add(trabajo);
 		
+
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(java.awt.event.WindowEvent evt) {
+				String opciones[] = {"SI", "NO"};
+				
+				if (JOptionPane.showOptionDialog(null, "Ests seguro que quieres salir?", "SALIR", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[1]) == JOptionPane.YES_OPTION)
+					System.exit(0);
+
+			}
+		});
+
 		tiempo = new Timer(5, (ActionListener) new ActionListener() {
 
 			@Override
@@ -55,7 +76,6 @@ public class Window extends JFrame{
 				if (carga.barraProgreso.getValue() == 100) {
 					carga.setVisible(false);
 					seleccion.setVisible(true);
-					seleccion.listarArchivos();
 				} 
 					
 			}
@@ -64,46 +84,69 @@ public class Window extends JFrame{
 		tiempo.start();
 		
 		
-		seleccion.comboArchivos.addItemListener(new ItemListener() {
-
+		
+		
+		seleccion.labelOpcion.addMouseListener(new MouseAdapter() {
 			@Override
-			public void itemStateChanged(ItemEvent e) {
-				// TODO Auto-generated method stub
-				// JOptionPane.showMessageDialog(null, "Ítem seleccionado: "+ seleccion.comboArchivos.getSelectedItem());	
-				String nombre = seleccion.comboArchivos.getSelectedItem().toString();
-				// String escritorio = fw.getHomeDirectory().getAbsolutePath();
-			/*
-				File f = new File(nombre, seleccion.escritorio);
+			public void mouseClicked(MouseEvent e) {
+				JFileChooser fr = new JFileChooser();
+				fr.setDialogTitle("SELECCIONAR ARCHIVO");
+				fr.setBounds(0, 329, 582, 399);
 				
-				if (!f.exists()) {
-					JOptionPane.showMessageDialog(null, "Ese archivo no existe", "Error", 0, null);
-				}*/
-			 
-			}
-			
+				
+				FileSystemView fw = fr.getFileSystemView();
+				String escritorio = fw.getHomeDirectory().getAbsolutePath();
+				File f = new File(escritorio);
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos txt", "txt");
+				
+				fr.setFileFilter(filter);
+				fr.setCurrentDirectory(f);
+				// fr.showOpenDialog(this);
+				int opcion = fr.showSaveDialog(seleccion);
+				
+				
+				//if (opcion == JFileChooser.APPROVE_OPTION) {
+					File archivo = fr.getSelectedFile();
+					
+					String linea = "";
+					try {
+						FileReader reader = new FileReader(archivo);
+						BufferedReader br = new BufferedReader(reader);
+						linea = br.readLine();
+						
+						while (linea != null) {
+							trabajo.textArea.setText(linea);
+							linea = br.readLine();
+						}
+						br.close();
+					} catch (IOException a) {
+						System.err.println("Error al leer el archivo: " + a.getMessage());
+					}
+					seleccion.textArea.setText("Has seleccionado el archivo: \n\n" + archivo.getAbsolutePath());
+					trabajo.textField.setText(archivo.getAbsolutePath());
+				}
+			//}
 		});
 		
-		seleccion.btnEnviar.addActionListener(new ActionListener() {
+		
+		seleccion.btnSeleccion.addActionListener(new ActionListener() {
+
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				// String escritorio = fw.getHomeDirectory().getAbsolutePath();
-			
-				String aux = seleccion.list.getSelectedValue().toString();
-				
-				File f = new File(aux, seleccion.escritorio);
-				//if (aux.equals())
-				if (!f.exists()) {
-					JOptionPane.showMessageDialog(null, "Ese archivo no existe", "Error", 0, null);
+				// TODO Auto-generated method stub
+				tiempo.stop();
+				if (seleccion.textArea.getText().length() == 0) {
+					JOptionPane.showMessageDialog(null, "No has elegido archivo" , "Archivo", JOptionPane.WARNING_MESSAGE, null);
 				} else {
-					JOptionPane.showMessageDialog(null, "Correcto", "Comprobacion", 0, null);
+					JOptionPane.showMessageDialog(null, "Se ha cargado correctamente el archivo" , "Archivo", JOptionPane.INFORMATION_MESSAGE, null);
 					seleccion.setVisible(false);
 					trabajo.setVisible(true);
 				}
+				
 			}
+			
 		});
-		
-		
-		
+
 	}
 	
 	
