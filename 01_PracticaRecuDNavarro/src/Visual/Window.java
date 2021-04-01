@@ -47,6 +47,7 @@ public class Window extends JFrame{
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new CardLayout(0, 0));
 		setVisible(true);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setTitle("PRACTICA 1");
 		
 		getContentPane().add(carga);
@@ -57,9 +58,11 @@ public class Window extends JFrame{
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(java.awt.event.WindowEvent evt) {
 				String opciones[] = {"SI", "NO"};
+			
+			if (JOptionPane.showOptionDialog(null, "Ests seguro que quieres salir?", "SALIR", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[1]) == JOptionPane.YES_OPTION)
+				System.exit(0);
 				
-				if (JOptionPane.showOptionDialog(null, "Ests seguro que quieres salir?", "SALIR", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[1]) == JOptionPane.YES_OPTION)
-					System.exit(0);
+			
 
 			}
 		});
@@ -141,11 +144,15 @@ public class Window extends JFrame{
 					JOptionPane.showMessageDialog(null, "Se ha cargado correctamente el archivo" , "Archivo", JOptionPane.INFORMATION_MESSAGE, null);
 					seleccion.setVisible(false);
 					trabajo.setVisible(true);
+					setBounds(100, 100, 959, 692);
+					setLocationRelativeTo(null);
 				}
 				
 			}
 			
 		});
+		
+
 
 	}
 	
