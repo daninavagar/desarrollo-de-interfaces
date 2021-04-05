@@ -10,6 +10,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
 import java.awt.CardLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
@@ -42,6 +43,7 @@ public class Window extends JFrame{
 	
 	public Window() {
 		
+		setIconImage(Toolkit.getDefaultToolkit().getImage("./Images/icon.png"));
 		setResizable(false);
 		setBounds(100, 100, 700, 600);
 		setLocationRelativeTo(null);
@@ -59,7 +61,7 @@ public class Window extends JFrame{
 			public void windowClosing(java.awt.event.WindowEvent evt) {
 				String opciones[] = {"SI", "NO"};
 			
-			if (JOptionPane.showOptionDialog(null, "Ests seguro que quieres salir?", "SALIR", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[1]) == JOptionPane.YES_OPTION)
+			if (JOptionPane.showOptionDialog(null, "Estás seguro que quieres salir?", "SALIR", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[1]) == JOptionPane.YES_OPTION)
 				System.exit(0);
 				
 			

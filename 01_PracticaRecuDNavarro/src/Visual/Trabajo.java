@@ -6,14 +6,18 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Document;
 import javax.swing.text.Highlighter;
 import javax.swing.text.Highlighter.HighlightPainter;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+import javax.swing.text.DefaultHighlighter.DefaultHighlightPainter;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+
 import javax.swing.JTextField;
 
 import javax.swing.JOptionPane;
@@ -23,10 +27,12 @@ import javax.swing.DefaultComboBoxModel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.font.TextAttribute;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 import javax.swing.JCheckBox;
+import javax.swing.JTextPane;
 
 public class Trabajo extends JPanel{
 
@@ -41,16 +47,22 @@ public class Trabajo extends JPanel{
 	JTextField textField;
 	JButton btn_buscar;
 	JLabel lbl_caracter;
-	JTextArea textArea_Contador;
 	JButton btn_reiniciar;
 	Highlighter color;
 	JCheckBox chckbxSegundoCaracter;
 	JCheckBox chckbxTercerCaracter;
-	JLabel lbl_caracter_2;
-	JLabel lbl_caracter_3;
 	JComboBox<?> comboBoxPrimer;
 	JComboBox<?> comboBoxSegundo;
 	JComboBox<?> comboBoxTercera;
+	Highlighter highlighter;
+	Highlighter highlighter2;
+	Highlighter highlighter3;
+	HighlightPainter pinta;
+	HighlightPainter pinta2;
+	HighlightPainter pinta3;
+	JLabel lbl_1;
+	JLabel lbl_2;
+	JLabel lbl_3;
 	
 	
 	public Trabajo() {
@@ -67,7 +79,7 @@ public class Trabajo extends JPanel{
 		
 		textArea = new JTextArea();
 		textArea.setEditable(false);
-		textArea.setBounds(250, 289, 456, 256);
+		textArea.setBounds(250, 289, 456, 289);
 		add(textArea);
 		
 		textField = new JTextField();
@@ -102,16 +114,11 @@ public class Trabajo extends JPanel{
 		add(lbl_caracter);
 		
 		btn_buscar = new JButton("Buscar");
-		btn_buscar.setBounds(250, 255, 89, 23);
+		btn_buscar.setBounds(435, 255, 89, 23);
 		add(btn_buscar);
 		
-		textArea_Contador = new JTextArea();
-		textArea_Contador.setEditable(false);
-		textArea_Contador.setBounds(250, 556, 456, 22);
-		add(textArea_Contador);
-		
 		btn_reiniciar = new JButton("Reiniciar");
-		btn_reiniciar.setBounds(434, 589, 89, 23);
+		btn_reiniciar.setBounds(435, 589, 89, 23);
 		btn_reiniciar.setEnabled(false);
 		add(btn_reiniciar);
 		
@@ -119,12 +126,6 @@ public class Trabajo extends JPanel{
 		chckbxSegundoCaracter = new JCheckBox("Segundo Caracter");
 		chckbxSegundoCaracter.setBounds(417, 110, 138, 23);
 		add(chckbxSegundoCaracter);
-		
-		lbl_caracter_2 = new JLabel("Selecciona 2\u00BA C\u00E1racter*");
-		lbl_caracter_2.setToolTipText("Pulsa para seleccionar el segundo caracter");
-		lbl_caracter_2.setBounds(619, 255, 138, 14);
-		lbl_caracter_2.setVisible(false);
-		add(lbl_caracter_2);
 		
 		ActionListener mostrar2Caracter = new ActionListener() {
 
@@ -144,14 +145,6 @@ public class Trabajo extends JPanel{
 		chckbxTercerCaracter = new JCheckBox("Tercer Caracter");
 		chckbxTercerCaracter.setBounds(583, 110, 124, 23);
 		add(chckbxTercerCaracter);
-		
-		
-		
-		lbl_caracter_3 = new JLabel("Selecciona 3\u00BA C\u00E1racter*");
-		lbl_caracter_3.setToolTipText("Pulsa para seleccionar el tercer caracter");
-		lbl_caracter_3.setBounds(785, 255, 138, 14);
-		lbl_caracter_3.setVisible(false);
-		add(lbl_caracter_3);
 		
 		comboBoxPrimer = new JComboBox();
 		comboBoxPrimer.setModel(new DefaultComboBoxModel(abc));
@@ -197,6 +190,21 @@ public class Trabajo extends JPanel{
 		});
 		add(comboBoxTercera);
 		
+		lbl_1 = new JLabel("Contador 1");
+		lbl_1.setBounds(250, 172, 106, 14);
+		lbl_1.setVisible(false);
+		add(lbl_1);
+		
+		lbl_2 = new JLabel("Contador 2");
+		lbl_2.setBounds(417, 173, 106, 14);
+		lbl_2.setVisible(false);
+		add(lbl_2);
+		
+		lbl_3 = new JLabel("Contador 3");
+		lbl_3.setBounds(583, 173, 94, 14);
+		lbl_3.setVisible(false);
+		add(lbl_3);
+		
 		ActionListener mostrar3Caracter = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -232,6 +240,7 @@ public class Trabajo extends JPanel{
 					chckbxTercerCaracter.setSelected(false);
 					comboBoxTercera.setVisible(false);
 					subrayar();
+					
 				}
 			}});
 		
@@ -241,7 +250,7 @@ public class Trabajo extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				textArea_Contador.setText(null);
+
 				btn_buscar.setEnabled(true);
 				btn_reiniciar.setEnabled(false);
 				comboBoxPrimer.setEnabled(true);
@@ -255,62 +264,157 @@ public class Trabajo extends JPanel{
 				primer = null;
 				segundo = null;
 				tercer = null;
+				highlighter.removeAllHighlights();
+				lbl_1.setText(null);
+				lbl_1.setVisible(false);
+				lbl_2.setText(null);
+				lbl_2.setVisible(false);
+				lbl_3.setText(null);
+				lbl_3.setVisible(false);
 			}});
 	}
 	
-	public void subrayar() {
+	public void subrayar(){
 		
 		
-		/*try {
+		Primer_caracter();
+		contarPrimero();
+		if (segundo != null && tercer != null) {
+			Segundo_caracter();
+			contarSegundo();
+			Tercer_caracter();
+			contarTercer();
+		} else if (segundo != null) {
+			Segundo_caracter();
+			contarSegundo();
+		} else if (tercer != null) {
+			contarTercer();
+			Tercer_caracter();
+		}
 		
-			color = textArea.getHighlighter();
-			Document doc = textArea.getDocument();
-			String text = doc.getText(0, doc.getLength());
-			String linea = textArea.getText();
-			int pos = 0;
-			char letra;
-			char aux  = primer.charAt(0);
-			String pattern = "";
-			/*
 			
-			while ( (pos = text.indexOf(pattern, pos)) >= 0 )  {
-				color.addHighlight(pos, pos+pattern.length(), null)
+			
+		
+		
+	}
+	
+	public void Primer_caracter() {
+		
+		
+		highlighter = textArea.getHighlighter();
+		pinta = new DefaultHighlightPainter(Color.GRAY);
+		Document doc = textArea.getDocument();
+		String text;
+		try {
+			text = doc.getText(0, doc.getLength());
+			int pos1 = 0;
+			while ( (pos1 = text.indexOf(primer, pos1)) >= 0 ) {
+				highlighter.addHighlight(pos1, pos1 + primer.length(), pinta);
+				pos1 += primer.length();
 			}
-			
-			for (int i=0; i<linea.length(); i++) {
-				letra = linea.charAt(i);
-				if (letra == aux) {
-					pos++;
-					
-				}
-			}*/
-			//textArea_Contador.setText("El caracter " + aux + " ha salido un total de " + pos + " veces");
-			
-			StyledDocument doc = (StyledDocument) textArea.getDocument();
-			SimpleAttributeSet letter = new SimpleAttributeSet();
-			StyleConstants.setUnderline(letter, Boolean.TRUE);
-			doc.setCharacterAttributes(20, 4, letter, false);
-			try {
-				doc.insertString(0, primer, letter);
-			} catch (BadLocationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			textArea_Contador.setText("Primer caracter --> " + primer);
-			if (segundo != null && tercer != null) {
-				textArea_Contador.setText("Primer caracter --> " + primer + " 2º --> " + segundo + " 3º -->  " + tercer);
-				
-			} else if (segundo != null) {
-				textArea_Contador.setText("Primer caracter --> " + primer + " 2º --> " + segundo);
-			} else if (tercer != null) {
-				textArea_Contador.setText("Primer caracter --> " + primer + " 3º -->  " + tercer);
-			}
-				
-			
-			
-		/*} catch (BadLocationException e) {
-			System.err.println(e.getMessage());
-		}*/
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
+	
+	public void contarPrimero() {
 		
+		
+		String linea = textArea.getText();
+		int pos = 0;
+		char letra;
+		char aux  = primer.charAt(0);
+
+		for (int i=0; i<linea.length(); i++) {
+			letra = linea.charAt(i);
+			if (letra == aux) {
+				pos++;	
+			}
+		}
+		
+		lbl_1.setVisible(true);
+		lbl_1.setText(""+pos);
+
+	}
+	
+	public void Segundo_caracter() {
+		
+		
+		highlighter2 = textArea.getHighlighter();
+		pinta2 = new DefaultHighlightPainter(Color.YELLOW);
+		Document doc = textArea.getDocument();
+		String text;
+		try {
+			text = doc.getText(0, doc.getLength());
+			int pos2 = 0;
+			while ( (pos2 = text.indexOf(segundo, pos2)) >= 0 ) {
+				highlighter2.addHighlight(pos2, pos2 + segundo.length(), pinta2);
+				pos2 += segundo.length();
+			}
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	public void contarSegundo() {
+		
+		
+		String linea = textArea.getText();
+		int pos = 0;
+		char letra;
+		char aux  = segundo.charAt(0);
+
+		for (int i=0; i<linea.length(); i++) {
+			letra = linea.charAt(i);
+			if (letra == aux) {
+				pos++;
+			}
+		}
+		
+		lbl_2.setVisible(true);
+		lbl_2.setText(""+pos);
+
+	}
+	
+	public void Tercer_caracter() {
+		
+		
+		highlighter3 = textArea.getHighlighter();
+		pinta3 = new DefaultHighlightPainter(Color.CYAN);
+		Document doc = textArea.getDocument();
+		String text;
+		try {
+			text = doc.getText(0, doc.getLength());
+			int pos3 = 0;
+			while ( (pos3 = text.indexOf(tercer, pos3)) >= 0 ) {
+				highlighter3.addHighlight(pos3, pos3 + tercer.length(), pinta3);
+				pos3 += tercer.length();
+			}
+		} catch (BadLocationException e) {
+			
+			e.printStackTrace();
+		}	
+	}
+	
+	
+	public void contarTercer() {
+		
+		
+		String linea = textArea.getText();
+		int pos = 0;
+		char letra;
+		char aux  = tercer.charAt(0);
+
+		for (int i=0; i<linea.length(); i++) {
+			letra = linea.charAt(i);
+			if (letra == aux) {
+				pos++;		
+			}
+		}
+		
+		lbl_3.setVisible(true);
+		lbl_3.setText(""+pos);
+
 	}
 }
