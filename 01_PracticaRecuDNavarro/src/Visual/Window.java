@@ -50,7 +50,7 @@ public class Window extends JFrame{
 		getContentPane().setLayout(new CardLayout(0, 0));
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setTitle("PRACTICA 1");
+		setTitle("BUSCADOR CARACTERES");
 		
 		getContentPane().add(carga);
 		getContentPane().add(seleccion);
@@ -110,7 +110,7 @@ public class Window extends JFrame{
 				int opcion = fr.showSaveDialog(seleccion);
 				
 				
-				//if (opcion == JFileChooser.APPROVE_OPTION) {
+				if (opcion == JFileChooser.APPROVE_OPTION) {
 					File archivo = fr.getSelectedFile();
 					
 					String linea = "";
@@ -129,8 +129,10 @@ public class Window extends JFrame{
 					}
 					seleccion.textArea.setText("Has seleccionado el archivo: \n\n" + archivo.getAbsolutePath());
 					trabajo.textField.setText(archivo.getAbsolutePath());
+				} else if (opcion == JFileChooser.CANCEL_OPTION) {
+					JOptionPane.showMessageDialog(null, "No has elegido archivo" , "Archivo", JOptionPane.WARNING_MESSAGE, null);
 				}
-			//}
+			}
 		});
 		
 		
