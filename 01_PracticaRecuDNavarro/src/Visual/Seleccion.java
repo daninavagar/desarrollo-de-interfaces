@@ -56,14 +56,7 @@ public class Seleccion extends JPanel{
 		btnSeleccion = new JButton("SELECCIONAR ARCHIVO");
 		btnSeleccion.setBounds(415, 303, 172, 23);
 		add(btnSeleccion);
-		
-		
-		
-		
-		
-		
 
-		
 		
 	}
 }

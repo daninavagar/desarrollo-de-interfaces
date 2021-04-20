@@ -4,7 +4,6 @@ package Visual;
 import javax.swing.JFileChooser; 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 import javax.swing.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
@@ -13,8 +12,6 @@ import java.awt.CardLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -22,7 +19,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-
 
 
 public class Window extends JFrame{
@@ -69,7 +65,7 @@ public class Window extends JFrame{
 			}
 		});
 
-		tiempo = new Timer(5, (ActionListener) new ActionListener() {
+		tiempo = new Timer(100, (ActionListener) new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -106,8 +102,8 @@ public class Window extends JFrame{
 				
 				fr.setFileFilter(filter);
 				fr.setCurrentDirectory(f);
-				// fr.showOpenDialog(this);
-				int opcion = fr.showSaveDialog(seleccion);
+				fr.setAcceptAllFileFilterUsed(false);
+				int opcion = fr.showOpenDialog(seleccion);
 				
 				
 				if (opcion == JFileChooser.APPROVE_OPTION) {
@@ -119,10 +115,14 @@ public class Window extends JFrame{
 						BufferedReader br = new BufferedReader(reader);
 						linea = br.readLine();
 						
+						
 						while (linea != null) {
-							trabajo.textArea.setText(linea);
+							trabajo.textArea.append(linea + " \n");
 							linea = br.readLine();
+							
 						}
+						
+						
 						br.close();
 					} catch (IOException a) {
 						System.err.println("Error al leer el archivo: " + a.getMessage());

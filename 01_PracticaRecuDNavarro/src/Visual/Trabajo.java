@@ -5,21 +5,15 @@ import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Document;
 import javax.swing.text.Highlighter;
 import javax.swing.text.Highlighter.HighlightPainter;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
 import javax.swing.text.DefaultHighlighter.DefaultHighlightPainter;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 
 import javax.swing.JTextField;
-
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -27,12 +21,10 @@ import javax.swing.DefaultComboBoxModel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.font.TextAttribute;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 import javax.swing.JCheckBox;
-import javax.swing.JTextPane;
 
 public class Trabajo extends JPanel{
 
@@ -48,7 +40,6 @@ public class Trabajo extends JPanel{
 	JButton btn_buscar;
 	JLabel lbl_caracter;
 	JButton btn_reiniciar;
-	Highlighter color;
 	JCheckBox chckbxSegundoCaracter;
 	JCheckBox chckbxTercerCaracter;
 	JComboBox<?> comboBoxPrimer;
@@ -79,7 +70,7 @@ public class Trabajo extends JPanel{
 		
 		textArea = new JTextArea();
 		textArea.setEditable(false);
-		textArea.setBounds(250, 289, 456, 289);
+		textArea.setBounds(32, 289, 898, 289);
 		add(textArea);
 		
 		textField = new JTextField();
