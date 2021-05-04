@@ -1,5 +1,6 @@
 package Visual;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -10,12 +11,15 @@ import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
-import java.awt.ScrollPane;
+import javax.swing.text.Highlighter;
+import javax.swing.text.Highlighter.HighlightPainter;
+import javax.swing.text.DefaultHighlighter.DefaultHighlightPainter;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 import javax.swing.JButton;
 
 
@@ -30,6 +34,11 @@ public class Window extends JFrame{
 	JScrollPane scrollPane;
 	JScrollPane scrollPane1;
 	JButton boton_Comprobar;
+	JButton boton_Reiniciar;
+	Highlighter highlighter;
+	HighlightPainter pinta;
+	
+	String cadena1 = "", cadena2 = "";
 	public Window() {
 		
 		
@@ -49,6 +58,7 @@ public class Window extends JFrame{
 		textArea1 = new JTextArea();
 		textArea1.setBounds(10, 164, 328, 345);
 		textArea1.setEditable(false);
+		textArea1.setVisible(false);
 		
 		
 		JFile1 = new ActionListener() {
@@ -56,6 +66,7 @@ public class Window extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				textArea1.setText(null);
 				primero = new JFileChooser();
 				primero.setDialogTitle("SELECCIONAR PRIMER ARCHIVO");
 				primero.setBounds(0, 329, 582, 399);
@@ -77,6 +88,7 @@ public class Window extends JFrame{
 				primero.setAcceptAllFileFilterUsed(false);
 				
 				int opcion = primero.showOpenDialog(primero);
+				
 				if (opcion == JFileChooser.APPROVE_OPTION) {
 					
 					File archivo = primero.getSelectedFile();
@@ -95,13 +107,14 @@ public class Window extends JFrame{
 							linea = buffer.readLine();
 							
 						}
-						
+						textArea1.setVisible(true);
+						scrollPane.setVisible(true);
 						buffer.close();
 					} catch (IOException a) {
 						System.err.println("Error al leer el archivo: " + a.getMessage());
 					}
 				} else {
-					JOptionPane.showInternalMessageDialog(primero, "No has elegido ningun archivo", "SELECCION PRIMER ARCHIVO", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showInternalMessageDialog(primero, "No has elegido ningún archivo", "SELECCIÓN PRIMER ARCHIVO", JOptionPane.WARNING_MESSAGE);
 				}
 			}};
 		
@@ -109,6 +122,7 @@ public class Window extends JFrame{
 		textArea2 = new JTextArea();
 		textArea2.setBounds(348, 164, 328, 345);
 		textArea2.setEditable(false);
+		textArea2.setVisible(false);
 			
 		
 		
@@ -118,6 +132,7 @@ public class Window extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				textArea2.setText(null);
 				JFileChooser segundo = new JFileChooser();
 				segundo.setDialogTitle("SELECCIONAR SEGUNDO ARCHIVO");
 				segundo.setBounds(0, 329, 582, 399);
@@ -139,7 +154,10 @@ public class Window extends JFrame{
 				segundo.setAcceptAllFileFilterUsed(false);
 				
 				int opcion = segundo.showOpenDialog(segundo);
+				
 				if (opcion == JFileChooser.APPROVE_OPTION) {
+					
+					
 					
 					File archivo = segundo.getSelectedFile();
 					
@@ -157,13 +175,14 @@ public class Window extends JFrame{
 							linea = buffer.readLine();
 							
 						}
-						
+						textArea2.setVisible(true);
+						scrollPane1.setVisible(true);
 						buffer.close();
 					} catch (IOException a) {
 						System.err.println("Error al leer el archivo: " + a.getMessage());
 					}
 				} else {
-					JOptionPane.showInternalMessageDialog(primero, "No has elegido ningun archivo", "SELECCION SEGUNDO ARCHIVO", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showInternalMessageDialog(primero, "No has elegido ningún archivo", "SELECCIÓN SEGUNDO ARCHIVO", JOptionPane.WARNING_MESSAGE);
 				}
 			}};
 		
@@ -183,19 +202,116 @@ public class Window extends JFrame{
 		getContentPane().add(scrollPane1);
 		
 		boton_Comprobar = new JButton("COMPROBAR");
+		boton_Comprobar.setBounds(263, 106, 168, 23);
+		boton_Comprobar.setVisible(true);
+		getContentPane().add(boton_Comprobar);
+		
 		boton_Comprobar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 
+				
+				
+				if (textArea1.getText().isEmpty()) {
+					JOptionPane.showInternalMessageDialog(primero, "No has elegido ningún archivo o has elegido un archivo vacío", "COMPRONBACIÓN PRIMER ARCHIVO", JOptionPane.WARNING_MESSAGE);
+				} else if (textArea2.getText().isEmpty()) {
+					JOptionPane.showInternalMessageDialog(primero, "No has elegido ningún archivo o has elegido un archivo vacío", "COMPROBACIÓN SEGUNDO ARCHIVO", JOptionPane.WARNING_MESSAGE);
+				}else {
+					boton_Comprobar.setEnabled(false);
+					boton_Reiniciar.setEnabled(true);
+					comparadorArchivos();
+				}
+				
+				
+				
 				
 			}
 		});
-		boton_Comprobar.setBounds(263, 106, 168, 23);
-		getContentPane().add(boton_Comprobar);
+		
+		boton_Reiniciar = new JButton("REINICIAR");
+		boton_Reiniciar.setBounds(263, 529, 168, 23);
+		boton_Reiniciar.setEnabled(false);
+		getContentPane().add(boton_Reiniciar);
 		
 		
+		boton_Reiniciar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				boton_Comprobar.setEnabled(true);
+				scrollPane.setVisible(false);
+				scrollPane1.setVisible(false);
+				textArea1.setVisible(false);
+				textArea2.setVisible(false);
+				boton_Reiniciar.setEnabled(false);
+				textArea1.setText(null);
+				textArea2.setText(null);
+				highlighter.removeAllHighlights();
+			}});
+	
+	}
+	
+	public void comparadorArchivos() {
 		
-	
-	
-	
+		int inicio = 0, fin = 1;
+		cadena1 = textArea1.getText();
+		cadena2 = textArea2.getText();
+		String repetidos = "", diferentes = "", linea, aux;
+		
+		int i=0;
+		while (cadena2.length() > i) {
+		
+			linea = cadena1.substring(inicio, fin);
+			aux = cadena2.substring(inicio, fin);
+			
+			if (linea.equals(aux)) {
+				repetidos += aux;
+			} else {
+				diferentes += aux;
+			}
+			
+			if (cadena1.length() == fin) {
+				i = cadena2.length();
+			} else if (cadena2.length() == fin) {
+				i = cadena2.length();
+			} else {
+				inicio++;
+				fin++;
+				i++;
+			}
+			
+		}
+		repetidos = repetidos.replaceAll("\\s", "");
+		
+		char[] letras = repetidos.toCharArray();
+		String[] texto = new String[letras.length];
+		
+		for (int f=0; f<texto.length; f++)
+			texto[f] = Character.toString(letras[f]);
+		
+		if (texto.length == repetidos.length()) {
+			System.out.println("todo lleno");
+		}
+		highlighter = textArea2.getHighlighter();
+		pinta = new DefaultHighlightPainter(Color.green);
+		Document doc = textArea2.getDocument();
+		String text;
+		int pos = 0;
+		
+		try {
+			
+			text = doc.getText(0, doc.getLength());
+			for (int j=0; j<texto.length; j++) {
+				while ( (pos = text.indexOf(texto[j], pos)) >= 0) {
+					highlighter.addHighlight(pos, pos+texto[j].length(), pinta);
+					pos += texto[j].length();
+				}
+			}
+			
+		} catch (BadLocationException x) {
+			System.err.println("Error al subrayar :" + x.getMessage());
+		}
+		
+		
 	}
 }

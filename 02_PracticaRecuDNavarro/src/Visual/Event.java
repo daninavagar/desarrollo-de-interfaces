@@ -26,7 +26,7 @@ public class Event {
 				
 				String opciones[] = {"SI", "NO"};
 				
-				if ( JOptionPane.showOptionDialog(null, "Est�s seguro que quieres salir", "SALIR", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[1]) == JOptionPane.YES_OPTION)
+				if ( JOptionPane.showOptionDialog(null, "Estás seguro que quieres salir", "SALIR", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[1]) == JOptionPane.YES_OPTION)
 					System.exit(0);
 			}};
 			
@@ -39,7 +39,7 @@ public class Event {
 					
 					String opciones[] = {"SI", "NO"};
 					
-					if ( JOptionPane.showOptionDialog(null, "Est�s seguro que quieres salir", "SALIR", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[1]) == JOptionPane.YES_OPTION)
+					if ( JOptionPane.showOptionDialog(null, "Estás seguro que quieres salir", "SALIR", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[1]) == JOptionPane.YES_OPTION)
 						System.exit(0);
 				
 			}};
@@ -49,7 +49,7 @@ public class Event {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				JOptionPane.showMessageDialog(null, "Desarrollador: Daniel Navarro Garcia. \n Versi�n 1.0 \n 21/04/2020", "Sobre Aplicaci�n", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Desarrollador: Daniel Navarro García. \n Versión 1.0 \n 21/04/2020", "Sobre Aplicación", JOptionPane.INFORMATION_MESSAGE);
 			}};
 			
 		
