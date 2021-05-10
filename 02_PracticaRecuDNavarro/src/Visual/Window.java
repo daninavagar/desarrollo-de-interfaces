@@ -21,6 +21,8 @@ import javax.swing.text.DefaultHighlighter.DefaultHighlightPainter;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 
 public class Window extends JFrame{
@@ -36,7 +38,10 @@ public class Window extends JFrame{
 	JButton boton_Comprobar;
 	JButton boton_Reiniciar;
 	Highlighter highlighter;
-	HighlightPainter pinta;
+	HighlightPainter pinta, pinta1;
+	JLabel lbl_coincidencia;
+	
+	String lbl = "La coincidencia del texto es de ";
 	
 	String cadena1 = "", cadena2 = "";
 	public Window() {
@@ -227,9 +232,14 @@ public class Window extends JFrame{
 		});
 		
 		boton_Reiniciar = new JButton("REINICIAR");
-		boton_Reiniciar.setBounds(263, 529, 168, 23);
+		boton_Reiniciar.setBounds(263, 560, 168, 23);
 		boton_Reiniciar.setEnabled(false);
 		getContentPane().add(boton_Reiniciar);
+		
+		lbl_coincidencia = new JLabel();
+		lbl_coincidencia.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_coincidencia.setBounds(348, 520, 328, 29);
+		getContentPane().add(lbl_coincidencia);
 		
 		
 		boton_Reiniciar.addActionListener(new ActionListener() {
@@ -247,6 +257,7 @@ public class Window extends JFrame{
 				textArea1.setText(null);
 				textArea2.setText(null);
 				highlighter.removeAllHighlights();
+				lbl_coincidencia.setText("");
 			}});
 	
 	}
@@ -258,7 +269,7 @@ public class Window extends JFrame{
 		cadena2 = textArea2.getText();
 		String repetidos = "", diferentes = "", linea, aux;
 		
-		int i=0;
+		int i=0, tanto;
 		while (cadena2.length() > i) {
 		
 			linea = cadena1.substring(inicio, fin);
@@ -281,36 +292,60 @@ public class Window extends JFrame{
 			}
 			
 		}
+		cadena1 = cadena1.replaceAll("\\s", "");
 		repetidos = repetidos.replaceAll("\\s", "");
-		
+		diferentes = diferentes.replaceAll("\\s", "");
 		char[] letras = repetidos.toCharArray();
 		String[] texto = new String[letras.length];
+		
+		char[] letras1 = diferentes.toCharArray();
+		String[] texto1 = new String[letras1.length];
 		
 		for (int f=0; f<texto.length; f++)
 			texto[f] = Character.toString(letras[f]);
 		
-		if (texto.length == repetidos.length()) {
-			System.out.println("todo lleno");
+		for (int f=0; f<texto1.length; f++)
+			texto1[f] = Character.toString(letras1[f]);
+		
+		
+		if (letras.length == cadena1.length()) {
+			
 		}
 		highlighter = textArea2.getHighlighter();
 		pinta = new DefaultHighlightPainter(Color.green);
+		pinta1 = new DefaultHighlightPainter(Color.red);
 		Document doc = textArea2.getDocument();
-		String text;
-		int pos = 0;
+		String text, text1;
+		int pos = 0, pos1 = 1;
 		
 		try {
 			
 			text = doc.getText(0, doc.getLength());
+			text1 = doc.getText(0, doc.getLength());
 			for (int j=0; j<texto.length; j++) {
 				while ( (pos = text.indexOf(texto[j], pos)) >= 0) {
 					highlighter.addHighlight(pos, pos+texto[j].length(), pinta);
 					pos += texto[j].length();
 				}
 			}
+			for (int j=0; j<texto1.length; j++) {
+				while ( (pos1 = text1.indexOf(texto1[j], pos1)) >= 0) {
+					highlighter.addHighlight(pos1, pos1+texto1[j].length(), pinta1);
+					pos1 += texto1[j].length();
+				}
+			}
+			if (letras.length == cadena1.length()) {
+				tanto = 100;
+				lbl_coincidencia.setText(lbl + tanto +"%");
+			} else {
+				lbl_coincidencia.setText(lbl + "no es del " + "100 %");
+			}
+			
 			
 		} catch (BadLocationException x) {
 			System.err.println("Error al subrayar :" + x.getMessage());
 		}
+		
 		
 		
 	}
