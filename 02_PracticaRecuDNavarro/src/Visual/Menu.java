@@ -20,8 +20,6 @@ public class Menu {
 		
 		
 		menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 694, 22);
-		
 		
 		mnArchivo = new JMenu("Archivo");
 		menuBar.add(mnArchivo);
