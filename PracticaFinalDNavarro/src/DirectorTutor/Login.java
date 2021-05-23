@@ -8,6 +8,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import Config.Usuarios;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 // import Config.Usuarios;
 
 public class Login extends JPanel{
@@ -21,6 +25,7 @@ public class Login extends JPanel{
 //	public Tutorias tutoria = new Tutorias();
 //	public Resumen resumen = new Resumen();
 //	public Excursiones excursion = new Excursiones();
+	Usuarios user = new Usuarios();
 	JPanel managment_login;
 	JLabel lbl_User;
 	JLabel lbl_Password;
@@ -110,10 +115,10 @@ public class Login extends JPanel{
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-/*
+
 	public boolean compruebaLogin() {
 		
-		fichero.leerFichero();
+		user.leerFichero();
 		name = textFieldUser.getText();
 		pwd = "";
 		char list[] = passwordField_user.getPassword();
@@ -122,8 +127,8 @@ public class Login extends JPanel{
 		
 		
 		boolean login = false;
-		for (int i=0; i<fichero.getTablaPersona().size();i++) {
-			if (fichero.getTablaPersona().get(i).getNombre().equals(name) && fichero.getTablaPersona().get(i).getConstrasenia().equals(pwd)) {
+		for (int i=0; i<user.getTablaPersona().size();i++) {
+			if (user.getTablaPersona().get(i).getNombre().equals(name) && user.getTablaPersona().get(i).getConstrasenia().equals(pwd)) {
 				return true;
 			} else {
 				login = false;
@@ -136,8 +141,8 @@ public class Login extends JPanel{
 		
 		boolean director = false;
 		
-		for (int i=0; i<fichero.getTablaPersona().size();i++) {
-			if (fichero.getTablaPersona().get(i).getNombre().equals(name) && fichero.getTablaPersona().get(i).getConstrasenia().equals(pwd)) {
+		for (int i=0; i<user.getTablaPersona().size();i++) {
+			if (user.getTablaPersona().get(i).getNombre().equals(name) && user.getTablaPersona().get(i).getConstrasenia().equals(pwd)) {
 				if (name.equals("Tutor")) {
 					radiobtn_excursiones.setEnabled(true);
 					radiobtn_tutorias.setEnabled(true);
@@ -150,5 +155,5 @@ public class Login extends JPanel{
 		}
 	return director;
 	
-	}*/
+	}
 }

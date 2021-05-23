@@ -1,12 +1,14 @@
 package Visual;
 
-import java.awt.EventQueue;
+import java.awt.EventQueue; 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
+import Config.Usuarios;
 import DirectorTutor.Load;
 import DirectorTutor.Managment;
 
@@ -21,6 +23,7 @@ public class Main {
 	Selection selection = new Selection();
 	Load load = new Load();
 	Managment managment = new Managment();
+	Usuarios user = new Usuarios();
 	
 	private Timer time;
 	private int cont;
@@ -72,6 +75,8 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				selection.setVisible(false);
+				frame.setBounds(100, 100, 700, 600);
+				frame.setLocationRelativeTo(null);
 				load.setVisible(true);
 				time = new Timer(30, (ActionListener) new ActionListener() {
 
@@ -84,15 +89,23 @@ public class Main {
 						load.getBarraProgreso().setValue(cont);
 						if (load.getBarraProgreso().getValue() < 10)
 							load.getBarraProgreso().setValue(load.getBarraProgreso().getValue() + 1);
+						if (load.getBarraProgreso().getValue() == 30) {
+							if (user.compruebaficheros()) {
+								JOptionPane.showMessageDialog(null, "Faltan archivos", "Error en el acceso", JOptionPane.ERROR_MESSAGE, null);
+								System.exit(0);
+
+							}
+						}
 						if (load.getBarraProgreso().getValue() == 100) {
 							load.setVisible(false);
 							managment.setVisible(true);
-							frame.setBounds(100, 100, 700, 600);
-							frame.setLocationRelativeTo(null);
+							
+							
 						}
 					}});
 				time.start();
 			}});
+		
 		
 		
 		

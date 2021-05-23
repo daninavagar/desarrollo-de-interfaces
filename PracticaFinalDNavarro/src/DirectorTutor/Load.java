@@ -27,12 +27,12 @@ public class Load extends JPanel {
 	
 	public Load() {
 		setLayout(null);
-		
+		setBounds(100, 100, 700, 600);
 		barraProgreso = new JProgressBar();
 		add(barraProgreso, BorderLayout.SOUTH);
 		barraProgreso.setForeground(Color.MAGENTA);
 		barraProgreso.setStringPainted(true);
-		barraProgreso.setBounds(0, 241, 450, 20);
+		barraProgreso.setBounds(0, 531, 700, 34);
 		barraProgreso.setValue(100);
 		add(barraProgreso);
 
@@ -45,7 +45,7 @@ public class Load extends JPanel {
 		}
 		add(barraProgreso);
 		JLabel lbl_Fondo = new JLabel(new ImageIcon(img));
-		lbl_Fondo.setBounds(0, -20, 450, 261);
+		lbl_Fondo.setBounds(10, -58, 690, 565);
 		lbl_Fondo.setOpaque(true);
 		
 		add(lbl_Fondo);

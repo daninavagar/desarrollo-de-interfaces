@@ -49,5 +49,31 @@ public class Event {
 			
 			
 	}
+	public WindowListener getClose() {
+		return Close;
+	}
+	public void setClose(WindowListener close) {
+		Close = close;
+	}
+	public ActionListener getClose_1() {
+		return Close_1;
+	}
+	public void setClose_1(ActionListener close_1) {
+		Close_1 = close_1;
+	}
+	public ActionListener getAbout() {
+		return About;
+	}
+	public void setAbout(ActionListener about) {
+		About = about;
+	}
+	public ActionListener getChange() {
+		return change;
+	}
+	public void setChange(ActionListener change) {
+		this.change = change;
+	}
+	
+	
 
 }
