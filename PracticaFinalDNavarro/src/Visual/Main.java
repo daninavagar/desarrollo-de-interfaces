@@ -1,6 +1,6 @@
 package Visual;
 
-import java.awt.EventQueue; 
+import java.awt.EventQueue;  
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,7 +11,10 @@ import javax.swing.Timer;
 import Config.Usuarios;
 import DirectorTutor.Load;
 import DirectorTutor.Managment;
-
+import Subrayar.Carga;
+import Subrayar.Seleccion;
+import Subrayar.Trabajo;
+import Subrayar.Ventana;
 
 import java.awt.CardLayout;
 
@@ -24,9 +27,11 @@ public class Main {
 	Load load = new Load();
 	Managment managment = new Managment();
 	Usuarios user = new Usuarios();
+	Ventana ventana = new Ventana();
+	
 	
 	private Timer time;
-	private int cont;
+	private int cont , pos;
 
 	/**
 	 * Launch the application.
@@ -68,6 +73,8 @@ public class Main {
 		frame.getContentPane().add(selection);
 		frame.getContentPane().add(load);
 		frame.getContentPane().add(managment);
+		frame.getContentPane().add(ventana);
+		
 		
 		selection.btn_Teacher.addActionListener(new ActionListener() {
 
@@ -77,7 +84,9 @@ public class Main {
 				selection.setVisible(false);
 				frame.setBounds(100, 100, 700, 600);
 				frame.setLocationRelativeTo(null);
+				ventana.getCarga().setVisible(true);
 				load.setVisible(true);
+				
 				time = new Timer(30, (ActionListener) new ActionListener() {
 
 					@Override
@@ -106,6 +115,57 @@ public class Main {
 				time.start();
 			}});
 		
+		selection.btn_Highlighter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				selection.setVisible(false);
+				frame.setBounds(100, 100, 700, 600);
+				frame.setLocationRelativeTo(null);
+				ventana.setVisible(true);
+				ventana.getCarga().setVisible(true);
+				
+				ventana.time2 = new Timer(100, (ActionListener) new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						
+						
+						pos++;
+						ventana.getCarga().getBarraProgreso().setValue(pos);
+						if (ventana.getCarga().getBarraProgreso().getValue() < 10)
+							ventana.getCarga().getBarraProgreso().setValue(ventana.getCarga().getBarraProgreso().getValue() + 1);
+						if (ventana.getCarga().getBarraProgreso().getValue() == 100) {
+							ventana.getCarga().setVisible(false);
+							ventana.getSeleccion().setVisible(true);
+						} 
+							
+					}
+					
+				});
+				ventana.time2.start();
+				
+			}
+		});
+		
+		ventana.getSeleccion().getBtnSeleccion().addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ventana.time2.stop();
+				if (ventana.getSeleccion().getTextArea().getText().length() == 0) {
+					JOptionPane.showMessageDialog(null, "No has elegido archivo \n Pulsa en UBICACIÓN ARCHIVO para seleccionar." , "Archivo", JOptionPane.WARNING_MESSAGE, null);
+				} else {
+					JOptionPane.showMessageDialog(null, "Se ha cargado correctamente el archivo" , "Archivo", JOptionPane.INFORMATION_MESSAGE, null);
+					ventana.getSeleccion().setVisible(false);
+					ventana.getTrabajo().setVisible(true);
+					frame.setBounds(100, 100, 959, 692);
+					
+				}
+				
+			}
+			
+		});
 		
 		
 		
