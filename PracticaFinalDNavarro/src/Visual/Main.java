@@ -8,15 +8,15 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
+import ComparadorArchivos.Comparador;
+import ComparadorArchivos.Menu;
 import Config.Usuarios;
 import DirectorTutor.Load;
 import DirectorTutor.Managment;
-import Subrayar.Carga;
-import Subrayar.Seleccion;
-import Subrayar.Trabajo;
 import Subrayar.Ventana;
 
 import java.awt.CardLayout;
+import java.awt.Toolkit;
 
 public class Main {
 
@@ -28,7 +28,8 @@ public class Main {
 	Managment managment = new Managment();
 	Usuarios user = new Usuarios();
 	Ventana ventana = new Ventana();
-	
+	Comparador comparador = new Comparador();
+	Menu menu = new Menu();
 	
 	private Timer time;
 	private int cont , pos;
@@ -61,6 +62,7 @@ public class Main {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("./Images/icon.png"));
 		frame.setTitle("PRÁCTICA FINAL");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setResizable(false);
@@ -74,8 +76,10 @@ public class Main {
 		frame.getContentPane().add(load);
 		frame.getContentPane().add(managment);
 		frame.getContentPane().add(ventana);
+		frame.getContentPane().add(comparador);
 		
 		
+		// PRACTICA 1
 		selection.btn_Teacher.addActionListener(new ActionListener() {
 
 			@Override
@@ -115,6 +119,8 @@ public class Main {
 				time.start();
 			}});
 		
+		
+		// PRACTICA 2
 		selection.btn_Highlighter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -160,12 +166,47 @@ public class Main {
 					ventana.getSeleccion().setVisible(false);
 					ventana.getTrabajo().setVisible(true);
 					frame.setBounds(100, 100, 959, 692);
+					frame.setLocationRelativeTo(null);
 					
 				}
 				
 			}
 			
 		});
+		
+		
+		// PRACTICA 3
+		
+		selection.btn_Comparator.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				selection.setVisible(false);
+				comparador.setVisible(true);
+				frame.setBounds(100, 100, 700, 702);
+				frame.setLocationRelativeTo(null);
+				frame.setJMenuBar(menu.getMenuBar());
+				menu.getItem_1_Acerca().addActionListener(event.getAbout());
+				menu.getItem_1_Archivo().addActionListener(comparador.getJFile1());
+				menu.getItem_2_Archivo().addActionListener(comparador.getJFile2());
+				menu.getItem_Salir().addActionListener(event.getClose_1());
+			}
+			
+		});
+		/*
+		comparador.getBoton_Comprobar().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				comparador.comprobar();
+				
+				
+				
+				
+			}
+		});*/
+		
 		
 		
 		

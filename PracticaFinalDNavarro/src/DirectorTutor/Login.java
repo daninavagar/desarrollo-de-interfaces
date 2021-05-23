@@ -9,8 +9,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import Config.Usuarios;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+
 
 // import Config.Usuarios;
 
@@ -21,10 +20,6 @@ public class Login extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-//	Usuarios fichero = new Usuarios();
-//	public Tutorias tutoria = new Tutorias();
-//	public Resumen resumen = new Resumen();
-//	public Excursiones excursion = new Excursiones();
 	Usuarios user = new Usuarios();
 	JPanel managment_login;
 	JLabel lbl_User;

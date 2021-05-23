@@ -8,10 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-import java.awt.CardLayout;
-import java.awt.TextField;
-
-
 public class ConfigTuto extends JPanel{
 
 	/**

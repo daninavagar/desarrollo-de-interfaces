@@ -45,7 +45,15 @@ public class Event {
 					System.exit(0);
 				
 			}};
-			
+		
+		About = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JOptionPane.showMessageDialog(null, "Desarrollador: Daniel Navarro García. \n Versión 1.0 \n 24/05/2020", "Comparador Archivos", JOptionPane.INFORMATION_MESSAGE);
+			}};
+
 			
 			
 	}

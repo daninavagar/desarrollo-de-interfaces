@@ -56,6 +56,7 @@ public class Trabajo extends JPanel{
 	JLabel lbl_3;
 	
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Trabajo() {
 		setBorder(UIManager.getBorder("CheckBox.border"));
 		
