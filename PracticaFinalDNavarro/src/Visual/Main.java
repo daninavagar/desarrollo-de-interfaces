@@ -194,22 +194,7 @@ public class Main {
 			}
 			
 		});
-		/*
-		comparador.getBoton_Comprobar().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				comparador.comprobar();
-				
-				
-				
-				
-			}
-		});*/
-		
-		
-		
-		
+			
 	}
 
 }

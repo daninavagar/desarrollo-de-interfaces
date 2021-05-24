@@ -27,6 +27,8 @@ public class Event {
 			
 			public void windowClosing(java.awt.event.WindowEvent evt) {
 				
+				
+				
 				String options[] = {"SI", "NO"};
 				
 				if ( (JOptionPane.showOptionDialog(null, "¿Estás seguro que quieres salir?", "SALIR", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0])) == JOptionPane.YES_OPTION )
