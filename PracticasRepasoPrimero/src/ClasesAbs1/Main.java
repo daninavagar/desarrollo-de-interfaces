@@ -1,4 +1,4 @@
-package ClasesAbstractas;
+package ClasesAbs1;
 import java.util.Scanner;
 
 public class Main {

@@ -12,15 +12,15 @@ public class DestinoExcur extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	JLabel lblNewLabelTexto;
-	JLabel lblNewLabel;
-	JLabel lblDestino;
-	JCheckBox checkBox_madrid;
-	JCheckBox checkBox_barcelona;
-	JCheckBox checkBox_sevilla;
-	JCheckBox checkBox_museo;
-	JCheckBox checkBox_castillo;
-	JCheckBox checkBox_parque;
+	private JLabel lblNewLabelTexto;
+	private JLabel lblNewLabel;
+	private JLabel lblDestino;
+	private JCheckBox checkBox_madrid;
+	private JCheckBox checkBox_barcelona;
+	private JCheckBox checkBox_sevilla;
+	private JCheckBox checkBox_museo;
+	private JCheckBox checkBox_castillo;
+	private JCheckBox checkBox_parque;
 	
 	
 	public DestinoExcur() {
@@ -46,28 +46,58 @@ public class DestinoExcur extends JPanel{
 		add(lblDestino);
 		
 		checkBox_madrid = new JCheckBox("MADRID");
-		checkBox_madrid.setBounds(21, 124, 97, 23);
-		add(checkBox_madrid);
+		getCheckBox_madrid().setBounds(21, 124, 97, 23);
+		add(getCheckBox_madrid());
 		
 		checkBox_barcelona = new JCheckBox("BARCELONA");
-		checkBox_barcelona.setBounds(21, 165, 97, 23);
-		add(checkBox_barcelona);
+		getCheckBox_barcelona().setBounds(21, 165, 97, 23);
+		add(getCheckBox_barcelona());
 		
 		checkBox_sevilla = new JCheckBox("SEVILLA");
-		checkBox_sevilla.setBounds(21, 205, 97, 23);
-		add(checkBox_sevilla);
+		getCheckBox_sevilla().setBounds(21, 205, 97, 23);
+		add(getCheckBox_sevilla());
 		
 		checkBox_museo = new JCheckBox("MUSEO");
-		checkBox_museo.setBounds(159, 124, 97, 23);
-		add(checkBox_museo);
+		getCheckBox_museo().setBounds(159, 124, 97, 23);
+		add(getCheckBox_museo());
 		
 		checkBox_castillo = new JCheckBox("CASTILLO");
-		checkBox_castillo.setBounds(159, 165, 97, 23);
-		add(checkBox_castillo);
+		getCheckBox_castillo().setBounds(159, 165, 97, 23);
+		add(getCheckBox_castillo());
 		
 		checkBox_parque = new JCheckBox("PARQUE ATRACCIONES");
-		checkBox_parque.setBounds(159, 205, 184, 23);
-		add(checkBox_parque);
+		getCheckBox_parque().setBounds(159, 205, 184, 23);
+		add(getCheckBox_parque());
 		
+	}
+
+
+	public JCheckBox getCheckBox_barcelona() {
+		return checkBox_barcelona;
+	}
+
+
+	public JCheckBox getCheckBox_madrid() {
+		return checkBox_madrid;
+	}
+
+
+	public JCheckBox getCheckBox_sevilla() {
+		return checkBox_sevilla;
+	}
+
+
+	public JCheckBox getCheckBox_castillo() {
+		return checkBox_castillo;
+	}
+
+
+	public JCheckBox getCheckBox_museo() {
+		return checkBox_museo;
+	}
+
+
+	public JCheckBox getCheckBox_parque() {
+		return checkBox_parque;
 	}
 }

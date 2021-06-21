@@ -12,7 +12,7 @@ public class Carga extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	
-	JProgressBar barraProgreso;
+	private JProgressBar barraProgreso;
 	
 	public Carga() {
 		

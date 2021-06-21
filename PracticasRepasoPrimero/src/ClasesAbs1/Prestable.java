@@ -1,4 +1,4 @@
-package ClasesAbstractas;
+package ClasesAbs1;
 
 	public interface Prestable {
 		public void Prestrar();

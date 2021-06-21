@@ -24,8 +24,15 @@ public class Ventana extends JPanel {
 	Seleccion seleccion = new Seleccion();
 	Trabajo trabajo = new Trabajo();
 	
-	 public javax.swing.Timer time2;
+	public javax.swing.Timer time2;
 	
+	 
+
+
+
+
+
+
 	public Ventana() {
 
 		setBounds(100, 100, 700, 600);
@@ -36,7 +43,7 @@ public class Ventana extends JPanel {
 		add(trabajo, "name_283221113310800");
 		
 		
-		seleccion.btnCargarArchivo.addActionListener(new ActionListener() {
+		seleccion.getBtnCargarArchivo().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -49,6 +56,7 @@ public class Ventana extends JPanel {
 				FileSystemView fw = fr.getFileSystemView();
 				String escritorio = fw.getHomeDirectory().getAbsolutePath();
 				File f = null;
+				// Para ejecutar en linux que salga también el escritorio.
 				String os = System.getProperty("os.name");
 				if (os.contains("Linux")) {
 					f = new File(escritorio+"/Escritorio");
@@ -75,7 +83,7 @@ public class Ventana extends JPanel {
 						
 						
 						while (linea != null) {
-							trabajo.textArea.append(linea + " \n");
+							trabajo.getTextArea().append(linea + " \n");
 							linea = br.readLine();
 							
 						}
@@ -85,8 +93,8 @@ public class Ventana extends JPanel {
 					} catch (IOException a) {
 						System.err.println("Error al leer el archivo: " + a.getMessage());
 					}
-					seleccion.textArea.setText("Has seleccionado el archivo: \n\n" + archivo.getAbsolutePath());
-					trabajo.textField.setText(archivo.getAbsolutePath());
+					seleccion.getTextArea().setText("Has seleccionado el archivo: \n\n" + archivo.getAbsolutePath());
+					trabajo.getTextField().setText(archivo.getAbsolutePath());
 				} else if (opcion == JFileChooser.CANCEL_OPTION) {
 					JOptionPane.showMessageDialog(null, "No has elegido archivo" , "Archivo", JOptionPane.WARNING_MESSAGE, null);
 				}

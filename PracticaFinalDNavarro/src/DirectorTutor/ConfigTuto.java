@@ -15,15 +15,15 @@ public class ConfigTuto extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	JLabel lbl_asunto;
-	JLabel lbl_asistente;
-	TextField textFieldAsunto;
-	JButton btn_reset;
-	JButton btn_resumen;
-	JCheckBox checkBox_tutor;
-	JCheckBox checkBox_padre;
-	JCheckBox checkBox_alumno;
-	JCheckBox checkBox_director;
+	private JLabel lbl_asunto;
+	private JLabel lbl_asistente;
+	private TextField textFieldAsunto;
+	private JButton btn_reset;
+	private JButton btn_resumen;
+	private JCheckBox checkBox_tutor;
+	private JCheckBox checkBox_padre;
+	private JCheckBox checkBox_alumno;
+	private JCheckBox checkBox_director;
 
 	
 	
@@ -71,6 +71,70 @@ public class ConfigTuto extends JPanel{
 		btn_resumen.setBounds(190, 200, 90, 20);
 		add(btn_resumen);
 		
+	}
+
+
+
+
+
+	public TextField getTextFieldAsunto() {
+		return textFieldAsunto;
+	}
+
+
+
+
+
+	public void setTextFieldAsunto(TextField textFieldAsunto) {
+		this.textFieldAsunto = textFieldAsunto;
+	}
+
+
+
+
+
+	public JButton getBtn_reset() {
+		return btn_reset;
+	}
+
+
+
+
+
+	public JButton getBtn_resumen() {
+		return btn_resumen;
+	}
+
+
+
+
+
+	public JCheckBox getCheckBox_tutor() {
+		return checkBox_tutor;
+	}
+
+
+
+
+
+	public JCheckBox getCheckBox_padre() {
+		return checkBox_padre;
+	}
+
+
+
+
+
+	public JCheckBox getCheckBox_alumno() {
+		return checkBox_alumno;
+	}
+
+
+
+
+
+	public JCheckBox getCheckBox_director() {
+		return checkBox_director;
 	}
 	
 	

@@ -20,12 +20,12 @@ public class Seleccion extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	
-	JFileChooser fr;
-	JLabel labelOpcion;
-	JLabel labelTitulo;
-	JTextArea textArea;
-	JButton btnSeleccion;
-	JButton btnCargarArchivo;
+	private JFileChooser fr;
+	private JLabel labelOpcion;
+	private JLabel labelTitulo;
+	private JTextArea textArea;
+	private JButton btnSeleccion;
+	private JButton btnCargarArchivo;
 	
 	
 	public Seleccion() {
@@ -102,4 +102,8 @@ public class Seleccion extends JPanel{
 	public void setBtnSeleccion(JButton btnSeleccion) {
 		this.btnSeleccion = btnSeleccion;
 	}
+	public JButton getBtnCargarArchivo() {
+		return btnCargarArchivo;
+	}
+	
 }

@@ -34,28 +34,30 @@ public class Trabajo extends JPanel{
 	String primer = null, segundo = null, tercer = null;
 	private static final long serialVersionUID = 1L;
 
-	JTextArea textArea;
-	JLabel labelTitulo;
-	JTextField textField;
-	JButton btn_buscar;
-	JLabel lbl_caracter;
-	JButton btn_reiniciar;
-	JCheckBox chckbxSegundoCaracter;
-	JCheckBox chckbxTercerCaracter;
-	JComboBox<?> comboBoxPrimer;
-	JComboBox<?> comboBoxSegundo;
-	JComboBox<?> comboBoxTercera;
-	Highlighter highlighter;
-	Highlighter highlighter2;
-	Highlighter highlighter3;
-	HighlightPainter pinta;
-	HighlightPainter pinta2;
-	HighlightPainter pinta3;
-	JLabel lbl_1;
-	JLabel lbl_2;
-	JLabel lbl_3;
+	private JTextArea textArea;
+	private JLabel labelTitulo;
+	private JTextField textField;
+	private JButton btn_buscar;
+	private JLabel lbl_caracter;
+	private JButton btn_reiniciar;
+	private JCheckBox chckbxSegundoCaracter;
+	private JCheckBox chckbxTercerCaracter;
+	private JComboBox<?> comboBoxPrimer;
+	private JComboBox<?> comboBoxSegundo;
+	private JComboBox<?> comboBoxTercera;
+	private Highlighter highlighter;
+	private Highlighter highlighter2;
+	private Highlighter highlighter3;
+	private HighlightPainter pinta;
+	private HighlightPainter pinta2;
+	private HighlightPainter pinta3;
+	private JLabel lbl_1;
+	private JLabel lbl_2;
+	private JLabel lbl_3;
+	private JButton Boton_Home;
 	
 	
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Trabajo() {
 		setBorder(UIManager.getBorder("CheckBox.border"));
@@ -70,14 +72,14 @@ public class Trabajo extends JPanel{
 		add(labelTitulo);
 		
 		textArea = new JTextArea();
-		textArea.setEditable(false);
-		textArea.setBounds(32, 289, 898, 289);
-		add(textArea);
+		getTextArea().setEditable(false);
+		getTextArea().setBounds(32, 289, 898, 289);
+		add(getTextArea());
 		
 		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setBounds(328, 73, 302, 20);
-		add(textField);
+		getTextField().setEditable(false);
+		getTextField().setBounds(328, 73, 302, 20);
+		add(getTextField());
 		
 		char[] Mayus = new char[26];
 		char[] Minus = new char[26];
@@ -194,19 +196,23 @@ public class Trabajo extends JPanel{
 		add(comboBoxTercera);
 		
 		lbl_1 = new JLabel("Contador 1");
-		lbl_1.setBounds(250, 172, 106, 14);
+		lbl_1.setBounds(250, 172, 138, 54);
 		lbl_1.setVisible(false);
 		add(lbl_1);
 		
 		lbl_2 = new JLabel("Contador 2");
-		lbl_2.setBounds(417, 173, 106, 14);
+		lbl_2.setBounds(417, 173, 107, 53);
 		lbl_2.setVisible(false);
 		add(lbl_2);
 		
 		lbl_3 = new JLabel("Contador 3");
-		lbl_3.setBounds(583, 173, 94, 14);
+		lbl_3.setBounds(583, 173, 124, 53);
 		lbl_3.setVisible(false);
 		add(lbl_3);
+		
+		Boton_Home = new JButton("Inicio");
+		Boton_Home.setBounds(841, 604, 89, 23);
+		add(Boton_Home);
 		
 		ActionListener mostrar3Caracter = new ActionListener() {
 			@Override
@@ -228,11 +234,11 @@ public class Trabajo extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if (primer == null) {
-					JOptionPane.showMessageDialog(null, "No has seleccionado el primer caracter" , "1� LETRA NO SELECCIONADA", JOptionPane.ERROR_MESSAGE, null);
+					JOptionPane.showMessageDialog(null, "No has seleccionado el primer caracter" , "1º LETRA NO SELECCIONADA", JOptionPane.ERROR_MESSAGE, null);
 				} else if (chckbxSegundoCaracter.isSelected() && segundo == null) {
-					JOptionPane.showMessageDialog(null, "No has seleccionado el segundo caracter" , "2� LETRA NO SELECCIONADA", JOptionPane.ERROR_MESSAGE, null);
+					JOptionPane.showMessageDialog(null, "No has seleccionado el segundo caracter" , "2º LETRA NO SELECCIONADA", JOptionPane.ERROR_MESSAGE, null);
 				} else if (chckbxTercerCaracter.isSelected() && tercer == null) {
-					JOptionPane.showMessageDialog(null, "No has seleccionado el tercer caracter" , "3� LETRA NO SELECCIONADA", JOptionPane.ERROR_MESSAGE, null);
+					JOptionPane.showMessageDialog(null, "No has seleccionado el tercer caracter" , "3º LETRA NO SELECCIONADA", JOptionPane.ERROR_MESSAGE, null);
 				}else {
 					btn_buscar.setEnabled(false);
 					btn_reiniciar.setEnabled(true);
@@ -305,9 +311,9 @@ public class Trabajo extends JPanel{
 	public void Primer_caracter() {
 		
 		
-		highlighter = textArea.getHighlighter();
+		highlighter = getTextArea().getHighlighter();
 		pinta = new DefaultHighlightPainter(Color.GRAY);
-		Document doc = textArea.getDocument();
+		Document doc = getTextArea().getDocument();
 		String text;
 		try {
 			text = doc.getText(0, doc.getLength());
@@ -325,7 +331,7 @@ public class Trabajo extends JPanel{
 	public void contarPrimero() {
 		
 		
-		String linea = textArea.getText();
+		String linea = getTextArea().getText();
 		int pos = 0;
 		char letra;
 		char aux  = primer.charAt(0);
@@ -338,16 +344,16 @@ public class Trabajo extends JPanel{
 		}
 		
 		lbl_1.setVisible(true);
-		lbl_1.setText(""+pos);
+		lbl_1.setText("<html><body>La letra " + primer + "<br>sale la cantidad de " + pos+"</body></html>");
 
 	}
 	
 	public void Segundo_caracter() {
 		
 		
-		highlighter2 = textArea.getHighlighter();
+		highlighter2 = getTextArea().getHighlighter();
 		pinta2 = new DefaultHighlightPainter(Color.YELLOW);
-		Document doc = textArea.getDocument();
+		Document doc = getTextArea().getDocument();
 		String text;
 		try {
 			text = doc.getText(0, doc.getLength());
@@ -364,7 +370,7 @@ public class Trabajo extends JPanel{
 	public void contarSegundo() {
 		
 		
-		String linea = textArea.getText();
+		String linea = getTextArea().getText();
 		int pos = 0;
 		char letra;
 		char aux  = segundo.charAt(0);
@@ -377,16 +383,16 @@ public class Trabajo extends JPanel{
 		}
 		
 		lbl_2.setVisible(true);
-		lbl_2.setText(""+pos);
+		lbl_2.setText("<html><body>La letra " + segundo + "<br>sale la cantidad de " + pos+"</body></html>");
 
 	}
 	
 	public void Tercer_caracter() {
 		
 		
-		highlighter3 = textArea.getHighlighter();
+		highlighter3 = getTextArea().getHighlighter();
 		pinta3 = new DefaultHighlightPainter(Color.CYAN);
-		Document doc = textArea.getDocument();
+		Document doc = getTextArea().getDocument();
 		String text;
 		try {
 			text = doc.getText(0, doc.getLength());
@@ -405,7 +411,7 @@ public class Trabajo extends JPanel{
 	public void contarTercer() {
 		
 		
-		String linea = textArea.getText();
+		String linea = getTextArea().getText();
 		int pos = 0;
 		char letra;
 		char aux  = tercer.charAt(0);
@@ -418,7 +424,23 @@ public class Trabajo extends JPanel{
 		}
 		
 		lbl_3.setVisible(true);
-		lbl_3.setText(""+pos);
+		lbl_3.setText("<html><body>La letra " + tercer + "<br>sale la cantidad de " + pos+"</body></html>");
 
+	}
+	
+	public JButton getBoton_Home() {
+		return Boton_Home;
+	}
+
+	public void setBoton_Home(JButton boton_Home) {
+		Boton_Home = boton_Home;
+	}
+
+	public JTextArea getTextArea() {
+		return textArea;
+	}
+
+	public JTextField getTextField() {
+		return textField;
 	}
 }

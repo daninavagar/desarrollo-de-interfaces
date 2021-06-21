@@ -49,8 +49,8 @@ public class Managment extends JPanel {
 		add(summary);
 		
 		
-		login.btn_salir.addActionListener(event.getClose_1());
-		login.btn_login.addActionListener(new ActionListener() {
+		login.getBtn_salir().addActionListener(event.getClose_1());
+		login.getBtn_login().addActionListener(new ActionListener() {
 
 			
 			public void actionPerformed(ActionEvent e) {
@@ -68,21 +68,23 @@ public class Managment extends JPanel {
 				if (!login.compruebaLogin()) {
 					JOptionPane.showMessageDialog(null, "Algunos de los datos introducidos no son correctos", "Error en el acceso", JOptionPane.ERROR_MESSAGE);
 				} else if (!login.muestraPaneles()) {
-					login.textFieldUser.setEnabled(false);
-					login.passwordField_user.setEnabled(false);
+					login.getTextFieldUser().setEnabled(false);
+					login.getPasswordField_user().setEnabled(false);
 					excursion.setVisible(true);
 					excursion.destinoExcur.setVisible(true);
 					tutoria.setVisible(true);
 					tutoria.precio.setVisible(true);
 					summary.setVisible(true);
 					summary.resumenLimpia.setVisible(true);
-					login.btn_login.setEnabled(false);
+					login.getBtn_login().setEnabled(false);
+					login.getBtn_login().setEnabled(false);
 					
 				} else {
 					excursion.setVisible(true);
 					excursion.configExcursion.setVisible(true);
-					login.textFieldUser.setEnabled(false);
-					login.passwordField_user.setEnabled(false);
+					login.getTextFieldUser().setEnabled(false);
+					login.getPasswordField_user().setEnabled(false);
+					login.getBtn_login().setEnabled(false);
 					destinos();
 				}
 				
@@ -90,7 +92,7 @@ public class Managment extends JPanel {
 			}
 		});
 		
-		login.passwordField_user.addKeyListener(new KeyAdapter() {
+		login.getPasswordField_user().addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				excursion.setVisible(false);
@@ -107,21 +109,21 @@ public class Managment extends JPanel {
 					if (!login.compruebaLogin()) {
 						JOptionPane.showMessageDialog(null, "Algunos de los datos introducidos no son correctos", "Error en el acceso", JOptionPane.ERROR_MESSAGE);
 					} else if (!login.muestraPaneles()) {
-						login.textFieldUser.setEnabled(false);
-						login.passwordField_user.setEnabled(false);
+						login.getTextFieldUser().setEnabled(false);
+						login.getPasswordField_user().setEnabled(false);
 						excursion.setVisible(true);
 						excursion.destinoExcur.setVisible(true);
 						tutoria.setVisible(true);
 						tutoria.precio.setVisible(true);
 						summary.setVisible(true);
 						summary.resumenLimpia.setVisible(true);
-						login.btn_login.setEnabled(false);
+						login.getBtn_login().setEnabled(false);
 						
 					} else {
 						excursion.setVisible(true);
 						excursion.configExcursion.setVisible(true);
-						login.textFieldUser.setEnabled(false);
-						login.passwordField_user.setEnabled(false);
+						login.getTextFieldUser().setEnabled(false);
+						login.getPasswordField_user().setEnabled(false);
 						destinos();
 				}
 
@@ -130,45 +132,45 @@ public class Managment extends JPanel {
 		});
 		
 		
-		login.btn_logout.addActionListener(new ActionListener() {
+		login.getBtn_logout().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				login.btn_login.setEnabled(true);
-				login.textFieldUser.setEnabled(true);
-				login.passwordField_user.setEnabled(true);
-				login.radiobtn_excursiones.setSelected(false);
-				login.radiobtn_tutorias.setSelected(false);
-				login.radiobtn_excursiones.setEnabled(false);
-				login.radiobtn_tutorias.setEnabled(false);
+				login.getBtn_login().setEnabled(true);
+				login.getTextFieldUser().setEnabled(true);
+				login.getPasswordField_user().setEnabled(true);
+				login.getRadiobtn_excursiones().setSelected(false);
+				login.getRadiobtn_tutorias().setSelected(false);
+				login.getRadiobtn_excursiones().setEnabled(false);
+				login.getRadiobtn_tutorias().setEnabled(false);
 				excursion.setVisible(false);
 				summary.setVisible(false);
 				tutoria.setVisible(false);
-				login.textFieldUser.setText(null);
-				login.passwordField_user.setText(null);
+				login.getTextFieldUser().setText(null);
+				login.getPasswordField_user().setText(null);
 				
-				tutoria.configTuto.textFieldAsunto.setText(null);
-				tutoria.configTuto.checkBox_alumno.setSelected(false);
-				tutoria.configTuto.checkBox_padre.setSelected(false);
-				tutoria.configTuto.checkBox_tutor.setSelected(false);
-				tutoria.configTuto.checkBox_director.setSelected(false);
+				tutoria.configTuto.getTextFieldAsunto().setText(null);
+				tutoria.configTuto.getCheckBox_alumno().setSelected(false);
+				tutoria.configTuto.getCheckBox_padre().setSelected(false);
+				tutoria.configTuto.getCheckBox_tutor().setSelected(false);
+				tutoria.configTuto.getCheckBox_director().setSelected(false);
 				
-				summary.resumenTuto.txtArea_resumen.setText(null);
+				summary.resumenTuto.getTxtArea_resumen().setText(null);
 			}
 			
 		});
 
-login.radiobtn_excursiones.addActionListener(new ActionListener() {
+		login.getRadiobtn_excursiones().addActionListener(new ActionListener() {
 
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if (login.radiobtn_excursiones.isSelected()) {
+				if (login.getRadiobtn_excursiones().isSelected()) {
 					excursion.setVisible(true);
 					excursion.configExcursion.setVisible(true);
-					login.radiobtn_tutorias.setSelected(false);
+					login.getRadiobtn_tutorias().setSelected(false);
 					tutoria.setVisible(false);
 					summary.setVisible(false);
 				} 
@@ -177,107 +179,112 @@ login.radiobtn_excursiones.addActionListener(new ActionListener() {
 			
 		});
 		
-		login.radiobtn_tutorias.addActionListener(new ActionListener() {
+		login.getRadiobtn_tutorias().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if (login.radiobtn_tutorias.isSelected()) {
+				if (login.getRadiobtn_tutorias().isSelected()) {
 					tutoria.setVisible(true);
 					tutoria.configTuto.setVisible(true);
 					tutoria.precio.setVisible(false);
 					summary.setVisible(true);
 					summary.resumenTuto.setVisible(true);
-					login.radiobtn_excursiones.setSelected(false);
+					login.getRadiobtn_excursiones().setSelected(false);
 					excursion.setVisible(false);
 				} 
 			}
 			
 		});
 		
-		excursion.configExcursion.radiobtn_ida.addActionListener(new ActionListener() {
+		excursion.configExcursion.getRadiobtn_ida().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if (excursion.configExcursion.radiobtn_ida.isSelected()) 
-					excursion.configExcursion.radiobtn_vuelta.setSelected(false);
+				if (excursion.configExcursion.getRadiobtn_ida().isSelected()) 
+					excursion.configExcursion.getRadiobtn_vuelta().setSelected(false);
 			}});
 		
-		excursion.configExcursion.radiobtn_vuelta.addActionListener(new ActionListener() {
+		excursion.configExcursion.getRadiobtn_vuelta().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if (excursion.configExcursion.radiobtn_vuelta.isSelected()) 
-					excursion.configExcursion.radiobtn_ida.setSelected(false);
+				if (excursion.configExcursion.getRadiobtn_vuelta().isSelected()) 
+					excursion.configExcursion.getRadiobtn_ida().setSelected(false);
 			}});
 		
-		tutoria.configTuto.btn_resumen.addActionListener(new ActionListener() {
+		tutoria.configTuto.getBtn_resumen().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String aux = tutoria.configTuto.textFieldAsunto.getText();
 				ArrayList<String> asistentes = new ArrayList<String>();
 				ArrayList<JCheckBox> asis = new ArrayList<JCheckBox>();
-				asis.add(tutoria.configTuto.checkBox_tutor);
-				asis.add(tutoria.configTuto.checkBox_padre);
-				asis.add(tutoria.configTuto.checkBox_director);
-				asis.add(tutoria.configTuto.checkBox_alumno);
+				asis.add(tutoria.configTuto.getCheckBox_tutor());
+				asis.add(tutoria.configTuto.getCheckBox_padre());
+				asis.add(tutoria.configTuto.getCheckBox_director());
+				asis.add(tutoria.configTuto.getCheckBox_alumno());
 				
 				for (int i=0; i<asis.size(); i++) {
 					if (asis.get(i).isSelected()) {
 						asistentes.add(asis.get(i).getText());
 					}
 				}
-				Date fecha = new Date();
-				DateFormat fechaFormato = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
-				summary.resumenTuto.txtArea_resumen.setText("Fecha y hora " + fechaFormato.format(fecha) + "\nASUNTO: " + aux
-												+ "\n\nASISTENTES: \n" + asistentes + "\n\n");
+				if (tutoria.configTuto.getTextFieldAsunto().getText().isEmpty() || asistentes.isEmpty())
+					JOptionPane.showInternalMessageDialog(null, "Asunto vacio o marca los selecciona los asistentes", "Asunto", JOptionPane.WARNING_MESSAGE, null);
+				else {
+					String aux = tutoria.configTuto.getTextFieldAsunto().getText();
+					
+					Date fecha = new Date();
+					DateFormat fechaFormato = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+					summary.resumenTuto.getTxtArea_resumen().setText("Fecha y hora " + fechaFormato.format(fecha) + "\nASUNTO: " + aux
+													+ "\n\nASISTENTES: \n" + asistentes + "\n\n");
+				}
+				
 				
 			}
 			
 		});
 		
-		tutoria.configTuto.btn_reset.addActionListener(new ActionListener() {
+		tutoria.configTuto.getBtn_reset().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				tutoria.configTuto.textFieldAsunto.setText(null);
-				tutoria.configTuto.checkBox_tutor.setSelected(false);
-				tutoria.configTuto.checkBox_padre.setSelected(false);
-				tutoria.configTuto.checkBox_alumno.setSelected(false);
-				tutoria.configTuto.checkBox_director.setSelected(false);
-				summary.resumenTuto.txtArea_resumen.setText(null);
+				tutoria.configTuto.getTextFieldAsunto().setText(null);
+				tutoria.configTuto.getCheckBox_tutor().setSelected(false);
+				tutoria.configTuto.getCheckBox_padre().setSelected(false);
+				tutoria.configTuto.getCheckBox_alumno().setSelected(false);
+				tutoria.configTuto.getCheckBox_director().setSelected(false);
+				summary.resumenTuto.getTxtArea_resumen().setText(null);
 			}});
 		
-		summary.resumenLimpia.btn_limpia.addActionListener(new ActionListener() {
+		summary.resumenLimpia.getBtn_limpia().addActionListener(new ActionListener() {
 
 			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				excursion.destinoExcur.checkBox_barcelona.setSelected(false);
-				excursion.destinoExcur.checkBox_madrid.setSelected(false);
-				excursion.destinoExcur.checkBox_sevilla.setSelected(false);
-				excursion.destinoExcur.checkBox_sevilla.setSelected(false);
-				excursion.destinoExcur.checkBox_castillo.setSelected(false);
-				excursion.destinoExcur.checkBox_museo.setSelected(false);
-				excursion.destinoExcur.checkBox_parque.setSelected(false);
+				excursion.destinoExcur.getCheckBox_barcelona().setSelected(false);
+				excursion.destinoExcur.getCheckBox_madrid().setSelected(false);
+				excursion.destinoExcur.getCheckBox_sevilla().setSelected(false);
+				excursion.destinoExcur.getCheckBox_castillo().setSelected(false);
+				excursion.destinoExcur.getCheckBox_museo().setSelected(false);
+				excursion.destinoExcur.getCheckBox_parque().setSelected(false);
 				
-				tutoria.precio.spinner.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
-				tutoria.precio.spinner_1.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
-				tutoria.precio.spinner_2.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
+				tutoria.precio.getSpinner().setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
+				tutoria.precio.getSpinner_1().setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
+				tutoria.precio.getSpinner_2().setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
 			}});
 
 		
-		excursion.configExcursion.textField_coste.addMouseListener(new MouseAdapter() {
+		excursion.configExcursion.getTextField_coste().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				double precio;
-				Integer nAlumnos = (Integer)excursion.configExcursion.spinner_alumnos.getValue();
+				Integer nAlumnos = (Integer)excursion.configExcursion.getSpinner_alumnos().getValue();
 				Integer pocos = 0;
 				Integer medios = 0;
 				Integer muchos = 0;
@@ -286,47 +293,47 @@ login.radiobtn_excursiones.addActionListener(new ActionListener() {
 				if ( !excursion.configExcursion.compruebaOrigen()) {
 					JOptionPane.showMessageDialog(null, "EL DIRECTOR TIENE QUE SELECCIONAR El ORIGEN Y EL DESTINO", "Atencion", JOptionPane.WARNING_MESSAGE);
 				} else {
-					if (!excursion.configExcursion.radiobtn_vuelta.isSelected() &&  !excursion.configExcursion.radiobtn_ida.isSelected()) {
+					if (!excursion.configExcursion.getRadiobtn_vuelta().isSelected() &&  !excursion.configExcursion.getRadiobtn_ida().isSelected()) {
 						JOptionPane.showMessageDialog(null, "TIENES QUE SELECCIONAR IDA O IDA Y VUELTA", "Atencion", JOptionPane.WARNING_MESSAGE);
 					} else {
-						if (excursion.configExcursion.radiobtn_vuelta.isSelected()) {
+						if (excursion.configExcursion.getRadiobtn_vuelta().isSelected()) {
 							if (nAlumnos < 15) {
-								pocos = (Integer)tutoria.precio.spinner.getValue();
+								pocos = (Integer)tutoria.precio.getSpinner().getValue();
 								precio = nAlumnos * pocos * 1.5;
 								String precio_final = String.valueOf(precio);
-								excursion.configExcursion.textField_coste.setText(precio_final);
+								excursion.configExcursion.getTextField_coste().setText(precio_final);
 								
 								
 							} else if (nAlumnos > 15 && nAlumnos < 25) {
-								medios = (Integer)tutoria.precio.spinner_1.getValue();
+								medios = (Integer)tutoria.precio.getSpinner_1().getValue();
 								precio = nAlumnos * medios * 1.5;
 								String precio_final = String.valueOf(precio);
-								excursion.configExcursion.textField_coste.setText(precio_final);
+								excursion.configExcursion.getTextField_coste().setText(precio_final);
 							} else if (nAlumnos > 25) {
-								muchos = (Integer)tutoria.precio.spinner_2.getValue();
+								muchos = (Integer)tutoria.precio.getSpinner_2().getValue();
 								precio = nAlumnos * muchos * 1.5;
 								String precio_final = String.valueOf(precio);
-								excursion.configExcursion.textField_coste.setText(precio_final);
+								excursion.configExcursion.getTextField_coste().setText(precio_final);
 							}
 							
 						} else {
 							if (nAlumnos < 15) {
-								pocos = (Integer)tutoria.precio.spinner.getValue();
+								pocos = (Integer)tutoria.precio.getSpinner().getValue();
 								precio = nAlumnos * pocos;
 								String precio_final = String.valueOf(precio);
-								excursion.configExcursion.textField_coste.setText(precio_final);
+								excursion.configExcursion.getTextField_coste().setText(precio_final);
 								
 								
 							} else if (nAlumnos > 15 && nAlumnos < 25) {
-								medios = (Integer)tutoria.precio.spinner_1.getValue();
+								medios = (Integer)tutoria.precio.getSpinner_1().getValue();
 								precio = nAlumnos * medios;
 								String precio_final = String.valueOf(precio);
-								excursion.configExcursion.textField_coste.setText(precio_final);
+								excursion.configExcursion.getTextField_coste().setText(precio_final);
 							} else if (nAlumnos > 25) {
-								muchos = (Integer)tutoria.precio.spinner_2.getValue();
+								muchos = (Integer)tutoria.precio.getSpinner_2().getValue();
 								precio = nAlumnos * muchos;
 								String precio_final = String.valueOf(precio);
-								excursion.configExcursion.textField_coste.setText(precio_final);
+								excursion.configExcursion.getTextField_coste().setText(precio_final);
 							}
 							
 						}
@@ -335,39 +342,37 @@ login.radiobtn_excursiones.addActionListener(new ActionListener() {
 
 			}
 		});
-
-		
-		
 	}
 	
 	public void destinos() {
 		
-		
 		ArrayList<JCheckBox> origen = new ArrayList<JCheckBox>();
-		origen.add(excursion.destinoExcur.checkBox_madrid);
-		origen.add(excursion.destinoExcur.checkBox_barcelona);
-		origen.add(excursion.destinoExcur.checkBox_sevilla);
+		origen.add(excursion.destinoExcur.getCheckBox_madrid());
+		origen.add(excursion.destinoExcur.getCheckBox_barcelona());
+		origen.add(excursion.destinoExcur.getCheckBox_sevilla());
 		
 		ArrayList<JCheckBox> destino = new ArrayList<JCheckBox>();
 		
-		destino.add(excursion.destinoExcur.checkBox_castillo);
-		destino.add(excursion.destinoExcur.checkBox_museo);
-		destino.add(excursion.destinoExcur.checkBox_parque);
-		excursion.configExcursion.comboBox_origen.removeAllItems();
-		excursion.configExcursion.comboBox_destino.removeAllItems();
+		destino.add(excursion.destinoExcur.getCheckBox_castillo());
+		destino.add(excursion.destinoExcur.getCheckBox_museo());
+		destino.add(excursion.destinoExcur.getCheckBox_parque());
+		excursion.configExcursion.getComboBox_origen().removeAllItems();
+		excursion.configExcursion.getComboBox_destino().removeAllItems();
 		
 		for (int i=0; i<origen.size(); i++) {
 			if (origen.get(i).isSelected())	
-				excursion.configExcursion.comboBox_origen.addItem(origen.get(i).getText());
+				excursion.configExcursion.getComboBox_origen().addItem(origen.get(i).getText());
 			
 		}
-		
-		
 		for (int i=0; i<destino.size(); i++) {
 			if (destino.get(i).isSelected()) 
-				excursion.configExcursion.comboBox_destino.addItem(destino.get(i).getText());	
+				excursion.configExcursion.getComboBox_destino().addItem(destino.get(i).getText());	
 		}
 		
+	}
+
+	public Login getLogin() {
+		return login;
 	}
 
 

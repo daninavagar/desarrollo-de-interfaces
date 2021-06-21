@@ -17,10 +17,11 @@ public class Selection extends JPanel {
 	 * Create the panel.
 	 */
 	
-	JLabel lblTitle;
-	JButton btn_Teacher;
-	JButton btn_Highlighter;
-	JButton btn_Comparator;
+	private JLabel lblTitle;
+	private JButton btn_Teacher;
+	private JButton btn_Highlighter;
+	private JButton btn_Comparator;
+	
 	public Selection() {
 
 		setBounds(100, 100, 450, 300);
@@ -53,4 +54,30 @@ public class Selection extends JPanel {
 		btn_Comparator.setBounds(64, 186, 321, 41);
 		add(btn_Comparator);
 	}
+
+	public JButton getBtn_Teacher() {
+		return btn_Teacher;
+	}
+
+	public void setBtn_Teacher(JButton btn_Teacher) {
+		this.btn_Teacher = btn_Teacher;
+	}
+
+	public JButton getBtn_Highlighter() {
+		return btn_Highlighter;
+	}
+
+	public void setBtn_Highlighter(JButton btn_Highlighter) {
+		this.btn_Highlighter = btn_Highlighter;
+	}
+
+	public JButton getBtn_Comparator() {
+		return btn_Comparator;
+	}
+
+	public void setBtn_Comparator(JButton btn_Comparator) {
+		this.btn_Comparator = btn_Comparator;
+	}
+	
+	
 }

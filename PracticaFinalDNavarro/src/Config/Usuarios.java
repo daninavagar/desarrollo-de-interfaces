@@ -16,10 +16,11 @@ public class Usuarios {
 	private BufferedReader fichero_BR;
 	
 	Persona persona;
-	private ArrayList<Persona> tablaPersona = new ArrayList<Persona>();
+	private ArrayList<Persona>tablaPersona; 
 	
 
-	public Usuarios() {	
+	public Usuarios() {
+		tablaPersona = new ArrayList<Persona>();
 	}
 
 
@@ -85,12 +86,14 @@ public class Usuarios {
 			fichero_R = new FileReader(fichero);
 			fichero_BR = new BufferedReader(fichero_R);
 			
-			while ((linea = fichero_BR.readLine()) != null) {
+			linea = fichero_BR.readLine();
+			while (linea != null) {
 				String[] aux = linea.split(separador);
 				
 				// substring 2, no lee los 2 primeros caracteres
 				persona = new Persona(aux[0].substring(2), aux[1]);
 				tablaPersona.add(persona);
+				linea = fichero_BR.readLine();
 			}
 			
 			fichero_BR.close();

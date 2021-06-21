@@ -33,21 +33,22 @@ public class Comparador extends JPanel {
 	private static final long serialVersionUID = 1L;
 	Menu menu = new Menu();
 	Event event = new Event();
-	JFileChooser primero, segundo;
-	JTextArea textArea1, textArea2;
-	ActionListener JFile1;
-	ActionListener JFile2;
-	JScrollPane scrollPane;
-	JScrollPane scrollPane1;
-	JButton boton_Comprobar;
-	JButton boton_Reiniciar;
-	Highlighter highlighter;
-	HighlightPainter pinta, pinta1;
-	JLabel lbl_coincidencia;
+	private JFileChooser primero, segundo;
+	private JTextArea textArea1, textArea2;
+	private ActionListener JFile1;
+	private ActionListener JFile2;
+	private JScrollPane scrollPane;
+	private JScrollPane scrollPane1;
+	private JButton boton_Comprobar;
+	private JButton boton_Reiniciar;
+	private Highlighter highlighter;
+	private HighlightPainter pinta, pinta1;
+	private JLabel lbl_coincidencia;
 
-	String lbl = "La coincidencia del texto es de ";
+	private String lbl = "La coincidencia del texto es de ";
 	
-	String cadena1 = "", cadena2 = "";
+	private String cadena1 = "", cadena2 = "";
+	private JButton boton_Inicio;
 
 	/**
 	 * Create the panel.
@@ -69,8 +70,9 @@ public class Comparador extends JPanel {
 				FileSystemView vista = primero.getFileSystemView();
 				String ruta = vista.getHomeDirectory().getAbsolutePath();
 				File folder = null;
-				String os = System.getProperty("os.name");
 				
+				// Para ejecutar en linux que salga tambien el escritorio.
+				String os = System.getProperty("os.name");
 				if (os.contains("Linux")) {
 					folder = new File(ruta+"/Escritorio");
 				} else {
@@ -112,13 +114,7 @@ public class Comparador extends JPanel {
 					JOptionPane.showInternalMessageDialog(primero, "No has elegido ningún archivo", "SELECCIÓN PRIMER ARCHIVO", JOptionPane.WARNING_MESSAGE);
 				}
 			}};
-		
-		
-		
-		
-			
-		
-		
+
 			
 		JFile2 = new ActionListener() {
 
@@ -126,7 +122,7 @@ public class Comparador extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				textArea2.setText(null);
-				JFileChooser segundo = new JFileChooser();
+				segundo = new JFileChooser();
 				segundo.setDialogTitle("SELECCIONAR SEGUNDO ARCHIVO");
 				segundo.setBounds(0, 329, 582, 399);
 				
@@ -178,12 +174,7 @@ public class Comparador extends JPanel {
 					JOptionPane.showInternalMessageDialog(primero, "No has elegido ningún archivo", "SELECCIÓN SEGUNDO ARCHIVO", JOptionPane.WARNING_MESSAGE);
 				}
 			}};
-		
-			
-		
-
-		
-		
+	
 		textArea1 = new JTextArea();
 		textArea1.setEnabled(true);
 		textArea1.setEditable(false);
@@ -212,27 +203,21 @@ public class Comparador extends JPanel {
 		add(boton_Comprobar);
 		
 		boton_Comprobar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
+			public void actionPerformed(ActionEvent e) {			
 				if (textArea1.getText().isEmpty()) {
 					JOptionPane.showInternalMessageDialog(primero, "No has elegido ningún archivo o has elegido un archivo vacío", "COMPRONBACIÓN PRIMER ARCHIVO", JOptionPane.WARNING_MESSAGE);
 				} else if (textArea2.getText().isEmpty()) {
 					JOptionPane.showInternalMessageDialog(primero, "No has elegido ningún archivo o has elegido un archivo vacío", "COMPROBACIÓN SEGUNDO ARCHIVO", JOptionPane.WARNING_MESSAGE);
-				}else {
+				} else {
 					boton_Comprobar.setEnabled(false);
 					boton_Reiniciar.setEnabled(true);
 					comparadorArchivos();
-				}
-				
-				
-				
-				
+				}				
 			}
 		});
 		
 		boton_Reiniciar = new JButton("REINICIAR");
-		boton_Reiniciar.setBounds(263, 560, 168, 23);
+		boton_Reiniciar.setBounds(170, 559, 168, 23);
 		boton_Reiniciar.setEnabled(false);
 		add(boton_Reiniciar);
 		
@@ -241,9 +226,11 @@ public class Comparador extends JPanel {
 		lbl_coincidencia.setBounds(186, 520, 328, 29);
 		add(lbl_coincidencia);
 		
+		boton_Inicio = new JButton("INICIO");
+		boton_Inicio.setBounds(348, 559, 168, 23);
+		add(boton_Inicio);
 		
-		
-		
+
 		boton_Reiniciar.addActionListener(new ActionListener() {
 
 			@Override
@@ -260,41 +247,23 @@ public class Comparador extends JPanel {
 				highlighter.removeAllHighlights();
 				lbl_coincidencia.setText("");
 			}});
-		
-		
-
 	}
-
-
-
 	
 	public ActionListener getJFile1() {
 		return JFile1;
 	}
 
-
-
-
 	public void setJFile1(ActionListener jFile1) {
 		JFile1 = jFile1;
 	}
-
-
-
 
 	public ActionListener getJFile2() {
 		return JFile2;
 	}
 
-
-
-
 	public void setJFile2(ActionListener jFile2) {
 		JFile2 = jFile2;
 	}
-
-
-
 
 	public void comprobar() {
 		
@@ -391,11 +360,11 @@ public class Comparador extends JPanel {
 			
 		} catch (BadLocationException x) {
 			System.err.println("Error al subrayar :" + x.getMessage());
-		}
-		
-		
-		
+		}		
 	}
 
+	public JButton getBoton_Inicio() {
+		return boton_Inicio;
+	}
 
 }

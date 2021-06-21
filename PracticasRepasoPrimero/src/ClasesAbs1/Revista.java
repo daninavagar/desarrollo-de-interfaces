@@ -1,4 +1,4 @@
-package ClasesAbstractas;
+package ClasesAbs1;
 
 public class Revista extends comun{
 	

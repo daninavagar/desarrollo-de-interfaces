@@ -20,11 +20,10 @@ public class Load extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	JProgressBar barraProgreso;
 	
 	
-	
-	
+	private JProgressBar barraProgreso;
+	private JLabel lbl_Fondo;
 	public Load() {
 		setLayout(null);
 		setBounds(100, 100, 700, 600);
@@ -44,29 +43,20 @@ public class Load extends JPanel {
 			e.printStackTrace();
 		}
 		add(barraProgreso);
-		JLabel lbl_Fondo = new JLabel(new ImageIcon(img));
+		lbl_Fondo = new JLabel(new ImageIcon(img));
 		lbl_Fondo.setBounds(10, -58, 690, 565);
 		lbl_Fondo.setOpaque(true);
 		
 		add(lbl_Fondo);
-
-		
 	}
-
-
-
 
 	public JProgressBar getBarraProgreso() {
 		return barraProgreso;
 	}
 
 
-
-
 	public void setBarraProgreso(JProgressBar barraProgreso) {
 		this.barraProgreso = barraProgreso;
 	}
-	
-	
 
 }

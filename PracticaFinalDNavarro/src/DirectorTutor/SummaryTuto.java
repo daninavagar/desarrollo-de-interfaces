@@ -20,9 +20,9 @@ public class SummaryTuto extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	JLabel lbl_tutoria;
-	public JTextArea txtArea_resumen;
-	JButton btn_guardar;
+	private JLabel lbl_tutoria;
+	private JTextArea txtArea_resumen;
+	private JButton btn_guardar;
 	
 	public SummaryTuto() {
 		
@@ -55,19 +55,34 @@ public class SummaryTuto extends JPanel{
 				
 				String concepto = txtArea_resumen.getText();
 				File resumen = new File(ubica);
-				FileWriter resumen_w;
 				try {
-					resumen_w = new FileWriter(resumen, true);
+					FileWriter resumen_w = new FileWriter(resumen, true);
 					BufferedWriter resumen_wr = new BufferedWriter(resumen_w);
 					resumen_wr.write(concepto);
 					resumen_wr.close();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					System.err.println("Erro al escribir: " + e1.getMessage());
 				}
 				
 			}});
 		
 		
 	}
+
+	public JTextArea getTxtArea_resumen() {
+		return txtArea_resumen;
+	}
+
+	public void setTxtArea_resumen(JTextArea txtArea_resumen) {
+		this.txtArea_resumen = txtArea_resumen;
+	}
+
+	public JButton getBtn_guardar() {
+		return btn_guardar;
+	}
+
+	public void setBtn_guardar(JButton btn_guardar) {
+		this.btn_guardar = btn_guardar;
+	}
+	
 }

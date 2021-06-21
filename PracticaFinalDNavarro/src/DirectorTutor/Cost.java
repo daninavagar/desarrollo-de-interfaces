@@ -13,14 +13,13 @@ public class Cost extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	JLabel labeltitulo;
-	JLabel label_2;
-	JLabel label_pocos;
-	JLabel label_medio;
-	JLabel label_muchos;
-	JSpinner spinner;
-	JSpinner spinner_1;
-	JSpinner spinner_2;
+	private JLabel labeltitulo;
+	private JLabel label_2;
+	private JLabel label_pocos;
+	private JLabel label_medio;
+	private JSpinner spinner;
+	private JSpinner spinner_1;
+	private JSpinner spinner_2;
 
 	public Cost() {
 		
@@ -49,24 +48,36 @@ public class Cost extends JPanel{
 		add(label_medio);
 		
 		spinner = new JSpinner();
-		spinner.setBounds(183, 96, 43, 28);
-		spinner.setModel(new SpinnerNumberModel(1, 1, null, 1));
-		spinner.setEditor(new JSpinner.DefaultEditor(spinner));
-		add(spinner);
+		getSpinner().setBounds(183, 96, 43, 28);
+		getSpinner().setModel(new SpinnerNumberModel(1, 1, null, 1));
+		getSpinner().setEditor(new JSpinner.DefaultEditor(getSpinner()));
+		add(getSpinner());
 		
 		spinner_1 = new JSpinner();
-		spinner_1.setBounds(183, 146, 43, 28);
-		spinner_1.setModel(new SpinnerNumberModel(1, 1, null, 1));
-		spinner_1.setEditor(new JSpinner.DefaultEditor(spinner_1));
-		add(spinner_1);
+		getSpinner_1().setBounds(183, 146, 43, 28);
+		getSpinner_1().setModel(new SpinnerNumberModel(1, 1, null, 1));
+		getSpinner_1().setEditor(new JSpinner.DefaultEditor(getSpinner_1()));
+		add(getSpinner_1());
 		
 		spinner_2 = new JSpinner();
-		spinner_2.setBounds(183, 202, 43, 28);
-		spinner_2.setModel(new SpinnerNumberModel(1, 1, null, 1));
-		spinner_2.setEditor(new JSpinner.DefaultEditor(spinner_2));
-		add(spinner_2);
+		getSpinner_2().setBounds(183, 202, 43, 28);
+		getSpinner_2().setModel(new SpinnerNumberModel(1, 1, null, 1));
+		getSpinner_2().setEditor(new JSpinner.DefaultEditor(getSpinner_2()));
+		add(getSpinner_2());
 		
 		
 		
+	}
+
+	public JSpinner getSpinner() {
+		return spinner;
+	}
+
+	public JSpinner getSpinner_1() {
+		return spinner_1;
+	}
+
+	public JSpinner getSpinner_2() {
+		return spinner_2;
 	}
 }

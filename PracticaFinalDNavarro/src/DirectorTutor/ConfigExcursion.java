@@ -17,16 +17,16 @@ public class ConfigExcursion extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	JLabel lbl_origen;
-	JLabel lbl_destino;
-	JRadioButton radiobtn_ida;
-	JRadioButton radiobtn_vuelta;
-	JComboBox<String> comboBox_origen;
-	JComboBox<String> comboBox_destino;
-	JLabel lbl_alumnos;
-	JLabel lbl_coste;
-	JTextField textField_coste;
-	JSpinner spinner_alumnos;
+	private JLabel lbl_origen;
+	private JLabel lbl_destino;
+	private JRadioButton radiobtn_ida;
+	private JRadioButton radiobtn_vuelta;
+	private JComboBox<String> comboBox_origen;
+	private JComboBox<String> comboBox_destino;
+	private JLabel lbl_alumnos;
+	private JLabel lbl_coste;
+	private JTextField textField_coste;
+	private JSpinner spinner_alumnos;
 	
 	public ConfigExcursion() {
 		
@@ -41,15 +41,15 @@ public class ConfigExcursion extends JPanel{
 		add(lbl_destino);
 		
 		comboBox_origen = new JComboBox<String>();
-		comboBox_origen.setBorder(UIManager.getBorder("Tree.editorBorder"));
-		comboBox_origen.setBounds(166, 73, 133, 22);
+		getComboBox_origen().setBorder(UIManager.getBorder("Tree.editorBorder"));
+		getComboBox_origen().setBounds(166, 73, 133, 22);
 		
-		add(comboBox_origen);
+		add(getComboBox_origen());
 		
 		comboBox_destino = new JComboBox<String>();
-		comboBox_destino.setBorder(UIManager.getBorder("Tree.editorBorder"));
-		comboBox_destino.setBounds(166, 115, 133, 22);
-		add(comboBox_destino);
+		getComboBox_destino().setBorder(UIManager.getBorder("Tree.editorBorder"));
+		getComboBox_destino().setBounds(166, 115, 133, 22);
+		add(getComboBox_destino());
 		
 		radiobtn_ida = new JRadioButton("IDA");
 		radiobtn_ida.setBounds(64, 160, 66, 23);
@@ -69,15 +69,15 @@ public class ConfigExcursion extends JPanel{
 		add(lbl_coste);
 		
 		spinner_alumnos = new JSpinner();
-		spinner_alumnos.setModel(new SpinnerNumberModel(1, 1, 50, 1));
-		spinner_alumnos.setBounds(250, 200, 49, 20);
-		spinner_alumnos.setEditor(new JSpinner.DefaultEditor(spinner_alumnos));
-		add(spinner_alumnos);
+		getSpinner_alumnos().setModel(new SpinnerNumberModel(1, 1, 50, 1));
+		getSpinner_alumnos().setBounds(250, 200, 49, 20);
+		getSpinner_alumnos().setEditor(new JSpinner.DefaultEditor(getSpinner_alumnos()));
+		add(getSpinner_alumnos());
 		
 		textField_coste = new JTextField();
-		textField_coste.setBounds(250, 230, 49, 20);
-		textField_coste.setEditable(false);
-		add(textField_coste);
+		getTextField_coste().setBounds(250, 230, 49, 20);
+		getTextField_coste().setEditable(false);
+		add(getTextField_coste());
 	}
 	
 	public boolean compruebaOrigen() {
@@ -85,14 +85,45 @@ public class ConfigExcursion extends JPanel{
 		boolean exit = false;
 		
 		
-		if (comboBox_origen.getItemCount() <= 0 || comboBox_destino.getItemCount() <= 0) {
+		if (getComboBox_origen().getItemCount() <= 0 || getComboBox_destino().getItemCount() <= 0) {
 			return exit;
 		} else {
 			exit = true;
 		}
-
-		
-		
 		return exit;
 	}
+
+	public JRadioButton getRadiobtn_ida() {
+		return radiobtn_ida;
+	}
+
+	public void setRadiobtn_ida(JRadioButton radiobtn_ida) {
+		this.radiobtn_ida = radiobtn_ida;
+	}
+
+	public JRadioButton getRadiobtn_vuelta() {
+		return radiobtn_vuelta;
+	}
+
+	public void setRadiobtn_vuelta(JRadioButton radiobtn_vuelta) {
+		this.radiobtn_vuelta = radiobtn_vuelta;
+	}
+
+	public JTextField getTextField_coste() {
+		return textField_coste;
+	}
+
+	public JSpinner getSpinner_alumnos() {
+		return spinner_alumnos;
+	}
+
+	public JComboBox<String> getComboBox_origen() {
+		return comboBox_origen;
+	}
+
+	public JComboBox<String> getComboBox_destino() {
+		return comboBox_destino;
+	}
+	
+	
 }

@@ -31,8 +31,9 @@ public class Main {
 	Comparador comparador = new Comparador();
 	Menu menu = new Menu();
 	
+	private ActionListener ac;
 	private Timer time;
-	private int cont , pos;
+	private int x = 0;
 
 	/**
 	 * Launch the application.
@@ -70,7 +71,7 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
 		
-		frame.addWindowListener(event.Close);
+		frame.addWindowListener(event.getClose());
 		
 		frame.getContentPane().add(selection);
 		frame.getContentPane().add(load);
@@ -80,7 +81,7 @@ public class Main {
 		
 		
 		// PRACTICA 1
-		selection.btn_Teacher.addActionListener(new ActionListener() {
+		selection.getBtn_Teacher().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -91,37 +92,47 @@ public class Main {
 				ventana.getCarga().setVisible(true);
 				load.setVisible(true);
 				
-				time = new Timer(30, (ActionListener) new ActionListener() {
+				ac = new ActionListener() {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
-						
-						
-						cont++;
-						load.getBarraProgreso().setValue(cont);
-						if (load.getBarraProgreso().getValue() < 10)
-							load.getBarraProgreso().setValue(load.getBarraProgreso().getValue() + 1);
+						x++;
+						load.getBarraProgreso().setValue(x);
 						if (load.getBarraProgreso().getValue() == 30) {
 							if (user.compruebaficheros()) {
 								JOptionPane.showMessageDialog(null, "Faltan archivos", "Error en el acceso", JOptionPane.ERROR_MESSAGE, null);
 								System.exit(0);
-
 							}
 						}
 						if (load.getBarraProgreso().getValue() == 100) {
 							load.setVisible(false);
 							managment.setVisible(true);
-							
-							
+							time.stop();
 						}
-					}});
+							
+					}};
+				time = new Timer(30, ac);
 				time.start();
 			}});
 		
+		managment.getLogin().getBtn_Inicio().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				managment.setVisible(false);
+				load.setVisible(false);
+				selection.setVisible(true);
+				frame.setBounds(100, 100, 450, 300);
+				frame.setLocationRelativeTo(null);
+				time.removeActionListener(ac);
+				load.getBarraProgreso().setValue(0);
+				x = 0;
+			}});
 		
 		// PRACTICA 2
-		selection.btn_Highlighter.addActionListener(new ActionListener() {
+		selection.getBtn_Highlighter().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				selection.setVisible(false);
@@ -130,27 +141,22 @@ public class Main {
 				ventana.setVisible(true);
 				ventana.getCarga().setVisible(true);
 				
-				ventana.time2 = new Timer(100, (ActionListener) new ActionListener() {
+				ac = new ActionListener() {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
-						
-						
-						pos++;
-						ventana.getCarga().getBarraProgreso().setValue(pos);
-						if (ventana.getCarga().getBarraProgreso().getValue() < 10)
-							ventana.getCarga().getBarraProgreso().setValue(ventana.getCarga().getBarraProgreso().getValue() + 1);
+						x++;
+						ventana.getCarga().getBarraProgreso().setValue(x);
 						if (ventana.getCarga().getBarraProgreso().getValue() == 100) {
 							ventana.getCarga().setVisible(false);
 							ventana.getSeleccion().setVisible(true);
-						} 
+							time.stop();
+						}
 							
-					}
-					
-				});
-				ventana.time2.start();
-				
+					}};
+				time = new Timer(100, ac);
+				time.start();
 			}
 		});
 		
@@ -158,7 +164,7 @@ public class Main {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				ventana.time2.stop();
+				
 				if (ventana.getSeleccion().getTextArea().getText().length() == 0) {
 					JOptionPane.showMessageDialog(null, "No has elegido archivo \n Pulsa en UBICACIÓN ARCHIVO para seleccionar." , "Archivo", JOptionPane.WARNING_MESSAGE, null);
 				} else {
@@ -174,10 +180,27 @@ public class Main {
 			
 		});
 		
+		ventana.getTrabajo().getBoton_Home().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ventana.getTrabajo().setVisible(false);
+				ventana.getSeleccion().setVisible(false);
+				ventana.getCarga().setVisible(false);
+				ventana.setVisible(false);
+				selection.setVisible(true);
+				frame.setBounds(100, 100, 450, 300);
+				frame.setLocationRelativeTo(null);
+				time.removeActionListener(ac);
+				ventana.getCarga().getBarraProgreso().setValue(0);
+				x = 0;		
+			}});
+		
 		
 		// PRACTICA 3
 		
-		selection.btn_Comparator.addActionListener(new ActionListener() {
+		selection.getBtn_Comparator().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -194,7 +217,19 @@ public class Main {
 			}
 			
 		});
-			
+		
+		comparador.getBoton_Inicio().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				comparador.setVisible(false);
+				selection.setVisible(true);
+				frame.setBounds(100, 100, 450, 300);
+				frame.setLocationRelativeTo(null);
+				frame.setJMenuBar(null);
+			}});
+		
 	}
 
 }

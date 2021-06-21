@@ -1,4 +1,4 @@
-package ClasesAbstractas;
+package ClasesAbs1;
 
 public class Libro extends comun implements Prestable{
 	

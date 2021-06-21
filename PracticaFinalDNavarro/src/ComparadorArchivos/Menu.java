@@ -6,13 +6,13 @@ import javax.swing.JMenuItem;
 
 public class Menu {
 
-	JMenuBar menuBar;
-	JMenu mnArchivo;
-	JMenuItem Item_1_Archivo;
-	JMenuItem Item_2_Archivo;
-	JMenuItem Item_Salir;
-	JMenu mnAcercaDe;
-	JMenuItem Item_1_Acerca;
+	private JMenuBar menuBar;
+	private JMenu mnArchivo;
+	private JMenuItem Item_1_Archivo;
+	private JMenuItem Item_2_Archivo;
+	private JMenuItem Item_Salir;
+	private JMenu mnAcercaDe;
+	private JMenuItem Item_1_Acerca;
 	
 	
 	
